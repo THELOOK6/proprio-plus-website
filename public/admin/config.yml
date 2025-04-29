@@ -64,6 +64,6 @@ collections:
 auth:
   # Integrate Auth0 for login
   provider: auth0
-  clientId: "YOUR_AUTH0_CLIENT_ID"
-  domain: "YOUR_AUTH0_DOMAIN"
+  clientId: "${AUTH0_CLIENT_ID}"
+  domain: "${AUTH0_DOMAIN}"
   redirectUri: "https://groupeproprioplus.netlify.app/admin"
