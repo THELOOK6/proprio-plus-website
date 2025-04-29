@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: https://github.com/THELOOK6/proprio-plus-website.git  # Replace with your GitHub repo name
+  repo: THELOOK6/proprio-plus-website.git  # Replace with your GitHub repo name
   branch: main  # or 'master', depending on your default branch
 
 media_folder: "public/images/uploads"
