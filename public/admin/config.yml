@@ -1,14 +1,17 @@
 backend:
   name: github
-  repo: THELOOK6/proprio-plus-website.git  # Replace with your GitHub repo name
-  branch: main  # or 'master', depending on your default branch
-  clientId: "${GITHUB_CLIENT_ID}"  # Use the environment variable for GitHub Client ID
-  clientSecret: "${GITHUB_CLIENT_SECRET}"  # Use the environment variable for GitHub Client Secret
-  redirectUri: "https://groupeproprioplus.netlify.app/admin"  # Make sure the redirect URI matches what's set in GitHub OAuth
+  repo: THELOOK6/proprio-plus-website
+  branch: main
+  # The magic is here - use Netlify's built-in OAuth provider
+  # No need for client IDs, secrets, or redirects
+  # This works out of the box with Netlify's GitHub integration
+  site_domain: groupeproprioplus.netlify.app
 
+# Media settings
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
+# Content collections
 collections:
   - name: "blog"
     label: "Blog Posts"
@@ -22,6 +25,7 @@ collections:
       - { label: "Publish Date", name: "publishDate", widget: "datetime" }
       - { label: "Publish", name: "publish", widget: "boolean", default: true }
       - { label: "Categories", name: "categories", widget: "list", default: [] }
+      - { label: "Content", name: "body", widget: "markdown" }
       - label: "SEO"
         name: "seo"
         widget: "object"
@@ -37,6 +41,7 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Last Updated", name: "lastUpdated", widget: "datetime" }
+      - { label: "Content", name: "body", widget: "markdown" }
       - label: "SEO"
         name: "seo"
         widget: "object"
@@ -53,6 +58,7 @@ collections:
       - { label: "Name", name: "name", widget: "string" }
       - { label: "Headshot", name: "headshot", widget: "image" }
       - { label: "Job Title", name: "jobTitle", widget: "string" }
+      - { label: "Bio", name: "body", widget: "markdown", required: false }
       - { label: "Publish", name: "publish", widget: "boolean", default: true }
       - { label: "Order", name: "order", widget: "number", value_type: "int" }
       - { label: "LinkedIn URL", name: "linkedin", widget: "string", required: false }
