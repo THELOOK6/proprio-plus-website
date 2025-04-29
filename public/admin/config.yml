@@ -2,6 +2,9 @@ backend:
   name: github
   repo: THELOOK6/proprio-plus-website.git  # Replace with your GitHub repo name
   branch: main  # or 'master', depending on your default branch
+  clientId: "${GITHUB_CLIENT_ID}"  # Use the environment variable for GitHub Client ID
+  clientSecret: "${GITHUB_CLIENT_SECRET}"  # Use the environment variable for GitHub Client Secret
+  redirectUri: "https://groupeproprioplus.netlify.app/admin"  # Make sure the redirect URI matches what's set in GitHub OAuth
 
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
