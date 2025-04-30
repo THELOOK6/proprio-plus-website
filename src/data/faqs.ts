@@ -13,24 +13,28 @@ export const faqLists: Record<string, FaqList> = {
         id: 'main',
         faqs: [
             {
-                question: "Is Titan Core completely free to use?",
-                answer: "Yes, Titan Core is 100% free and open-source. You can use it for personal and commercial projects without any licensing fees."
+                question: "What types of properties do you manage?",
+                answer: "We manage a wide range of residential properties including single-family homes, apartments, multi-unit buildings, and small residential complexes."
             },
             {
-                question: "How do I customize the color schemes?",
-                answer: "Titan Core comes with 10 pre-built color schemes that can be easily switched through the theme configuration file. For custom colors, you can modify the CSS variables in the `src/styles/global.css` file to match your brand identity."
+                question: "How do you screen potential tenants?",
+                answer: "Our tenant screening process includes background checks, credit checks, employment verification, and reference checks to ensure reliable, responsible tenants."
             },
             {
-                question: "Do I need to know Astro JS to use this theme?",
-                answer: "Basic familiarity with Astro JS is helpful, but not required. The component-based architecture makes it easy to understand and modify even if you're new to Astro."
+                question: "How do you handle property maintenance and repairs?",
+                answer: "We offer 24/7 maintenance support through our network of trusted contractors. Regular inspections and preventive care ensure your property stays in top condition."
             },
             {
-                question: "Can I use Titan Core as a starting point for client projects?",
-                answer: "Absolutely! Titan Core is designed to be a foundation theme that you can build upon for client projects. Its clean architecture and minimal approach make it perfect as a starting point for customized websites."
+                question: "How are rent payments handled?",
+                answer: "We provide a secure online portal for tenants to pay rent. Owners receive direct deposits and monthly financial reports for full transparency."
             },
             {
-                question: "How often is Titan Core updated?",
-                answer: "We aim to update Titan Core regularly to keep it compatible with the latest Astro JS releases and web standards. Major updates are released quarterly, with smaller fixes and improvements added more frequently. You can star our GitHub repository to stay informed about updates."
+                question: "Do you handle evictions if necessary?",
+                answer: "Yes. If eviction becomes necessary, we handle all legal procedures to protect your interests while staying compliant with local laws."
+            },
+            {
+                question: "What sanitary services do you provide?",
+                answer: "We offer professional cleaning, sanitation of common areas, trash management, and disinfection services, especially tailored to multi-tenant buildings."
             }
         ]
     }

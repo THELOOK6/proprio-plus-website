@@ -1,23 +1,26 @@
 // src/data/menu.ts
 
 export const headerMenu = [
-    { name: 'Theme Info', link: '/theme-info' },
+    { name: 'Home', link: '/' },
+    { name: 'About', link: '/about' },
     { name: 'Our Team', link: '/team' },
-    { name: 'Blog', link: '/blog' },
-    { name: 'Style-Guide', link: '/style-guide', showArrow: false,
-        children: [
-            { name: 'Typography', link: '/style-guide#typography' },
-            { name: 'Colors', link: '/style-guide#colors' },
-            { name: 'Links', link: '/style-guide#links' },
-            { name: 'Buttons', link: '/style-guide#buttons' },
-            { name: 'Forms', link: '/style-guide#forms' },
-            { name: 'Lists', link: '/style-guide#lists' },
-        ]
-    }
+    { name: 'Services', link: '/services', showArrow: false,
+        // children: [
+        //     { name: 'Typography', link: '/style-guide#typography' },
+        //     { name: 'Colors', link: '/style-guide#colors' },
+        //     { name: 'Links', link: '/style-guide#links' },
+        //     { name: 'Buttons', link: '/style-guide#buttons' },
+        //     { name: 'Forms', link: '/style-guide#forms' },
+        //     { name: 'Lists', link: '/style-guide#lists' },
+        // ]
+    },
+    { name: 'Blog/Properties', link: '/blog' }
 ];
 
 export const footerMenu = [
     { name: 'Style Guide', link: '/style-guide' },
+    { name: 'Theme Info', link: '/theme-info' },
+    { name: 'Our Team', link: '/team' },
 ];
 
 export const legalMenu = [

@@ -1,0 +1,142 @@
+---
+import type { Feature } from '@data/features';
+import Button from '@components/ui/Button.astro';
+import Eyebrow from '@components/ui/Eyebrow.astro';
+import { getPaddingClass, getBackgroundColor, getTextColor } from '@utils/styleUtils';
+import type { PaddingSize, ThemeColor } from '@utils/styleUtils';
+
+export interface Props {
+    content: {
+        eyebrow?: string;
+        title?: string;
+        description?: string;
+        button?: {
+            text: string;
+            link: string;
+            variant?: 'primary' | 'secondary' | 'ghostLight' | 'ghostDark';
+        };
+        features: Feature[];
+    };
+    background?: ThemeColor;
+    padding?: PaddingSize;
+    paddingTop?: PaddingSize;
+    paddingBottom?: PaddingSize;
+}
+
+const {
+    content: {
+        eyebrow,
+        title,
+        description,
+        button,
+        features
+    },
+    background = 'base'
+} = Astro.props;
+
+const bgColor = getBackgroundColor(background);
+const textColor = getTextColor(background);
+const paddingClass = getPaddingClass({
+    padding: Astro.props.padding,
+    paddingTop: Astro.props.paddingTop,
+    paddingBottom: Astro.props.paddingBottom
+});
+---
+
+<section class:list={["relative", bgColor, paddingClass]}>
+    <div class="site-container px-4">
+        {(title || description) && (
+            <div class="text-center mb-16 max-w-3xl mx-auto">
+                {eyebrow && (
+                    <Eyebrow
+                        text={eyebrow}
+                        background={background}
+                    />
+                )}
+                {title && (
+                    <h2 class:list={[textColor]} data-aos="fade-up">
+                        {title}
+                    </h2>
+                )}
+                {description && (
+                    <p class:list={["mt-4", textColor, "opacity-90"]} data-aos="fade-up" data-aos-delay="100">
+                        {description}
+                    </p>
+                )}
+            </div>
+        )}
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
+                <div
+                    class="feature-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300"
+                    data-aos="fade-up"
+                    data-aos-delay={index * 10}
+                >
+                    <div class="hover-line"></div>
+                    <div class="p-8">
+                        <div class="flex justify-center mb-6">
+                            <div class:list={[
+                                "w-16 h-16 flex items-center justify-center rounded-md",
+                                "bg-primary/10"
+                            ]}>
+                                <feature.icon
+                                    size={28}
+                                    class="text-primary"
+                                />
+                            </div>
+                        </div>
+                        <h3 class:list={["text-h5 mb-4 text-center", textColor]}>
+                            {feature.title}
+                        </h3>
+                        <p class:list={["text-h6 text-center", textColor, "opacity-80"]}>
+                            {feature.description}
+                        </p>
+                    </div>
+                </div>
+            ))}
+        </div>
+
+        {button && (
+            <div class="mt-12 text-center">
+                <Button
+                    text={button.text}
+                    href={button.link}
+                    variant={button.variant || 'primary'}
+                    theme={background === 'dark' ? 'dark' : 'light'}
+                />
+            </div>
+        )}
+    </div>
+</section>
+
+<style>
+    .feature-card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .hover-line {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background-color: rgb(249, 115, 22); /* Tailwind blue-500 color, adjust as needed */
+        transform: translateX(-101%);
+        transition: transform 0.3s ease-out;
+    }
+
+    .feature-card:hover .hover-line {
+        transform: translateX(0);
+    }
+</style>

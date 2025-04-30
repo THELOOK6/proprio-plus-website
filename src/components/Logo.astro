@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import logo from '../assets/astro.svg';
+import logo from '../assets/proprioplus.png';
 interface Props {
     variant?: 'header' | 'footer' | 'dark';
 }
@@ -28,6 +28,6 @@ const getLogoClass = () => {
         // Please, use something like your company name or “Home”, not “logo.”
         // If there is link text, leave alt empty.
     }
-    <Image src={logo} alt="" class="hidden" />
-    <span class="font-bold">Titan</span> Core
+    <Image src={logo} alt="Proprio+" class="visible" />
+    <!-- <span class="font-bold">HELP</span> Core -->
 </a>

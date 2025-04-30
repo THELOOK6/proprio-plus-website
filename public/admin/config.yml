@@ -68,3 +68,36 @@ collections:
       - { label: "X (Twitter) Username", name: "xSocialUsername", widget: "string", required: false }
       - { label: "GitHub URL", name: "github", widget: "string", required: false }
       - { label: "GitHub Username", name: "githubUsername", widget: "string", required: false }
+
+  - name: "properties"
+    label: "Properties"
+    folder: "src/content/properties"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Monthly Rent", name: "rent", widget: "number" }
+      - { label: "Square Footage", name: "sqft", widget: "number" }
+      - { label: "Address", name: "address", widget: "string" }
+      - { label: "Property ID", name: "propertyId", widget: "string" }
+      - { label: "Bedrooms", name: "bedrooms", widget: "number" }
+      - { label: "Bathrooms", name: "bathrooms", widget: "number" }
+      - { label: "Total Rooms", name: "rooms", widget: "number" }
+      - { label: "Year Built", name: "yearBuilt", widget: "number" }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Categories", name: "categories", widget: "list", default: [] }
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        summary: "{{fields.image}}"
+        field: { label: Image, name: image, widget: image }
+        required: false
+      - label: "Agent Information"
+        name: "agent"
+        widget: "object"
+        fields:
+          - { label: "Agent Name", name: "name", widget: "string" }
+          - { label: "Company", name: "company", widget: "string" }
+          - { label: "Phone", name: "phone", widget: "string" }
+          - { label: "Agent Image", name: "image", widget: "image", required: false }
+      - { label: "Description", name: "body", widget: "markdown" }

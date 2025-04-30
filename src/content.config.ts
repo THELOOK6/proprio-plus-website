@@ -58,4 +58,36 @@ const legal = defineCollection({
     }),
 });
 
-export const collections = { blog, team, legal };
+const properties = defineCollection({
+    loader: glob({ base: './src/content/properties', pattern: '**/*.md' }),
+    schema: ({ image }) =>
+        z.object({
+        title: z.string(),
+        rent: z.number(),
+        sqft: z.number(),
+        address: z.string(),
+        propertyId: z.string(),
+        bedrooms: z.number(),
+        bathrooms: z.number(),
+        rooms: z.number(),
+        yearBuilt: z.number(),
+        images: z.array(z.string()),
+        // The slug is automatically generated from the filename
+        agent: z
+        .object({
+            name: z.string().optional(),
+            company: z.string().optional(),
+            phone: z.string().optional(),
+            image: z.string().optional(),
+        })
+        .optional(),
+        seo: z
+            .object({
+                title: z.string().optional(),
+                description: z.string().optional(),
+            })
+            .optional(),
+    }),
+});
+
+export const collections = { blog, team, legal, properties };
