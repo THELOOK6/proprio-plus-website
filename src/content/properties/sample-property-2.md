@@ -1,15 +1,15 @@
 ---
-title: "Factory Real Estate"
+title: "Sample Property 2"
 index: 1
 rent: 2745
 sqft: 1964
 address: "West County Road 550 North, United States"
-propertyId: "HZ24"
+propertyId: "HZ25"
 bedrooms: 5
 bathrooms: 5
 rooms: 4
 yearBuilt: 2019
-categories: ["House"]
+categories: ["For Sale"]
 images:
   - "/images/properties/sample-property-1.jpg"
   - "/images/properties/sample-property-2.jpg"

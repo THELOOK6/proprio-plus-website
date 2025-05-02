@@ -1,0 +1,82 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import PropertyList from './PropertyList.astro';
+import { propertyCategories, propertyCategoryNames } from '../data/propertyCategories';
+
+interface Props {
+  properties: CollectionEntry<'properties'>[];
+  currentPage: number;
+  totalPages: number;
+  category?: string;
+  url: {
+    prev?: string;
+    next?: string;
+  };
+}
+
+const { properties, currentPage, totalPages, category, url } = Astro.props;
+---
+
+<div>
+  <!-- Filter by Category -->
+  <div class="mb-6">
+    <h2 class="text-lg font-semibold mb-3">Categories</h2>
+    <div class="flex flex-wrap gap-2">
+      <a
+        href="/properties"
+        class={`px-3 py-1 rounded-full text-sm ${!category ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`}
+      >
+        All Properties
+      </a>
+      {propertyCategoryNames.map((cat) => (
+        <a
+          href={`/properties/category/${cat}`}
+          class={`px-3 py-1 rounded-full text-sm ${
+            cat === category
+              ? 'bg-blue-600 text-white'
+              : `hover:bg-gray-200 ${propertyCategories[cat]?.color || 'bg-gray-100 text-gray-800'}`
+          }`}
+        >
+          {cat}
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <!-- Property List -->
+  {properties.length > 0 ? (
+    <PropertyList properties={properties} />
+  ) : (
+    <div class="text-center py-12 bg-gray-50 rounded-lg">
+      <h3 class="text-xl font-medium text-gray-900">No properties found</h3>
+      <p class="mt-2 text-gray-600">Try changing your filters or check back later for new listings.</p>
+    </div>
+  )}
+
+  <!-- Pagination -->
+  {totalPages > 1 && (
+    <div class="flex justify-center mt-10 space-x-2">
+      {url.prev && (
+        <a
+          href={url.prev}
+          class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50"
+        >
+          Previous
+        </a>
+      )}
+
+      <span class="px-4 py-2 border border-gray-300 rounded-md bg-blue-50 text-sm font-medium text-blue-700">
+        Page {currentPage} of {totalPages}
+      </span>
+
+      {url.next && (
+        <a
+          href={url.next}
+          class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50"
+        >
+          Next
+        </a>
+      )}
+    </div>
+  )}
+</div>

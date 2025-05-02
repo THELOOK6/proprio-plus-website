@@ -17,13 +17,9 @@ const allPosts = await getCollection('properties', ({ data }) => {
 });
 
 // Filter to only show categories that have posts
-// Make this more robust by checking if categories exist on the post data
 const activeCategories = categories.filter((category) =>
-    allPosts.some((post) => post.data.categories && post.data.categories.includes(category.name)),
+    allPosts.some((post) => post.data.categories?.includes(category.name)),
 );
-
-// Allow display of posts regardless of whether they have categories or not
-const postsToShow = posts;
 ---
 
 <section class="site-container mx-auto px-4 py-base">
@@ -63,7 +59,7 @@ const postsToShow = posts;
             </div>
         </div>
         <p class="text-small text-body-base text-left sm:text-right whitespace-nowrap">
-            Showing <span class="font-bold text-primary">{postsToShow.length}</span> of <span class="font-bold text-primary"
+            Showing <span class="font-bold text-primary">{posts.length}</span> of <span class="font-bold text-primary"
                 >{allPosts.length}</span
             > posts
         </p>
@@ -71,12 +67,12 @@ const postsToShow = posts;
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {
-            postsToShow.map((post, index) => (
+            posts.map((post, index) => (
                 <div>
                     <PropertiesPost
                         title={post.data.title}
                         categories={post.data.categories || []}
-                        slug={post.data.propertyId}
+                        slug={post.data.title}
                         index={index}
                         rent={post.data.rent}
                         propertyId={post.data.propertyId}
@@ -87,12 +83,11 @@ const postsToShow = posts;
                         address={post.data.address}
                         agent={post.data.agent}
                         yearBuilt={post.data.yearBuilt}
-                        featuredImage={post.data.images && post.data.images.length > 0 ? post.data.images[0] : undefined}
                     />
                 </div>
             ))
         }
     </div>
 
-    {postsToShow.length === 0 && <p class="text-center text-gray-500 py-8">No properties found.</p>}
+    {posts.length === 0 && <p class="text-center text-gray-500 py-8">No posts found in this category.</p>}
 </section>

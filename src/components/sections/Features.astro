@@ -36,10 +36,10 @@ const {
 
 const bgColor = getBackgroundColor(background);
 const textColor = getTextColor(background);
-const paddingClass = getPaddingClass({ 
+const paddingClass = getPaddingClass({
     padding: Astro.props.padding,
     paddingTop: Astro.props.paddingTop,
-    paddingBottom: Astro.props.paddingBottom 
+    paddingBottom: Astro.props.paddingBottom
 });
 ---
 
@@ -48,9 +48,9 @@ const paddingClass = getPaddingClass({
         {(title || description) && (
             <div class="text-center mb-16 max-w-3xl mx-auto">
                 {eyebrow && (
-                    <Eyebrow 
-                        text={eyebrow} 
-                        background={background} 
+                    <Eyebrow
+                        text={eyebrow}
+                        background={background}
                     />
                 )}
                 {title && (
@@ -63,7 +63,7 @@ const paddingClass = getPaddingClass({
                         {description}
                     </p>
                 )}
-                {button && (
+                <!-- {button && (
                     <div class="mt-8" data-aos="fade-up" data-aos-delay="200">
                         <Button
                             href={button.link}
@@ -72,13 +72,13 @@ const paddingClass = getPaddingClass({
                             {button.text}
                         </Button>
                     </div>
-                )}
+                )} -->
             </div>
         )}
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-auto-fit gap-8 auto-rows-fr">
-            {features.map((feature, index) => (
-                <div 
+            {features.slice(0,4).map((feature, index) => (
+                <div
                     class:list={[
                         "p-6 rounded-lg border border-black",
                         background === 'dark' ? 'bg-background-base/10' : 'bg-background/90',
@@ -105,6 +105,18 @@ const paddingClass = getPaddingClass({
                 </div>
             ))}
         </div>
+        <div class="text-center mb-16 max-w-3xl mx-auto">
+                {button && (
+                    <div class="mt-8" data-aos="fade-up" data-aos-delay="200">
+                        <Button
+                            href={button.link}
+                            variant={button.variant || 'primary'}
+                        >
+                            {button.text}
+                        </Button>
+                    </div>
+                )}
+            </div>
     </div>
 </section>
 

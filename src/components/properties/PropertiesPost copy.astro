@@ -2,7 +2,6 @@
 import { categories } from '../../data/categories';
 import HashtagCategory from '../ui/HashtagCategory.astro';
 import { Image } from 'astro:assets';
-import { MapPin, Bed, Bath, Move, Calendar, User } from 'lucide-astro';
 
 interface Props {
     title: string;
@@ -64,59 +63,41 @@ const validCategories = postCategories.filter((categoryName: string) =>
                     <div class="w-full h-full flex items-center justify-center text-gray-500">No image available</div>
                 )}
             </div>
-            <!-- For Rent badge -->
-            <div class="absolute top-4 left-4 bg-amber-600 text-white px-3 py-1 rounded-md text-sm font-medium">
-                ${categories}
+            <div class="absolute top-4 left-4 bg-purple-700 text-white px-3 py-1 rounded-full text-sm">
+                For Rent
             </div>
-            <!-- Price tag -->
-            <div class="absolute bottom-4 right-4 bg-amber-600 text-white px-4 py-2 rounded-md text-lg font-bold">
-                ${rent}<span class="text-sm font-normal">/mo</span>
+            <div class="absolute bottom-4 right-4 bg-white bg-opacity-90 px-3 py-1 rounded-full text-sm font-medium">
+                {bedrooms} bed | {bathrooms} bath | {sqft} sqft
             </div>
         </div>
-        <div class="p-5">
-            <!-- Property title -->
-            <h3 class="text-xl font-bold text-gray-900 group-hover:text-amber-600 transition-colors mb-3">{title}</h3>
-
-            <!-- Property address -->
-            <div class="flex items-center text-gray-700 mb-5">
-                <MapPin class="h-5 w-5 mr-2 text-gray-500" />
-                <span class="text-sm">{address}</span>
+        <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-900 group-hover:text-purple-700 transition-colors">{title}</h3>
+                <div class="text-xl font-bold text-purple-700">${rent}<span class="text-sm text-gray-500 font-normal">/mo</span></div>
             </div>
-
-            <!-- Property features -->
-            <div class="flex justify-between items-center mb-4">
-                <div class="flex items-center">
-                    <Bed class="h-5 w-5 mr-1 text-gray-500" />
-                    <span class="text-sm">{bedrooms}</span>
-                </div>
-                <div class="flex items-center">
-                    <Bath class="h-5 w-5 mr-1 text-gray-500" />
-                    <span class="text-sm">{bathrooms}</span>
-                </div>
-                <div class="flex items-center">
-                    <Move class="h-5 w-5 mr-1 text-gray-500" />
-                    <span class="text-sm">{sqft} Sq Ft</span>
-                </div>
+            <div class="flex items-center text-gray-600 mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span class="text-sm truncate">{address}</span>
             </div>
-
-            <!-- Agent and year -->
-            <div class="flex justify-between items-center border-t pt-4 mt-2">
+            <div class="flex justify-between items-center">
                 <div class="flex items-center">
                     <div class="w-8 h-8 rounded-full bg-gray-200 overflow-hidden mr-2">
                         {agent && agent.image ? (
                             <img src={agent.image} alt={agent.name} class="w-full h-full object-cover" />
                         ) : (
                             <div class="w-full h-full flex items-center justify-center bg-gray-300 text-gray-600">
-                                <User class="h-4 w-4" />
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg>
                             </div>
                         )}
                     </div>
                     <span class="text-sm text-gray-600">{agent ? agent.name : 'Agent'}</span>
                 </div>
-                <div class="flex items-center text-gray-500 text-sm">
-                    <Calendar class="h-4 w-4 mr-1" />
-                    <span>{yearBuilt}</span>
-                </div>
+                <div class="text-sm text-gray-500">{yearBuilt}</div>
             </div>
         </div>
     </div>

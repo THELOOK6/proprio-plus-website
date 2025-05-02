@@ -3,7 +3,7 @@
 export const headerMenu = [
     { name: 'Home', link: '/' },
     { name: 'About', link: '/about' },
-    { name: 'Our Team', link: '/team' },
+    // { name: 'Our Team', link: '/team' },
     { name: 'Services', link: '/services', showArrow: false,
         // children: [
         //     { name: 'Typography', link: '/style-guide#typography' },
@@ -13,8 +13,8 @@ export const headerMenu = [
         //     { name: 'Forms', link: '/style-guide#forms' },
         //     { name: 'Lists', link: '/style-guide#lists' },
         // ]
-    },
-    { name: 'Blog/Properties', link: '/blog' }
+    }
+    // { name: 'Blog/Properties', link: '/blog' }
 ];
 
 export const footerMenu = [

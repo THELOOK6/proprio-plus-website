@@ -10,6 +10,12 @@ interface Type {
     description: string;
 }
 
+interface Status {
+    name: string;
+    slug: string;
+    description: string;
+}
+
 export const categories: Category[] = [
   {
     name: 'Tech',
@@ -48,17 +54,17 @@ export const categories: Category[] = [
   },
   {
     name: 'For Rent',
-    slug: 'tech',
+    slug: 'for-rent',
     description: 'Latest in technology and software development'
   },
   {
     name: 'For Sale',
-    slug: 'web-development',
+    slug: 'for-sale',
     description: 'Tips and insights for better web development'
   },
   {
     name: 'House',
-    slug: 'House',
+    slug: 'house',
     description: 'Tips and insights for better web development'
   },
 
@@ -98,15 +104,54 @@ export const type: Type[] = [
     },
   ];
 
+  export const status: Status[] = [
+    {
+      name: 'Appartment',
+      slug: 'tech',
+      description: 'Latest in technology and software development'
+    },
+    {
+      name: 'House',
+      slug: 'web-development',
+      description: 'Tips and insights for better web development'
+    },
+    {
+      name: 'Land',
+      slug: 'design',
+      description: 'Exploring design and user experience'
+    },
+    {
+      name: 'Manufactured',
+      slug: 'accessibility',
+      description: 'Exploring accessibility and user experience'
+    },
+    {
+      name: 'Town House',
+      slug: 'theme-usage',
+      description: 'Learn how to use the theme'
+    },
+    {
+      name: 'Villa',
+      slug: 'astro-js',
+      description: 'Everything about Astro JS framework and development'
+    },
+  ];
+
 
 // Helper function to get category by slug
 export function getCategoryBySlug(slug: string): Category | undefined {
   return categories.find(category => category.slug === slug);
 }
 
-// Helper function to get category by slug
+// Helper function to get Type by slug
 export function getTypeBySlug(slug: string): Type | undefined {
   return type.find(type => type.slug === slug);
 }
+
+
+// Helper function to get Status by slug
+export function getStatusBySlug(slug: string): Status | undefined {
+    return status.find(status => status.slug === slug);
+  }
 
 

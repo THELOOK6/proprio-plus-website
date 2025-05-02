@@ -1,6 +1,7 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { categories } from '@data/categories';
+import { propertyCategoryNames } from '../data/propertyCategories';
 
 // Extract category names for the enum
 const categoryNames = categories.map((category) => category.name);
@@ -71,6 +72,7 @@ const properties = defineCollection({
         bathrooms: z.number(),
         rooms: z.number(),
         yearBuilt: z.number(),
+        categories: z.array(z.enum(categoryNames as [string, ...string[]])).optional(),
         images: z.array(z.string()),
         // The slug is automatically generated from the filename
         agent: z
@@ -89,5 +91,36 @@ const properties = defineCollection({
             .optional(),
     }),
 });
+
+// const properties = defineCollection({
+//     type: 'content',
+//     schema: z.object({
+//       title: z.string(),
+//       rent: z.number(),
+//       sqft: z.number(),
+//       address: z.string(),
+//       propertyId: z.string(),
+//       bedrooms: z.number(),
+//       bathrooms: z.number(),
+//       rooms: z.number(),
+//       yearBuilt: z.number(),
+//       categories: z.array(z.enum(propertyCategoryNames as [string, ...string[]])).optional(),
+//       images: z.array(z.string()),
+//       agent: z
+//         .object({
+//           name: z.string().optional(),
+//           company: z.string().optional(),
+//           phone: z.string().optional(),
+//           image: z.string().optional(),
+//         })
+//         .optional(),
+//       seo: z
+//         .object({
+//           title: z.string().optional(),
+//           description: z.string().optional(),
+//         })
+//         .optional(),
+//     }),
+//   });
 
 export const collections = { blog, team, legal, properties };
