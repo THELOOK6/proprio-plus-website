@@ -50,5 +50,13 @@ export default defineConfig({
                 protocol: "http"
             }
         ]
+    },
+    i18n: {
+        defaultLocale: 'en',
+        locales: ['en', 'fr'],
+        // Optional: routing strategy
+        routing: {
+          prefixDefaultLocale: true
+        }
     }
 });

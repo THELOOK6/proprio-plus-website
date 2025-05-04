@@ -1,0 +1,34 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Button from '@components/ui/Button.astro';
+import InnerHero from '@components/sections/InnerHero.astro';
+import innerHeroImage from '../assets/images/home/city-skyline-2-dark.jpg';
+import { getBackgroundColor, getTextColor, getHeadlineColor, getEyebrowColor } from '@utils/styleUtils';
+import { featureLists } from '@data/features';
+import Services from '@components/sections/Services.astro';
+
+const title = 'Services';
+const backgroundImage = innerHeroImage;
+const opacity = '0.2';
+
+
+const heroContent = {
+    title: title,
+    backgroundImage: backgroundImage,
+    overlayOpacity: opacity,
+}
+
+const featuresSection = {
+    title: "Professional Property Management, Tailored to Every Need",
+    description: "We offer a full spectrum of property management services designed to simplify ownership, enhance tenant satisfaction, and protect the long-term value of your investment. Our team brings together operational expertise, responsive communication, and industry insight to deliver consistent, high-quality results across every property we manage. Whether you own a single-unit rental or a multi-family portfolio, we provide the structure, systems, and support to keep your property running smoothly—day in and day out.",
+    features: featureLists.main.features,
+}
+
+const backgrounds = ['base', 'light', 'dark'] as const;
+
+---
+
+<Layout title={title} >
+    <InnerHero content={heroContent} />
+    <Services content={featuresSection} padding="base" background="light" />
+</Layout>

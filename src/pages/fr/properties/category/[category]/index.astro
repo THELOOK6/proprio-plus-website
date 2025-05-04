@@ -1,0 +1,16 @@
+---
+import { getCollection } from 'astro:content';
+import { propertyCategories, propertyCategoryNames } from '../../../../data/propertyCategories';
+
+export async function getStaticPaths() {
+  return propertyCategoryNames.map((category) => ({
+    params: { category },
+  }));
+}
+
+const { category } = Astro.params;
+
+// Redirect to the first page
+Astro.response.status = 302;
+Astro.response.headers.set('Location', `/properties/category/${category}/1`);
+---

@@ -1,0 +1,139 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Hero from '@components/sections/Hero.astro';
+import SplitPanel from '@components/sections/SplitPanel.astro';
+import Features from '@components/sections/Features.astro';
+import Stats from '@components/sections/Stats.astro';
+import { featureLists } from '@data/features';
+import { statsLists } from '@data/stats';
+import Logos from '@components/sections/Logos.astro';
+import { logoLists } from '@data/logos';
+import CtaBanner from '@components/sections/CtaBanner.astro';
+import Faqs from '@components/sections/Faqs.astro';
+import { faqLists } from '@data/faqs';
+import Properties from '@components/sections/RecentPosts.astro';
+import heroImage from '../assets/images/home/pool-mansion-2.jpg';
+import styleGuideImage from '../assets/images/home/condo-building-2.jpg';
+
+const seoTitle = "Home";
+const seoDescription = "Proprio Plus is a trusted property management company serving the Greater Montreal area, dedicated to delivering professional, compliant, and reliable solutions for landlords and tenants.";
+
+const heroContent = {
+    title: 'Comprehensive Property Management Solutions for Stress-Free Ownership',
+    description: 'From tenant screening and rent collection to maintenance and property upkeep, we handle it all. Our expert team is dedicated to ensuring your properties perform at their best, while you enjoy peace of mind.',
+    buttons: [
+        {
+            text: 'Contactez Nous',
+            link: '/contact',
+            target: '_self'
+        }
+    ],
+    backgroundImage: heroImage,
+    overlayOpacity: 0.2
+}
+
+const featuresSection = {
+    eyebrow: "NOS SERVICES",
+    title: "Gestion Immobiliere Complete - Avec Precision",
+    description: "We provide end-to-end property management services designed to make ownership effortless. From finding reliable tenants to handling rent collection, maintenance, and legal compliance—we take care of every detail so you don’t have to. Our streamlined approach ensures your properties stay profitable, protected, and professionally managed at all times.",
+    features: featureLists.main.features,
+    button: {
+        text: "View All Services",
+        link: "/services",
+        variant: "primary" as const
+    }
+}
+
+const FooterCta = {
+    eyebrow: "Joinier La Communauter",
+    title: ' Let Us Handle Your Property, So You Don’t Have To',
+    description: "Whether you're an experienced investor or a first-time landlord, we offer full-service property management tailored to your needs. Let us take care of the details, so you can focus on what matters most.",
+    hideCta: false,
+    button: {
+        text: 'Get in Touch',
+        link: '/contact',
+        target: '_blank'
+    }
+}
+
+const styleGuideSection = {
+    eyebrow: "Trusted by Tenants & Owners",
+    headline: "Your Property. Our Priority.",
+    description: "We implement efficient systems and expert management to handle every aspect of your property—ensuring seamless operations, long-term value, and dependable performance. Whether it’s a single-family home or a multi-unit complex, we treat your property like our own.",
+    image: {
+        src: styleGuideImage,
+        alt: "Featured image"
+    },
+    buttons: [
+        {
+            text: "Learn How We Work",
+            link: "/about",
+            variant: "primary" as const
+        }
+    ]
+}
+
+const sideBySideStats = {
+    eyebrow: "Stats",
+    title: "Built for Speed and Flexibility",
+    description: "Titan Core is designed with performance and developer experience in mind. Our lightweight theme gives you all the essentials without the bloat, letting you build exactly what you need with impressive speed.",
+    variant: 'side-by-side' as const,
+    stats: statsLists.withContent.stats,
+    content: {
+        title: "Built for Speed and Flexibility",
+        description: "Titan Core is designed with performance and developer experience in mind. Our lightweight theme gives you all the essentials without the bloat, letting you build exactly what you need with impressive speed.",
+        button: {
+            text: "Discover Titan Core",
+            link: "/theme-info",
+            variant: "primary" as const
+        }
+    }
+};
+
+const mainCta = {
+    eyebrow: "Build Blocks",
+    title: "Ready-to-Use Components",
+    description: "Save development time with our pre-built, accessible components. Each one is designed to integrate seamlessly with your projects while maintaining excellent performance.",
+    button: {
+        text: "View All Components",
+        link: "/components",
+        variant: "primary" as const,
+        target: "_self" as const
+    }
+};
+
+
+const logosSection = {
+    eyebrow: "Our Certifications",
+    logos: logoLists.main.logos
+}
+
+const faqsSection = {
+    eyebrow: "FAQs",
+    title: 'Frequently Asked Questions',
+    description: 'Find answers to common questions about our platform and services.',
+    faqs: faqLists.main.faqs
+}
+
+const recentPostsSection = {
+    eyebrow: "LATEST INSIGHTS",
+    title: " Learn From Our Experience",
+    description: "Explore our latest articles on Astro JS development, theme customization tips, and web performance best practices.",
+    button: {
+            text: "View All Posts",
+            link: "/blog",
+        variant: "primary" as const
+    }
+}
+---
+
+<Layout footerCta={FooterCta} title={seoTitle} description={seoDescription}>
+    <Hero content={heroContent} />
+    <Features content={featuresSection} padding="base" background="light" />
+    <!-- <Properties content={recentPostsSection} background="base" padding="base" postsToShow={3} category="Theme Usage"/> -->
+    <Logos content={logosSection} background="base" padding='small'/>
+    <SplitPanel content={styleGuideSection} imagePosition="right" background="light" padding="base" />
+    <!-- <CtaBanner content={mainCta} variant="contained" background="light" paddingBottom="base" /> -->
+    <!-- <Stats content={sideBySideStats} background='dark' padding="base"/> -->
+    <Faqs content={faqsSection} background="base" padding="base" />
+</Layout>
