@@ -11,6 +11,20 @@ const title = 'Services';
 const backgroundImage = innerHeroImage;
 const opacity = '0.2';
 
+const seoTitle = "Services";
+const seoDescription = "Proprio Plus is a trusted property management company serving the Greater Montreal area, dedicated to delivering professional, compliant, and reliable solutions for landlords and tenants.";
+
+const FooterCta = {
+    eyebrow: "Join The Community",
+    title: ' Let Us Handle Your Property, So You Don’t Have To',
+    description: "Whether you're an experienced investor or a first-time landlord, we offer full-service property management tailored to your needs. Let us take care of the details, so you can focus on what matters most.",
+    hideCta: false,
+    button: {
+        text: 'Get in Touch',
+        link: '/contact',
+        target: '_blank'
+    }
+}
 
 const heroContent = {
     title: title,
@@ -28,7 +42,7 @@ const backgrounds = ['base', 'light', 'dark'] as const;
 
 ---
 
-<Layout title={title} >
+<Layout footerCta={FooterCta} title={seoTitle} description={seoDescription} >
     <InnerHero content={heroContent} />
     <Services content={featuresSection} padding="base" background="light" />
 </Layout>

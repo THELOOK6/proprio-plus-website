@@ -14,13 +14,13 @@ export const headerMenu = [
         //     { name: 'Lists', link: '/style-guide#lists' },
         // ]
     }
-    // { name: 'Blog/Properties', link: '/blog' }
+    //{ name: 'Blog/Properties', link: '/blog' }
 ];
 
 export const footerMenu = [
-    { name: 'Style Guide', link: '/style-guide' },
-    { name: 'Theme Info', link: '/theme-info' },
-    { name: 'Our Team', link: '/team' },
+    { name: 'Home', link: '/' },
+    { name: 'About Us', link: '/about' },
+    { name: 'Contact Us', link: '/contact' },
 ];
 
 export const legalMenu = [

@@ -14,26 +14,26 @@
     --color-background: #f8f9ff;
     --color-background-light: #eef1ff;
     --color-background-dark: #1a1f3c;
-    
+
     --color-headline: #1a1f3c;
     --color-headline-light: #1a1f3c;
     --color-headline-dark: #ffffff;
-    
+
     --color-eyebrow: #1e3c8c;
     --color-eyebrow-light: #1e3c8c;
     --color-eyebrow-dark: #e6b800;
-    
+
     --color-body-base: #1a1f3c;
     --color-body-light: #1a1f3c;
     --color-body-dark: #ffffff;
-    
+
     --color-input: var(--color-background-light);
     --color-input-light: var(--color-background-light);
     --color-input-dark: var(--color-background-dark);
     --color-input-text: var(--color-body-base);
     --color-input-text-light: var(--color-headline-light);
     --color-input-text-dark: var(--color-headline-dark);
-    
+
     --color-nav-text: var(--color-body-base);
     --color-nav-text-hover: var(--color-primary);
     --color-nav-text-active: var(--color-primary);
@@ -43,10 +43,10 @@
     --color-nav-mobile-text-hover: #e6b800;
     --color-nav-mobile-text-active: #ffffff;
     --color-nav-mobile-text-current: #ffffff;
-    
+
     --color-header-logo: var(--color-primary);
     --color-footer-logo: var(--color-primary);
-    
+
     --text-h1: clamp(2rem, 5vw + 1rem, 4rem);
     --text-h2: clamp(1.5rem, 4vw + 0.5rem, 2.5rem);
     --text-h3: clamp(1.25rem, 3vw + 0.25rem, 2rem);
@@ -61,24 +61,25 @@
     --text-article-h5: clamp(0.875rem, 1.5vw + 0.0625rem, 1.15rem);
     --text-article-h6: clamp(0.75rem, 1.2vw + 0.03125rem, 0.9rem);
     --text-article-h6: clamp(0.75rem, 1.2vw + 0.03125rem, 0.9rem);
-    
+
     --text-xsmall: clamp(0.625rem, 1.5vw + 0.0625rem, 0.75rem);
     --text-small: clamp(0.875rem, 1.5vw + 0.0625rem, 1rem);
     --text-base: clamp(1rem, 2vw + 0.125rem, 1.25rem);
     --text-large: clamp(1.25rem, 3vw + 0.25rem, 1.5rem);
     --text-xlarge: clamp(2rem, 5vw + 1rem, 4rem);
 
+    --spacing-slim: clamp(1rem, 5vw + 1rem, 4rem);
     --spacing-small: clamp(2rem, 10vw + 1rem, 6rem);
     --spacing-base: clamp(4rem, 10vw + 1rem, 8rem);
     --spacing-large: clamp(6rem, 10vw + 1rem, 10rem);
-    
+
     --container-small: 1000px;
     --container-base: 1400px;
 
     --border-radius-small: 0.5rem;
     --border-radius-base: 1rem;
     --border-radius-large: 2rem;
-    
+
     --font-bruno-ace: 'Bruno Ace SC', sans-serif;
     --font-noto-sans-kr: "Noto Sans KR", sans-serif;
     --font-base: 'Noto Sans KR', sans-serif;
@@ -87,8 +88,8 @@
 }
 
 @layer base {
-    
-    
+
+
     [data-theme='zeus'] {
         --color-primary: #3557c1;
         --color-primary-light: #4b6ed4;
@@ -475,25 +476,28 @@
     article ul { font-size: var(--text-base); margin: 0 0 2rem; padding-left: 2rem; list-style-type: disc; }
     article ul ::marker { color: var(--color-primary); }
     article blockquote { font-size: var(--text-base); margin: 0 0 1.75rem; padding-left: 2rem; border-left: 4px solid var(--color-primary); }
-    
+
 }
 
 @layer utilities {
     .text-header-logo { color: var(--color-header-logo); }
     .text-footer-logo { color: var(--color-footer-logo); }
-    
+
+    .pt-slim { padding-top: var(--spacing-slim); }
     .pt-small { padding-top: var(--spacing-small); }
     .pt-base { padding-top: var(--spacing-base); }
     .pt-large { padding-top: var(--spacing-large); }
 
+    .pb-slim { padding-bottom: var(--spacing-slim); }
     .pb-small { padding-bottom: var(--spacing-small); }
     .pb-base { padding-bottom: var(--spacing-base); }
     .pb-large { padding-bottom: var(--spacing-large); }
 
+    .py-slim { padding-top: var(--spacing-slim); padding-bottom: var(--spacing-slim); }
     .py-small { padding-top: var(--spacing-small); padding-bottom: var(--spacing-small); }
     .py-base { padding-top: var(--spacing-base); padding-bottom: var(--spacing-base); }
     .py-large { padding-top: var(--spacing-large); padding-bottom: var(--spacing-large); }
-    
+
     .cursor-pointer { cursor: pointer; }
 }
 

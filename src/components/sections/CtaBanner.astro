@@ -58,31 +58,31 @@ const containerBgColor = containerBgColors[background as keyof typeof containerB
             variant === 'contained' && containerBgColor
         ]}>
             {eyebrow && (
-                <Eyebrow 
-                    text={eyebrow} 
-                    background={background} 
+                <Eyebrow
+                    text={eyebrow}
+                    background={background}
                 />
             )}
-            
-            <h2 
+
+            <h2
                 class:list={[headlineColor]}
                 data-aos="fade-up"
             >
                 {title}
             </h2>
-            
+
             {description && (
-                <p 
+                <p
                     class:list={["mt-4", textColor, "opacity-90"]}
                     data-aos="fade-up"
                     data-aos-delay="100"
+                    set:html={description}
                 >
-                    {description}
                 </p>
             )}
 
             {button && (
-                <div 
+                <div
                     class="mt-8"
                     data-aos="fade-up"
                     data-aos-delay="200"

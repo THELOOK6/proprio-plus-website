@@ -1,34 +1,206 @@
 ---
 import Layout from '../layouts/Layout.astro'
----
+import SplitPanel from '@components/sections/SplitPanel.astro';
+import styleGuideImage from '../assets/images/home/condo-building-2.jpg';
+import whatWeDoImage from '../assets/images/home/condo-building.jpg';
+import MoreImage from '../assets/images/home/house-2.jpg';
+import VisionSection from '@components/sections/VisionSection.astro';
+import { Handshake  , Building2 , Briefcase, CircleCheck, Calendar, ShieldCheck, User, Home  } from 'lucide-astro'; // Or use any other icons
+import InnerHero from '@components/sections/InnerHero.astro';
+import backgroundImage from '../assets/images/home/city-skyline-2-dark.jpg';
+import CtaBanner from '@components/sections/CtaBanner.astro';
+import ClearBuildingImage from '@assets/images/home/top-view-building-cropped.png';
 
-<Layout title="About Us">
-  <section class="bg-white text-orange-900 px-6 py-12 md:px-20">
-    <div class="max-w-5xl mx-auto">
-      <h1 class="text-4xl font-bold text-orange-600 mb-6">About Us</h1>
+const opacity = '0.2';
+
+const visionItems = [
+  {
+    icon: Handshake ,
+    title: "Creating Lifelong Partnerships",
+    description: "Fostering trust and strong relationships for long-term success in real estate.",
+  },
+  {
+    icon: Building2 ,
+    title: "Empowering Real Estate Decisions",
+    description: "Providing expert insights to help you make confident, informed property choices.",
+  },
+  {
+    icon: Briefcase ,
+    title: "Offering Complete Real Estate Solutions",
+    description: "With a real estate agent on our team, we offer exclusive listings and expert advice under one roof.",
+  },
+];
+
+
+const seoTitle = "About Us";
+const seoDescription = "Proprio Plus is a trusted property management company serving the Greater Montreal area, dedicated to delivering professional, compliant, and reliable solutions for landlords and tenants.";
+
+const FooterCta = {
+    title: 'Let’s Work Together',
+    description: "At Proprio+, we’re more than just property managers—we’re your dedicated real estate partners.",
+    hideCta: false,
+    button: {
+        text: 'Get in Touch',
+        link: '/contact',
+        target: '_blank'
+    }
+}
+
+const styleGuideSection = {
+    eyebrow: "Trusted by Tenants & Owners",
+    headline: "Your Property. Our Priority.",
+    description: "We implement efficient systems and expert management to handle every aspect of your property—ensuring seamless operations, long-term value, and dependable performance. Whether it’s a single-family home or a multi-unit complex, we treat your property like our own.",
+    image: {
+        src: styleGuideImage,
+        alt: "Featured image"
+    },
+    buttons: [
+        {
+            text: "Learn How We Work",
+            link: "/about",
+            variant: "primary" as const
+        }
+    ]
+}
+
+const WhatWeDoSection = {
+    eyebrow: "Trusted by Tenants & Owners",
+    headline: "What We Do",
+    description: "We specialize in full-service property management, handling everything from tenant placement and rent collection to maintenance, inspections, and 24/7 support. Whether you own a single unit or a growing portfolio, we tailor our services to fit your needs and ensure your property is well-managed, profitable, and cared for.",
+    image: {
+        src: whatWeDoImage,
+        alt: "Featured image"
+    }
+}
+
+const MoreSection = {
+    eyebrow: "Trusted by Tenants & Owners",
+    headline: "More Than Just Management",
+    description: `
+    <p>One of the things that sets <strong class="text-orange-700">Proprio+</strong> apart is our in-house licensed real estate agent, which allows us to offer a complete and seamless experience. Thanks to this added expertise, we’re able to provide:</p>
+    <ul class="list-disc pl-5">
+      <li>Access to exclusive listings on premium platforms like Centris</li>
+      <li>Professional property marketing for rentals or sales</li>
+      <li>Expert guidance on buying, selling, or optimizing your investments</li>
+    </ul>
+    <p>Whether you're looking to fill a vacancy, grow your portfolio, or sell a property, you’ll benefit from an integrated, one-stop solution—no need to juggle multiple service providers.</p>
+    `,
+    image: {
+        src: MoreImage,
+        alt: "Featured image"
+    }
+}
+
+const mainCta = {
+    eyebrow: "Build Blocks",
+    title: "Ready-to-Use Components",
+    description:
+    `<div class="max-w-6xl mx-auto">
       <p class="mb-6 text-lg leading-relaxed">
         At <strong class="text-orange-700">Proprio+</strong>, we believe property management should be simple, transparent, and worry-free. Born out of a passion for real estate and a commitment to excellence, our company was founded by experienced professionals who saw an opportunity to do things better—for property owners, tenants, and communities alike.
       </p>
       <p class="mb-6 text-lg leading-relaxed">
         After years of working within the industry, we realized that many property owners were looking for more than just maintenance and rent collection—they wanted a team they could trust. That's why we started Proprio+: to offer reliable, personal, and results-driven property management services that give our clients peace of mind.
       </p>
+    </div>`,
+    button: {
+        text: "View All Components",
+        link: "/components",
+        variant: "primary" as const,
+        target: "_self" as const
+    }
+};
 
-      <h2 class="text-2xl font-semibold text-orange-500 mt-10 mb-4">What We Do</h2>
-      <p class="mb-6 text-lg leading-relaxed">
-        We specialize in full-service property management, handling everything from tenant placement and rent collection to maintenance, inspections, and 24/7 support. Whether you own a single unit or a growing portfolio, we tailor our services to fit your needs and ensure your property is well-managed, profitable, and cared for.
-      </p>
+const heroContent = {
+    title: seoTitle,
+    backgroundImage: backgroundImage,
+    overlayOpacity: opacity,
+}
 
-      <h2 class="text-2xl font-semibold text-orange-500 mt-10 mb-4">More Than Just Management</h2>
+---
+
+<Layout footerCta={FooterCta} title={seoTitle} description={seoDescription}>
+  <InnerHero content={heroContent} />
+
+<div class="relative max-w-7xl mx-auto md:pt-50">
+    <div class="rounded-xl bg-orange-100 m-8 p-16 md:m-0 relative overflow-visible min-h-[300px] flex flex-col md:flex-row items-center">
+
+        <!-- Text content -->
+        <div class="w-full mb-140 md:mb-0 md:ml-110 md:pr-10 md:pl-10 flex-1 min-h-[200px] flex items-center justify-center order-first md:order-last">
+            <div>
+                <p class="text-sm font-semibold text-orange-600 uppercase tracking-wider mb-2">Who we are?</p>
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">The Experts In Property</h2>
+                <!-- <p class="text-gray-600 text-lg leading-relaxed mb-8">
+                  We are a leading company in the real estate sector, providing a wide range of services to meet the needs of buying, renting, and managing real estate assets. With experience and dedication, we are your trusted partner in property.
+                </p> -->
+
+                <p class="mb-6 text-lg leading-relaxed">
+                    At <strong class="text-orange-700">Proprio+</strong>, we believe property management should be simple, transparent, and worry-free. Born out of a passion for real estate and a commitment to excellence, our company was founded by experienced professionals who saw an opportunity to do things better—for property owners, tenants, and communities alike.
+                </p>
+                <p class="mb-6 text-lg leading-relaxed">
+                    After years of working within the industry, we realized that many property owners were looking for more than just maintenance and rent collection—they wanted a team they could trust. That's why we started Proprio+: to offer reliable, personal, and results-driven property management services that give our clients peace of mind.
+                </p>
+
+                <!-- Icon Stats -->
+                <!-- <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                  <div class="flex items-center gap-4 p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow duration-300">
+                    <div class="p-3 bg-orange-100 rounded-full animate-bounce-slow">
+                      <Calendar class="text-orange-600 w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 class="text-lg font-semibold text-gray-800">8+</h3>
+                      <p class="text-sm text-gray-600">Years Experience</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-4 p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow duration-300">
+                    <div class="p-3 bg-orange-100 rounded-full animate-pulse-slow">
+                      <ShieldCheck class="text-orange-600 w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 class="text-lg font-semibold text-gray-800">350+</h3>
+                      <p class="text-sm text-gray-600">Expert Researchers</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-4 p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow duration-300">
+                    <div class="p-3 bg-orange-100 rounded-full animate-fade-in">
+                      <User class="text-orange-600 w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 class="text-lg font-semibold text-gray-800">10K+</h3>
+                      <p class="text-sm text-gray-600">Real Estate Agents</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-4 p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow duration-300">
+                    <div class="p-3 bg-orange-100 rounded-full animate-scale-in">
+                      <Home class="text-orange-600 w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 class="text-lg font-semibold text-gray-800">2.5K+</h3>
+                      <p class="text-sm text-gray-600">Listing for Sale</p>
+                    </div>
+                  </div>
+                </div>
+                <button class="bg-orange-600 hover:bg-orange-700 text-white font-semibold px-6 py-3 rounded-lg shadow transition-colors duration-300">
+                  Explore More
+                </button> -->
+            </div>
+        </div>
+
+        <!-- Image section -->
+        <div class="absolute left-0 bottom-0 w-full md:w-110 h-auto flex items-center justify-center text-white text-lg order-last md:order-first">
+          <img src={ClearBuildingImage.src} alt="Modern property building" class="rounded-xl md:rounded-none md:rounded-l-xl w-full h-auto object-cover">
+        </div>
+    </div>
+</div>
+
+  <!-- /** OLD NO STYLING SECTION **/ -->
+  <section class="text-orange-900 ">
+    <!-- <div class="max-w-6xl mx-auto">
       <p class="mb-6 text-lg leading-relaxed">
-        One of the things that sets <strong class="text-orange-700">Proprio+</strong> apart is our in-house <strong>licensed real estate agent</strong>, which allows us to offer a complete and seamless experience. Thanks to this added expertise, we’re able to provide:
+        At <strong class="text-orange-700">Proprio+</strong>, we believe property management should be simple, transparent, and worry-free. Born out of a passion for real estate and a commitment to excellence, our company was founded by experienced professionals who saw an opportunity to do things better—for property owners, tenants, and communities alike.
       </p>
-      <ul class="list-disc list-inside mb-6 text-lg leading-relaxed text-orange-900">
-        <li>Access to <strong>exclusive listings</strong> on premium platforms like <strong>Centris</strong></li>
-        <li>Professional <strong>property marketing</strong> for rentals or sales</li>
-        <li>Expert <strong>guidance on buying, selling, or optimizing</strong> your investments</li>
-      </ul>
       <p class="mb-6 text-lg leading-relaxed">
-        Whether you're looking to fill a vacancy, grow your portfolio, or sell a property, you’ll benefit from an integrated, one-stop solution—no need to juggle multiple service providers.
+        After years of working within the industry, we realized that many property owners were looking for more than just maintenance and rent collection—they wanted a team they could trust. That's why we started Proprio+: to offer reliable, personal, and results-driven property management services that give our clients peace of mind.
       </p>
 
       <h2 class="text-2xl font-semibold text-orange-500 mt-10 mb-4">Why Choose Us?</h2>
@@ -40,17 +212,48 @@ import Layout from '../layouts/Layout.astro'
         <li><strong>Personalized Support:</strong> We treat every property like our own.</li>
       </ul>
 
-      <p class="mb-6 text-lg leading-relaxed">
-        At <strong class="text-orange-700">Proprio+</strong>, we’re more than just property managers—we’re your dedicated real estate partners.
-      </p>
 
-      <div class="bg-orange-100 p-6 rounded-xl mt-10 text-center">
-        <h3 class="text-xl font-semibold text-orange-700 mb-2">Let’s Work Together</h3>
-        <p class="mb-4 text-orange-900">Ready to take the stress out of managing your property?</p>
-        <a href="/contact" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
-          Contact Us Today
-        </a>
+    </div> -->
+
+    <!-- <CtaBanner content={mainCta} variant="contained" background="light" paddingBottom="base" /> -->
+
+
+ <!-- <div class="bg-orange-50 rounded-xl p-6 mt-8">
+  <h2 class="text-orange-600 text-lg font-semibold mb-4">Why Choose Us?</h2>
+  <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <li class="flex items-start gap-3">
+      <CircleCheck class="text-orange-500 mt-1" />
+      <div>
+        <p class="font-medium text-gray-800">Experienced & Professional</p>
+        <p class="text-sm text-gray-600">Practical knowledge and a proactive approach.</p>
       </div>
-    </div>
+    </li>
+    <li class="flex items-start gap-3">
+      <CircleCheck class="text-orange-500 mt-1" />
+      <div>
+        <p class="font-medium text-gray-800">Transparent & Honest</p>
+        <p class="text-sm text-gray-600">Open communication and no surprises.</p>
+      </div>
+    </li>
+
+    ADD MORE LI FOR ALL YOU WANT
+
+  </ul>
+</div> -->
+
+
+
+    <SplitPanel content={WhatWeDoSection} imagePosition="left" background="light" padding="slim" />
+    <VisionSection mainTitle="Our Vision" items={visionItems} />
+    <SplitPanel content={MoreSection} imagePosition="right" background="light" padding="slim" />
+
+
+    <!-- <div class="bg-orange-100 p-6 rounded-xl mt-10 text-center">
+        <h3 class="text-xl font-semibold text-orange-700 mb-2">Let’s Work Together</h3>
+        <p class="mb-6 text-lg leading-relaxed">
+            At <strong class="text-orange-700">Proprio+</strong>, we’re more than just property managers—we’re your dedicated real estate partners.
+        </p>
+    </div> -->
+
   </section>
 </Layout>

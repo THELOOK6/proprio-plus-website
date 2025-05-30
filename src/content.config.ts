@@ -1,7 +1,7 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { categories } from '@data/categories';
-import { propertyCategoryNames } from '../data/propertyCategories';
+// import { propertyCategoryNames } from '../data/propertyCategories';
 
 // Extract category names for the enum
 const categoryNames = categories.map((category) => category.name);
@@ -64,6 +64,7 @@ const properties = defineCollection({
     schema: ({ image }) =>
         z.object({
         title: z.string(),
+        index: z.number(),
         rent: z.number(),
         sqft: z.number(),
         address: z.string(),
@@ -73,14 +74,14 @@ const properties = defineCollection({
         rooms: z.number(),
         yearBuilt: z.number(),
         categories: z.array(z.enum(categoryNames as [string, ...string[]])).optional(),
-        images: z.array(z.string()),
+        images: z.array(image()).optional(),
         // The slug is automatically generated from the filename
         agent: z
         .object({
             name: z.string().optional(),
             company: z.string().optional(),
             phone: z.string().optional(),
-            image: z.string().optional(),
+            image: image().optional(),
         })
         .optional(),
         seo: z

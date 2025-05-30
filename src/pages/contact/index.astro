@@ -2,14 +2,32 @@
 import Layout from "@layouts/Layout.astro"
 import InnerHero from "@components/sections/InnerHero.astro"
 import ContactInfo from "@components/sections/ContactInfo.astro"
+import backgroundImage from '../../assets/images/home/city-skyline-2-dark.jpg';
+
+const opacity = '0.2'
 
 const heroContent = {
     title: "Contact Us",
-    description: "Contact us for more information"
+    backgroundImage: backgroundImage,
+    description: "Contact us for more information",
+    overlayOpacity: opacity,
 }
+
+
+const FooterCta = {
+    title: 'Let’s Work Together',
+    description: "At Proprio+, we’re more than just property managers—we’re your dedicated real estate partners.",
+    hideCta: true,
+    button: {
+        text: 'Get in Touch',
+        link: '/contact',
+        target: '_blank'
+    }
+}
+
 ---
 
-<Layout title="Contact Us" description="Contact us for more information">
+<Layout footerCta={FooterCta} title="Contact Us" description="Contact us for more information">
     <InnerHero content={heroContent} />
     <ContactInfo background="base" padding="base" />
 </Layout>
