@@ -1,5 +1,5 @@
 export const siteConfig = {
-  companyName: 'Groupe Proprio+',
+  companyName: 'Gestion ProprioPlus',
   siteUrl: 'https://groupeproprioplus.ca',
   Socials: {
       Instagram: 'https://www.instagram.com/gestion_proprioplus/',
@@ -13,7 +13,7 @@ export const siteConfig = {
 
 export const SEO = {
   Separator: '|',
-  SiteName: 'Gestion Proprio+',
+  SiteName: 'Gestion ProprioPlus',
   defaultDescription: 'Property Management at its finest.',
 };
 

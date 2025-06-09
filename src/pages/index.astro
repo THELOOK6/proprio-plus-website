@@ -16,7 +16,20 @@ import heroImage from '../assets/images/home/pool-mansion-2.jpg';
 import styleGuideImage from '../assets/images/home/condo-building-2.jpg';
 
 const seoTitle = "Home";
-const seoDescription = "Proprio Plus is a trusted property management company serving the Greater Montreal area, dedicated to delivering professional, compliant, and reliable solutions for landlords and tenants.";
+const seoDescription = "Proprio Plus offers trusted property management in Greater Montreal. Discover reliable, professional services for landlords and tenants.";
+
+const faqs = faqLists.main.faqs;
+
+// Generate JSON-LD schema:
+const faqSchema = faqs.map((faq) => ({
+  "@type": "Question",
+  "name": faq.question,
+  "acceptedAnswer": {
+    "@type": "Answer",
+    "text": faq.answer
+  }
+}));
+
 
 const heroContent = {
     title: 'Comprehensive Property Management Solutions for Stress-Free Ownership',
@@ -136,4 +149,12 @@ const recentPostsSection = {
     <!-- <CtaBanner content={mainCta} variant="contained" background="light" paddingBottom="base" /> -->
     <!-- <Stats content={sideBySideStats} background='dark' padding="base"/> -->
     <Faqs content={faqsSection} background="light" padding="base" />
+
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqSchema
+      })}
+    </script>
 </Layout>

@@ -1,0 +1,54 @@
+---
+// src/components/Map.astro
+---
+<html>
+  <head>
+    <!-- Leaflet CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+    />
+    <!-- Leaflet JS -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+      defer
+    ></script>
+    <style>
+      #map {
+        height: 300px;
+        width: 100%;
+        border-radius: 12px;
+        margin: 1rem 0;
+      }
+    </style>
+    <script>
+      window.onload = () => {
+        const map = L.map('map').setView([45.5454, -73.7431], 9); // Montreal
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        const coords = [
+          [45.82, -74.06], // Saint-Jérôme (NW)
+          [45.67, -74.32], // Blainville
+          [45.28, -74.04], // Boisbriand
+          [45.28, -73.48], // Laval
+          [45.44, -73.20], // Boucherville
+          [45.81, -73.40], // Brossard
+          [45.82, -74.06], // repeat first to close poly
+        ];
+
+        L.polygon(coords, {
+          color: 'orange',
+          fillColor: 'orange',
+          fillOpacity: 0.2,
+          weight: 2,
+        }).addTo(map);
+      };
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+  </body>
+</html>
