@@ -14,11 +14,11 @@ export const faqLists: Record<string, FaqList> = {
         faqs: [
             {
                 question: "What types of properties do you manage?",
-                answer: "We manage a wide range of residential properties including single-family homes, apartments, multi-unit buildings, and small residential complexes."
+                answer: "We manage a wide range of residential and commercial properties including single-family homes, apartments, multi-unit buildings, small residential complexes, industial and office properties."
             },
             {
                 question: "How do you screen potential tenants?",
-                answer: "Our tenant screening process includes background checks, credit checks, employment verification, and reference checks to ensure reliable, responsible tenants."
+                answer: "Our tenant screening process includes background checks, credit checks, employment verification, criminal checks, reference checks, and TAL to ensure reliable, responsible tenants."
             },
             {
                 question: "How do you handle property maintenance and repairs?",
@@ -26,7 +26,7 @@ export const faqLists: Record<string, FaqList> = {
             },
             {
                 question: "How are rent payments handled?",
-                answer: "We provide a secure online portal for tenants to pay rent. Owners receive direct deposits and monthly financial reports for full transparency."
+                answer: "We provide a secure online portal, cash and check retreival for tenants to pay rent. Owners receive direct deposits and monthly financial reports for full transparency."
             },
             {
                 question: "Do you handle evictions if necessary?",

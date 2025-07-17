@@ -1,4 +1,4 @@
-import { Building, HandCoins, Wrench, Coffee, Smile, UserCheck, File, MessageCircle, CalendarDays, Shield, ChartNoAxesCombined, BriefcaseBusiness, Heart} from 'lucide-astro';
+import { ArrowRightLeft, Building, HandCoins, Wrench, Coffee, Smile, UserCheck, File, MessageCircle, CalendarDays, Shield, ChartNoAxesCombined, BriefcaseBusiness, Heart} from 'lucide-astro';
 
 // Define the LucideIcon type based on the structure of Lucide icons
 type LucideIcon = typeof Building;
@@ -22,7 +22,7 @@ export const featureLists: Record<string, FeatureList> = {
             {
                 icon: Building,  // Use an appropriate icon, like a house or building
                 title: 'Comprehensive Property Management',
-                description: 'Full-service management from tenant screening to lease enforcement and property maintenance.'
+                description: 'We handle leasing, maintenance, rent collection, legal compliance, and more—so you can enjoy the returns without the headaches.'
             },
             {
                 icon: HandCoins,  // Use an icon like a dollar sign or cash
@@ -68,6 +68,11 @@ export const featureLists: Record<string, FeatureList> = {
                 icon: BriefcaseBusiness,  // Use a business or professional icon
                 title: 'Real Estate Investment Consulting',
                 description: 'Expert advice for investors looking to expand or optimize their real estate portfolios.'
+            },
+                        {
+                icon: ArrowRightLeft,  // Use a business or professional icon
+                title: 'Tenant Turnover Optimization Service',
+                description: 'We specialize in strategically negotiating tenant transitions—whether through buyouts, relocations, or lease restructuring.'
             }
         ]
 

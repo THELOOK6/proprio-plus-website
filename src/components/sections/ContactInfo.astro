@@ -40,12 +40,21 @@ const paddingClass = getPaddingClass({ padding, paddingTop, paddingBottom });
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
                 <h2 class:list={[textColor]}>Contact Information</h2>
+                <p>Your peace of mind is our top priority.</p>
+                <p>We carefully assess your needs to provide a tailored, efficient, and transparent management solution.</p>
+<!--
                 <p class:list={[textColor]}>
-                    We're here to help you with your questions and concerns.
+                    Votre tranquillité d’esprit est notre priorité absolue.
                 </p>
-                <p class:list={[textColor]}>
+                <p>
+                    Nous évaluons vos besoins avec soin afin de vous proposer une gestion sur mesure, efficace et transparente.
+                </p> -->
+                <!-- <p>
+                    Nous prenons le temps d’écouter attentivement vos besoins et de visiter votre immeuble afin de vous proposer une solution de gestion personnalisée, adaptée à la réalité du terrain et à vos attentes spécifiques. Chaque demande de soumission est traitée avec rigueur, efficacité et transparence, dans le but de vous offrir un service à la hauteur de vos exigences.
+                </p> -->
+                <!-- <p class:list={[textColor]}>
                     You can contact us via email or phone.
-                </p>
+                </p> -->
                 <div class:list={["flex flex-col gap-2 mt-4", textColor]}>
                     <div class:list={["flex items-center gap-2"]}><Mail aria-hidden="true" /> <a href={`mailto:${siteConfig.Socials.Email}`}>{siteConfig.Socials.Email}</a></div>
                     <div class:list={["flex items-center gap-2"]}><Phone aria-hidden="true" /> <a href={`tel:${siteConfig.Socials.Phone}`}>{siteConfig.Socials.Phone}</a></div>

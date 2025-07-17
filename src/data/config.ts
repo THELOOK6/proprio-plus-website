@@ -4,8 +4,8 @@ export const siteConfig = {
   Socials: {
       Instagram: 'https://www.instagram.com/gestion_proprioplus/',
       LinkedIn: 'https://www.linkedin.com/company/gestion-proprio-inc',
-      Email: 'gstproprioplus@gmail.com',
-    //   Email: 'gestion@groupeproprioplus.ca',
+    //   Email: 'gstproprioplus@gmail.com',
+      Email: 'gestion@groupeproprioplus.ca',
       Phone: '+1 438 889 1738',
       Location: "983 Ave D'alencon, Laval, Quebec, H7W 3W3",
   }
