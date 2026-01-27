@@ -5,7 +5,7 @@ backend:
   # The magic is here - use Netlify's built-in OAuth provider
   # No need for client IDs, secrets, or redirects
   # This works out of the box with Netlify's GitHub integration
-  site_domain: groupeproprioplus.netlify.app
+  site_domain: proprioalliance.netlify.app
 
 # Media settings
 media_folder: "public/images/uploads"

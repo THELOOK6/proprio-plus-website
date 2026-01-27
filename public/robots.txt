@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://groupeproprioplus.ca/sitemap-index.xml
+Sitemap: https://proprioalliance.ca/sitemap-index.xml

@@ -1,19 +1,20 @@
 export const siteConfig = {
-  companyName: 'Gestion ProprioPlus',
-  siteUrl: 'https://groupeproprioplus.ca',
+  companyName: 'Gestion Proprio Alliance',
+  siteUrl: 'https://proprioalliance.ca',
   Socials: {
       Instagram: 'https://www.instagram.com/gestion_proprioplus/',
       LinkedIn: 'https://www.linkedin.com/company/gestion-proprio-inc',
     //   Email: 'gstproprioplus@gmail.com',
-      Email: 'gestion@groupeproprioplus.ca',
-      Phone: '+1 438 889 1738',
+      Email: 'gestion@proprioalliance.ca',
+      Phone: '+1 (514)-532-1742',
       Location: "983 Ave D'alencon, Laval, Quebec, H7W 3W3",
   }
 };
 
 export const SEO = {
   Separator: '|',
-  SiteName: 'Gestion ProprioPlus',
+  SiteName: 'Gestion Proprio Alliance',
+  DefaultTitle: 'Gestion Proprio Alliance',
   defaultDescription: 'Property Management at its finest.',
 };
 
