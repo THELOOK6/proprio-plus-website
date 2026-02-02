@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 // Get the site URL from environment variable or use a default for local development
-const site = process.env.PUBLIC_SITE_URL || 'https://groupeproprioplus.ca';
+const site = process.env.PUBLIC_SITE_URL || 'https://proprioalliance.ca';
 
 export default defineConfig({
     site,
