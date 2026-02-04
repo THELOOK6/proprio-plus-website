@@ -150,11 +150,9 @@ const recentPostsSection = {
     <!-- <Stats content={sideBySideStats} background='dark' padding="base"/> -->
     <Faqs content={faqsSection} background="light" padding="base" />
 
-    <script type="application/ld+json">
-      {JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": faqSchema
-      })}
-    </script>
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqSchema
+    })} />
 </Layout>
