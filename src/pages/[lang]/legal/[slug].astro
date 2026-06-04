@@ -1,0 +1,42 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import Layout from '@layouts/Layout.astro';
+import InnerHero from '@components/sections/InnerHero.astro';
+import type { Lang } from '@i18n/utils';
+
+export async function getStaticPaths() {
+    const entries = await getCollection('legal');
+    return entries.map((entry) => {
+        const [lang, ...rest] = entry.id.split('/');
+        return { params: { lang, slug: rest.join('/') }, props: { entry } };
+    });
+}
+
+const { entry } = Astro.props;
+const lang = Astro.params.lang as Lang;
+const ui = await getEntry('ui', `${lang}/common`);
+const { Content } = await render(entry);
+
+const seoTitle = entry.data.seo?.title || entry.data.title;
+const seoDescription = entry.data.seo?.description || '';
+
+const formattedDate = new Intl.DateTimeFormat(lang === 'fr' ? 'fr-CA' : 'en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+}).format(entry.data.lastUpdated);
+
+const heroContent = { title: entry.data.title, overlayOpacity: 0.8 };
+---
+
+<Layout title={seoTitle} description={seoDescription}>
+    <InnerHero content={heroContent} />
+
+    <article class="site-container--small mx-auto px-8 prose pb-base">
+        <div class="mt-12 mb-8">
+            <p class="text-sm text-body-base/80">{ui!.data.lastUpdated}: {formattedDate}</p>
+        </div>
+
+        <Content />
+    </article>
+</Layout>

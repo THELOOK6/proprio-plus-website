@@ -1,21 +1,35 @@
 ---
-import { headerMenu } from '@data/menu';
 import Logo from '@components/Logo.astro';
-import { Menu, X, ChevronDown } from 'lucide-astro';
+import { Menu, X } from 'lucide-astro';
 import Button from '@components/ui/Button.astro';
+import { getEntry } from 'astro:content';
+import { getLangFromUrl, getAlternatePath, localizedPath, locales } from '@i18n/utils';
 
-const ctaButton = {
-    name: 'Contact Us',
-    link: '/contact',
-};
+const lang = getLangFromUrl(Astro.url);
+const ui = await getEntry('ui', `${lang}/common`);
+const t = ui!.data;
 
-// Get the current path to determine active menu item
+const headerMenu = [
+    { name: t.nav.home, link: localizedPath('/', lang) },
+    { name: t.nav.about, link: localizedPath('/about', lang) },
+    { name: t.nav.services, link: localizedPath('/services', lang) },
+];
+
+const ctaButton = { name: t.nav.contact, link: localizedPath('/contact', lang) };
+
+// Language toggle targets (same page in each locale).
+const langLinks = locales.map((l) => ({
+    code: l,
+    label: l.toUpperCase(),
+    href: getAlternatePath(Astro.url, l),
+    active: l === lang,
+}));
+
 const currentPath = Astro.url.pathname;
-
-// Function to check if a link is the current page or a parent of the current page
 const isCurrentPage = (link: string) => {
-    if (link === '/') {
-        return currentPath === '/';
+    const home = localizedPath('/', lang);
+    if (link === home) {
+        return currentPath === link || currentPath === link.replace(/\/$/, '');
     }
     return currentPath.startsWith(link);
 };
@@ -29,67 +43,47 @@ const isCurrentPage = (link: string) => {
                 {/* Desktop Menu */}
                 <ul class="hidden lg:flex lg:gap-8 items-center">
                     {
-                        headerMenu.map((item, index) => (
-                            <li class="relative group">
-                                <div class="flex items-center gap-1">
-                                    <a
-                                        href={item.link}
-                                        class:list={[
-                                            'text-small font-medium rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-nav-text-active',
-                                            isCurrentPage(item.link)
-                                                ? 'text-nav-text-current font-semibold'
-                                                : 'text-nav-text hover:text-nav-text-hover',
-                                        ]}
-                                        aria-current={isCurrentPage(item.link) ? 'page' : undefined}
-                                    >
-                                        {item.name}
-                                        {item.children && item.showArrow && (
-                                            <ChevronDown
-                                                size={16}
-                                                class="transform transition-transform inline-block ml-1"
-                                                aria-hidden="true"
-                                            />
-                                        )}
-                                    </a>
-                                    {item.children && (
-                                        <button
-                                            type="button"
-                                            class="sr-only"
-                                            aria-expanded="false"
-                                            aria-label={item.name}
-                                        />
-                                    )}
-                                </div>
-                                {item.children && (
-                                    <ul
-                                        class:list={[
-                                            'submenu absolute mt-2 bg-nav-submenu-bg border-black border rounded-md min-w-[200px] transition-all duration-200 opacity-0 invisible overflow-hidden z-50',
-                                            index === headerMenu.length - 1 ? 'right-0' : 'left-0',
-                                        ]}
-                                    >
-                                        {item.children.map((child) => (
-                                            <li>
-                                                <a
-                                                    href={child.link}
-                                                    class:list={[
-                                                        'block px-4 text-small py-2 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-nav-text-active',
-                                                        isCurrentPage(child.link)
-                                                            ? 'text-nav-text-current font-semibold'
-                                                            : 'text-nav-text hover:text-nav-text-hover',
-                                                    ]}
-                                                    aria-current={isCurrentPage(child.link) ? 'page' : undefined}
-                                                >
-                                                    {child.name}
-                                                </a>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )}
+                        headerMenu.map((item) => (
+                            <li class="relative">
+                                <a
+                                    href={item.link}
+                                    class:list={[
+                                        'text-small font-medium rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-nav-text-active',
+                                        isCurrentPage(item.link)
+                                            ? 'text-nav-text-current font-semibold'
+                                            : 'text-nav-text hover:text-nav-text-hover',
+                                    ]}
+                                    aria-current={isCurrentPage(item.link) ? 'page' : undefined}
+                                >
+                                    {item.name}
+                                </a>
                             </li>
                         ))
                     }
 
                     <Button href={ctaButton.link} variant="primary">{ctaButton.name}</Button>
+
+                    {/* Language toggle */}
+                    <li class="flex items-center gap-1 text-small font-medium pl-2 border-l border-black/10" aria-label={t.language.label}>
+                        {langLinks.map((l, i) => (
+                            <>
+                                {i > 0 && <span class="text-nav-text/40" aria-hidden="true">|</span>}
+                                <a
+                                    href={l.href}
+                                    hreflang={l.code}
+                                    class:list={[
+                                        'px-1 rounded focus:outline-none focus:ring-2 focus:ring-nav-text-active',
+                                        l.active
+                                            ? 'text-nav-text-current font-semibold'
+                                            : 'text-nav-text hover:text-nav-text-hover',
+                                    ]}
+                                    aria-current={l.active ? 'true' : undefined}
+                                >
+                                    {l.label}
+                                </a>
+                            </>
+                        ))}
+                    </li>
                 </ul>
 
                 {/* Mobile Menu Button */}
@@ -114,70 +108,47 @@ const isCurrentPage = (link: string) => {
                         {
                             headerMenu.map((item) => (
                                 <li>
-                                    <div class="text-white">
-                                        <div class="flex items-center justify-between">
-                                            <a
-                                                href={item.link}
-                                                class:list={[
-                                                    'py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-nav-mobile-text-active',
-                                                    isCurrentPage(item.link)
-                                                        ? 'text-nav-mobile-text-current font-semibold'
-                                                        : 'text-nav-mobile-text hover:text-nav-mobile-text-hover',
-                                                ]}
-                                                aria-current={isCurrentPage(item.link) ? 'page' : undefined}
-                                            >
-                                                {item.name}
-                                            </a>
-                                            {item.children && (
-                                                <button
-                                                    class:list={[
-                                                        'mobile-submenu-button p-2 -mr-2 rounded-md focus:outline-none focus:ring-2 focus:ring-nav-mobile-text-active',
-                                                        isCurrentPage(item.link)
-                                                            ? 'text-nav-mobile-text-current'
-                                                            : 'text-nav-mobile-text hover:text-nav-mobile-text-hover',
-                                                    ]}
-                                                    aria-label={`Toggle ${item.name} submenu`}
-                                                    aria-expanded="false"
-                                                >
-                                                    <ChevronDown
-                                                        size={16}
-                                                        class="transform transition-transform duration-200"
-                                                    />
-                                                </button>
-                                            )}
-                                        </div>
-                                        {item.children && (
-                                            <ul class="mobile-submenu ml-4 mt-2 space-y-2 hidden" role="menu">
-                                                {item.children.map((child) => (
-                                                    <li role="none">
-                                                        <a
-                                                            href={child.link}
-                                                            class:list={[
-                                                                'block py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-nav-mobile-text-active',
-                                                                isCurrentPage(child.link)
-                                                                    ? 'text-nav-mobile-text-current font-semibold'
-                                                                    : 'text-nav-mobile-text hover:text-nav-mobile-text-hover',
-                                                            ]}
-                                                            role="menuitem"
-                                                            aria-current={
-                                                                isCurrentPage(child.link) ? 'page' : undefined
-                                                            }
-                                                        >
-                                                            {child.name}
-                                                        </a>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        )}
-                                    </div>
+                                    <a
+                                        href={item.link}
+                                        class:list={[
+                                            'py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-nav-mobile-text-active',
+                                            isCurrentPage(item.link)
+                                                ? 'text-nav-mobile-text-current font-semibold'
+                                                : 'text-nav-mobile-text hover:text-nav-mobile-text-hover',
+                                        ]}
+                                        aria-current={isCurrentPage(item.link) ? 'page' : undefined}
+                                    >
+                                        {item.name}
+                                    </a>
                                 </li>
                             ))
                         }
                     </ul>
 
-                    {/* Updated mobile CTA button styling */}
+                    {/* Mobile language toggle — high-contrast pill buttons on the colored panel */}
+                    <div class="mt-8 pt-6 border-t border-white/30">
+                        <p class="text-white/80 text-sm font-medium mb-3">{t.language.label}</p>
+                        <div class="flex items-center gap-3" aria-label={t.language.label}>
+                            {langLinks.map((l) => (
+                                <a
+                                    href={l.href}
+                                    hreflang={l.code}
+                                    class:list={[
+                                        'px-4 py-2 rounded-md text-sm font-semibold border-2 transition-colors',
+                                        l.active
+                                            ? 'bg-white text-primary border-white'
+                                            : 'bg-transparent text-white border-white/80 hover:bg-white/15',
+                                    ]}
+                                    aria-current={l.active ? 'true' : undefined}
+                                >
+                                    {l.label}
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+
                     <div class="mt-8 pb-8">
-                        <Button href={ctaButton.link} variant="ghostLight">{ctaButton.name} </Button>
+                        <Button href={ctaButton.link} variant="ghostLight">{ctaButton.name}</Button>
                     </div>
                 </div>
             </nav>
@@ -186,132 +157,6 @@ const isCurrentPage = (link: string) => {
 </header>
 
 <script>
-    // Desktop Menu
-    const desktopMenuItems = document.querySelectorAll('.group');
-
-    desktopMenuItems.forEach((item) => {
-        const link = item.querySelector('a');
-        const button = item.querySelector('button');
-        const submenu = item.querySelector('.submenu');
-        const submenuLinks = submenu?.querySelectorAll('a');
-
-        if (submenu && link && button) {
-            // Handle hover
-            item.addEventListener('mouseenter', () => {
-                showSubmenu(submenu as HTMLElement, button as HTMLElement);
-            });
-
-            item.addEventListener('mouseleave', () => {
-                hideSubmenu(submenu as HTMLElement, button as HTMLElement);
-            });
-
-            // Handle keyboard navigation
-            link.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowDown' && item.children) {
-                    e.preventDefault();
-                    showSubmenu(submenu as HTMLElement, button as HTMLElement);
-                    submenuLinks?.[0]?.focus();
-                }
-            });
-
-            button.addEventListener('click', (e) => {
-                if (item.children) {
-                    e.preventDefault();
-                    const isExpanded = button.getAttribute('aria-expanded') === 'true';
-                    if (isExpanded) {
-                        hideSubmenu(submenu as HTMLElement, button as HTMLElement);
-                    } else {
-                        showSubmenu(submenu as HTMLElement, button as HTMLElement);
-                        submenuLinks?.[0]?.focus();
-                    }
-                }
-            });
-
-            button.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowDown' && item.children) {
-                    e.preventDefault();
-                    showSubmenu(submenu as HTMLElement, button as HTMLElement);
-                    submenuLinks?.[0]?.focus();
-                }
-            });
-
-            // Don't show submenu on focus, only on hover or arrow key
-            link.addEventListener('focus', () => {
-                hideSubmenu(submenu as HTMLElement, button as HTMLElement);
-            });
-
-            // Keyboard navigation within submenu
-            submenuLinks?.forEach((submenuLink, index) => {
-                submenuLink.addEventListener('keydown', (e) => {
-                    const lastIndex = submenuLinks.length - 1;
-
-                    switch (e.key) {
-                        case 'ArrowDown':
-                            e.preventDefault();
-                            if (index < lastIndex) {
-                                submenuLinks[index + 1].focus();
-                            }
-                            break;
-                        case 'ArrowUp':
-                            e.preventDefault();
-                            if (index > 0) {
-                                submenuLinks[index - 1].focus();
-                            } else {
-                                link.focus();
-                                hideSubmenu(submenu as HTMLElement, button as HTMLElement);
-                            }
-                            break;
-                        case 'Escape':
-                            e.preventDefault();
-                            hideSubmenu(submenu as HTMLElement, button as HTMLElement);
-                            link.focus();
-                            break;
-                        case 'Tab':
-                            // Allow normal tab behavior but close submenu
-                            hideSubmenu(submenu as HTMLElement, button as HTMLElement);
-                            break;
-                    }
-                });
-            });
-
-            // Close submenu when focus leaves
-            document.addEventListener('focusin', (e) => {
-                if (item && !item.contains(e.target as Node)) {
-                    hideSubmenu(submenu as HTMLElement, button as HTMLElement);
-                }
-            });
-        }
-    });
-
-    // Helper functions
-    function showSubmenu(submenu: HTMLElement, button: HTMLElement) {
-        submenu.classList.remove('invisible', 'opacity-0');
-        submenu.classList.add('visible', 'opacity-100');
-        button.setAttribute('aria-expanded', 'true');
-    }
-
-    function hideSubmenu(submenu: HTMLElement, button: HTMLElement) {
-        submenu.classList.add('invisible', 'opacity-0');
-        submenu.classList.remove('visible', 'opacity-100');
-        button.setAttribute('aria-expanded', 'false');
-    }
-
-    // Simple mobile submenu toggle
-    document.querySelectorAll('.mobile-submenu-button').forEach((button) => {
-        button.addEventListener('click', () => {
-            const submenu = button.parentElement?.nextElementSibling as HTMLElement;
-            const chevron = button.querySelector('svg');
-
-            // Toggle submenu
-            if (submenu) {
-                submenu.classList.toggle('hidden');
-                chevron?.classList.toggle('rotate-180');
-                const isExpanded = submenu.classList.contains('hidden') ? 'false' : 'true';
-                button.setAttribute('aria-expanded', isExpanded);
-            }
-        });
-    });
-
     // Mobile menu toggle with scroll lock
     const mobileMenuButton = document.querySelector('.mobile-menu-button');
     const mobileMenu = document.querySelector('.mobile-menu');

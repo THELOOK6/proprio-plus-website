@@ -10,6 +10,7 @@
       "@styles/*": ["./src/styles/*"],
       "@images/*": ["./src/images/*"],
       "@data/*": ["./src/data/*"],
+      "@i18n/*": ["./src/i18n/*"],
       "@utils/*": ["./src/utils/*"],
       "@assets/*": ["./src/assets/*"]
     }

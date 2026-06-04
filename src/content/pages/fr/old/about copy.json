@@ -1,0 +1,54 @@
+{
+    "title": "À propos",
+    "seo": {
+        "title": "À propos",
+        "description": "Apprenez-en plus sur Proprio Alliance — le partenaire de confiance en gestion immobilière à Montréal. Découvrez notre mission, nos valeurs et notre équipe expérimentée."
+    },
+    "hero": {
+        "title": "À propos de nous"
+    },
+    "intro": {
+        "eyebrow": "Qui sommes-nous?",
+        "headline": "Les experts en immobilier",
+        "paragraphs": [
+            "Chez Proprio Alliance, nous croyons que la gestion immobilière devrait être simple, transparente et sans souci. Née d'une passion pour l'immobilier et d'un engagement envers l'excellence, notre entreprise a été fondée par des professionnels expérimentés qui ont vu l'occasion de faire mieux — pour les propriétaires, les locataires et les communautés.",
+            "Après des années de travail dans l'industrie, nous avons constaté que de nombreux propriétaires recherchaient bien plus que l'entretien et la perception des loyers — ils voulaient une équipe en qui ils pouvaient avoir confiance. C'est pourquoi nous avons fondé Proprio Alliance : pour offrir des services de gestion immobilière fiables, personnalisés et axés sur les résultats, qui procurent à nos clients une véritable tranquillité d'esprit."
+        ]
+    },
+    "whatWeDo": {
+        "eyebrow": "La confiance des locataires et des propriétaires",
+        "headline": "Ce que nous faisons",
+        "description": "Nous nous spécialisons dans la gestion immobilière complète, prenant en charge tout, du placement des locataires et de la perception des loyers à l'entretien, aux inspections et au soutien 24/7. Que vous possédiez une seule unité ou un portefeuille grandissant, nous adaptons nos services à vos besoins et veillons à ce que votre propriété soit bien gérée, rentable et entretenue."
+    },
+    "vision": {
+        "title": "Notre vision",
+        "items": [
+            {
+                "icon": "Handshake",
+                "title": "Créer des partenariats durables",
+                "description": "Favoriser la confiance et des relations solides pour un succès à long terme en immobilier."
+            },
+            {
+                "icon": "Building2",
+                "title": "Éclairer vos décisions immobilières",
+                "description": "Offrir des conseils d'experts pour vous aider à faire des choix immobiliers éclairés et confiants."
+            },
+            {
+                "icon": "Briefcase",
+                "title": "Offrir des solutions immobilières complètes",
+                "description": "Grâce à un courtier immobilier au sein de notre équipe, nous offrons des inscriptions exclusives et des conseils d'experts sous un même toit."
+            }
+        ]
+    },
+    "more": {
+        "eyebrow": "La confiance des locataires et des propriétaires",
+        "headline": "Bien plus que de la gestion",
+        "description": "<p>L'un des éléments qui distingue <strong class=\"text-orange-700\">Proprio Alliance</strong> est notre courtier immobilier agréé à l'interne, qui nous permet d'offrir une expérience complète et harmonieuse. Grâce à cette expertise supplémentaire, nous sommes en mesure d'offrir :</p><ul class=\"list-disc pl-5\"><li>L'accès à des inscriptions exclusives sur des plateformes de premier plan comme Centris</li><li>Un marketing immobilier professionnel pour la location ou la vente</li><li>Des conseils d'experts pour acheter, vendre ou optimiser vos investissements</li></ul><p>Que vous cherchiez à combler une vacance, à agrandir votre portefeuille ou à vendre une propriété, vous bénéficierez d'une solution intégrée et clé en main — sans avoir à jongler avec plusieurs fournisseurs de services.</p>"
+    },
+    "footerCta": {
+        "title": "Travaillons ensemble",
+        "description": "Chez Proprio Alliance, nous sommes bien plus que des gestionnaires immobiliers — nous sommes vos partenaires immobiliers dévoués.",
+        "buttonText": "Communiquez avec nous",
+        "buttonLink": "/contact"
+    }
+}

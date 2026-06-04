@@ -7,6 +7,13 @@ backend:
   # This works out of the box with Netlify's GitHub integration
   site_domain: proprioalliance.netlify.app
 
+# Internationalization: French is the default, English the translation.
+# Editors see FR and EN side-by-side; files are written to /fr and /en folders.
+i18n:
+  structure: multiple_folders
+  locales: [fr, en]
+  default_locale: fr
+
 # Media settings
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
@@ -38,16 +45,18 @@ collections:
     folder: "src/content/legal"
     create: true
     slug: "{{slug}}"
+    i18n: true
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Last Updated", name: "lastUpdated", widget: "datetime" }
-      - { label: "Content", name: "body", widget: "markdown" }
+      - { label: "Title", name: "title", widget: "string", i18n: true }
+      - { label: "Last Updated", name: "lastUpdated", widget: "datetime", i18n: duplicate }
+      - { label: "Content", name: "body", widget: "markdown", i18n: true }
       - label: "SEO"
         name: "seo"
         widget: "object"
+        i18n: true
         fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Title", name: "title", widget: "string", i18n: true }
+          - { label: "Description", name: "description", widget: "text", i18n: true }
 
   - name: "team"
     label: "Team Members"

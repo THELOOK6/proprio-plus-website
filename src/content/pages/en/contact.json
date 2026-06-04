@@ -1,0 +1,44 @@
+{
+    "title": "Contact",
+    "seo": {
+        "title": "Contact Proprio Alliance Property Management | Montreal",
+        "description": "Ready to optimize your buildings or condo syndicate? Contact the expert team at Proprio Alliance today for a free evaluation in the Greater Montreal area."
+    },
+    "hero": {
+        "title": "Let’s Discuss Your Real Estate Goals",
+        "description": "Whether you are a plex owner, a commercial asset manager, or a member of a co-ownership condo board, our specialists are ready to help simplify your operations."
+    },
+    "infoPanel": {
+        "title": "Our Coordinates",
+        "businessName": "Gestion Proprio Alliance Inc.",
+        "regionCovered": "Greater Montreal, Laval, North Shore & South Shore",
+        "phoneLabel": "Phone",
+        "phoneValue": "(514) 555-0199",
+        "emailLabel": "General Inquiries",
+        "emailValue": "info@proprioalliance.ca",
+        "hoursLabel": "Business Hours",
+        "hoursValue": "Monday to Friday: 9:00 AM – 5:00 PM (Technical Emergency Support: 24/7)"
+    },
+    "form": {
+        "title": "Request a Free Consultation",
+        "description": "Fill out the form below and a portfolio manager will get back to you within 24 business hours.",
+        "fields": {
+            "name": "Full Name",
+            "email": "Email Address",
+            "phone": "Phone Number",
+            "propertyType": {
+                "label": "Type of Real Estate Need",
+                "options": [
+                    "Residential Management (Plex / Multi-Unit)",
+                    "Commercial Management (Office / Retail)",
+                    "Condo Syndicate Management (Co-ownership)",
+                    "Buying / Selling / Brokerage Services",
+                    "Other Inquiry"
+                ]
+            },
+            "unitCount": "Number of units / doors (if applicable)",
+            "message": "Tell us briefly about your property and goals",
+            "submitButton": "Submit Request"
+        }
+    }
+}

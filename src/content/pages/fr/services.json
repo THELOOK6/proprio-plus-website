@@ -1,0 +1,34 @@
+{
+    "title": "Services",
+    "seo": {
+        "title": "Services de Gestion Immobilière à Montréal | Proprio Alliance",
+        "description": "Découvrez notre gamme complète de services de gestion immobilière à Montréal : gestion locative résidentielle (plex), commerciale et administration de syndics de condo."
+    },
+    "hero": {
+        "title": "Nos Services et Expertises"
+    },
+    "servicesSection": {
+        "title": "Une gestion immobilière professionnelle, adaptée à chaque type d'actif",
+        "description": "Nous offrons une gamme complète de services de gestion immobilière conçus pour simplifier votre quotidien, accroître la satisfaction des occupants et protéger la valeur de votre patrimoine. Notre équipe allie rigueur opérationnelle, communication réactive et fine connaissance du marché québécois pour offrir des résultats constants de grande qualité. Que vous possédiez un condo locatif unique, un portefeuille de multiplex résidentiels, un immeuble commercial ou que vous dirigiez un syndicat de copropriété, nous fournissons la structure, les systèmes et le soutien nécessaires pour optimiser vos opérations au quotidien.",
+        "items": [
+            { "icon": "Building", "title": "Gestion locative clé en main", "description": "Prise en charge intégrale de vos immeubles résidentiels et multi-logements : commercialisation, administration des baux et gestion quotidienne pour maximiser vos rendements sans tracas." },
+            { "icon": "BriefcaseBusiness", "title": "Gestion d'immeubles commerciaux", "description": "Administration rigoureuse d'espaces de bureaux et commerciaux : perception, gestion des charges communes, indexation des baux commerciaux et relations locataires d'affaires." },
+            { "icon": "ShieldCheck", "title": "Gestion de syndics de copropriété", "description": "Soutien administratif, financier et technique complet pour les conseils d'administration de condo : budgets, fonds de prévoyance, carnets d'entretien et assemblées." },
+            { "icon": "HandCoins", "title": "Perception et comptabilité financière", "description": "Système sécurisé et transparent de perception des loyers ou des frais de condo, conciliation bancaire, gestion des fournisseurs et rapports financiers mensuels." },
+            { "icon": "Wrench", "title": "Coordination technique et urgences 24/7", "description": "Ligne d'urgence accessible en tout temps pour les locataires. Planification de l'entretien préventif et supervision des travaux par des entrepreneurs certifiés RBQ." },
+            { "icon": "UserCheck", "title": "Sélection et enquêtes de locataires", "description": "Attraction de candidats de qualité grâce à des enquêtes de crédit exhaustives, vérifications d'antécédents judiciaires au TAL et validation des références." },
+            { "icon": "FileText", "title": "Conformité légale et baux du TAL", "description": "Rédaction et renouvellement des baux officiels, avis d'augmentation de loyer, et respect strict de la réglementation du Tribunal administratif du logement." },
+            { "icon": "CalendarDays", "title": "Inspections périodiques des bâtiments", "description": "Visites régulières de contrôle de l'état général des logements et des aires communes pour prévenir les dégradations et maintenir vos standards." },
+            { "icon": "Shield", "title": "Gestion des risques et sinistres", "description": "Analyses préventives des risques, mise en place de protocoles de sécurité clairs et coordination avec les assureurs en cas de sinistre." },
+            { "icon": "ChartNoAxesCombined", "title": "Optimisation des revenus et loyers", "description": "Analyses comparatives régulières du marché locatif montréalais pour positionner vos unités au juste prix et maximiser votre flux de trésorerie." },
+            { "icon": "ArrowRightLeft", "title": "Optimisation du roulement (Turnover)", "description": "Négociation stratégique des fins de baux, gestion des transitions d'occupants, rachats de baux et remises en état rapides des unités pour éviter la vacance." },
+            { "icon": "BriefcaseBusiness", "title": "Conseil en investissement immobilier", "description": "Des conseils d'experts pour les investisseurs qui souhaitent agrandir ou optimiser leur portefeuille immobilier." }
+        ]
+    },
+    "footerCta": {
+        "title": "Confiez la gestion de vos actifs à des spécialistes",
+        "description": "Que vous soyez un investisseur expérimenté ou un propriétaire pour la première fois, nous offrons une gestion immobilière complète adaptée à vos besoins. Déléguez la gestion quotidienne à Proprio Alliance et concentrez-vous sur l'essentiel.",
+        "buttonText": "Demander une soumission gratuite",
+        "buttonLink": "/contact"
+    }
+}

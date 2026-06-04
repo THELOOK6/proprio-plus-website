@@ -1,0 +1,94 @@
+---
+import Layout from '@layouts/Layout.astro';
+import InnerHero from '@components/sections/InnerHero.astro';
+import SplitPanel from '@components/sections/SplitPanel.astro';
+import VisionSection from '@components/sections/VisionSection.astro';
+import { getEntry } from 'astro:content';
+import { resolveIcon } from '@i18n/icons';
+import { localizedPath, locales, type Lang } from '@i18n/utils';
+import backgroundImage from '../../assets/images/home/city-skyline-2-dark.jpg';
+import whatWeDoImage from '../../assets/images/home/condo-building.jpg';
+import MoreImage from '../../assets/images/home/house-2.jpg';
+import ClearBuildingImage from '@assets/images/home/top-view-building-cropped.png';
+
+export function getStaticPaths() {
+    return locales.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const page = await getEntry('pages', `${lang}/about`);
+const d = page!.data;
+
+const heroContent = { title: d.hero!.title, backgroundImage, overlayOpacity: 0.2 };
+
+const whatWeDo = {
+    eyebrow: d.whatWeDo!.eyebrow,
+    headline: d.whatWeDo!.headline,
+    description: d.whatWeDo!.description,
+    image: { src: whatWeDoImage, alt: d.whatWeDo!.headline },
+};
+
+const visionItems = d.vision!.items.map((i) => ({
+    icon: resolveIcon(i.icon),
+    title: i.title,
+    description: i.description,
+}));
+
+const more = {
+    eyebrow: d.more!.eyebrow,
+    headline: d.more!.headline,
+    description: d.more!.description,
+    image: { src: MoreImage, alt: d.more!.headline },
+};
+
+const footerCta = {
+    title: d.footerCta!.title,
+    description: d.footerCta!.description,
+    hideCta: false,
+    button: {
+        text: d.footerCta!.buttonText,
+        link: localizedPath(d.footerCta!.buttonLink, lang),
+        target: '_self',
+    },
+};
+---
+
+<Layout footerCta={footerCta} title={d.seo.title} description={d.seo.description}>
+    <InnerHero content={heroContent} />
+
+    <div class="relative max-w-7xl mx-auto md:pt-50">
+        <div
+            class="rounded-xl bg-orange-100 m-8 p-16 md:m-0 relative overflow-visible min-h-[300px] flex flex-col md:flex-row items-center"
+        >
+            <div
+                class="w-full mb-140 md:mb-0 md:ml-110 md:pr-10 md:pl-10 flex-1 min-h-[200px] flex items-center justify-center order-first md:order-last"
+            >
+                <div>
+                    <p class="text-sm font-semibold text-orange-600 uppercase tracking-wider mb-2">
+                        {d.intro!.eyebrow}
+                    </p>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">{d.intro!.headline}</h2>
+                    {d.intro!.paragraphs.map((p) => (
+                        <p class="mb-6 text-lg leading-relaxed">{p}</p>
+                    ))}
+                </div>
+            </div>
+
+            <div
+                class="absolute left-0 bottom-0 w-full md:w-110 h-auto flex items-center justify-center text-white text-lg order-last md:order-first"
+            >
+                <img
+                    src={ClearBuildingImage.src}
+                    alt="Modern property building"
+                    class="rounded-xl md:rounded-none md:rounded-l-xl w-full h-auto object-cover"
+                />
+            </div>
+        </div>
+    </div>
+
+    <section class="text-orange-900">
+        <SplitPanel content={whatWeDo} imagePosition="left" background="light" padding="slim" />
+        <VisionSection mainTitle={d.vision!.title} items={visionItems} />
+        <SplitPanel content={more} imagePosition="right" background="light" padding="slim" />
+    </section>
+</Layout>

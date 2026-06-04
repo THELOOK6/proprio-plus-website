@@ -1,0 +1,34 @@
+{
+    "title": "Services",
+    "seo": {
+        "title": "Property Management Services Montreal | Proprio Alliance",
+        "description": "Explore our full range of property management solutions in Montreal: turnkey residential (plexes), commercial real estate, and condo syndicate administration."
+    },
+    "hero": {
+        "title": "Our Services & Expertises"
+    },
+    "servicesSection": {
+        "title": "Professional Property Management, Tailored to Every Need",
+        "description": "We offer a full spectrum of property management services designed to simplify ownership, boost occupant satisfaction, and enhance the long-term capital value of your assets. Our team coordinates day-to-day operations with professional discipline, responsive communication, and deep insight into the Quebec real estate market. Whether you own a single rental unit, a growing multi-family plex portfolio, a commercial building, or operate a co-ownership condo board, we establish the systems and support to ensure your real estate runs seamlessly.",
+        "items": [
+            { "icon": "Building", "title": "Turnkey Residential Leasing", "description": "End-to-end oversight of your residential multi-unit buildings: institutional-grade marketing, lease administration, and operations to maximize your passive ROI." },
+            { "icon": "BriefcaseBusiness", "title": "Commercial Property Operations", "description": "Comprehensive administration of retail, industrial, and office properties, focused on commercial lease indexing, CAM expense optimization, and B2B tenant retention." },
+            { "icon": "ShieldCheck", "title": "Condo Syndicate & Board Administration", "description": "Complete financial, technical, and administrative management for condo associations: tracking contingency funds, building logs, budgeting, and general meetings." },
+            { "icon": "HandCoins", "title": "Secure Collection & Portfolio Accounting", "description": "Streamlined collection of rents or monthly condo fees, accounts payable management, banking reconciliations, and transparent financial statements." },
+            { "icon": "Wrench", "title": "24/7 Technical Care & Emergency Dispatch", "description": "Round-the-clock emergency assistance for tenants coupled with routine preventative building maintenance overseen by licensed, insured (RBQ) trades." },
+            { "icon": "UserCheck", "title": "Rigorous Tenant Screening & Screening", "description": "Mitigating risk by vetting rental candidates through extensive credit checks, TAL judicial record matching, and employer/landlord references." },
+            { "icon": "FileText", "title": "Legal Compliance & TAL Frameworks", "description": "Drafting of official provincial leases, delivery of statutory renewal and rent increase notices, and comprehensive guidance on all TAL regulations." },
+            { "icon": "CalendarDays", "title": "Preventative Property Inspections", "description": "Routine structural and unit check-ups to assess interior and common area conditions, catch maintenance issues early, and sustain property standards." },
+            { "icon": "Shield", "title": "Risk Mitigation & Insurance Handling", "description": "Comprehensive risk profiling, establishment of on-site safety protocols, and diligent coordination with insurance providers during property claims." },
+            { "icon": "ChartNoAxesCombined", "title": "Market Analytics & Rent Optimization", "description": "Periodic real estate comparative studies across Montreal neighborhoods to systematically calibrate rental prices and lower vacancy friction." },
+            { "icon": "ArrowRightLeft", "title": "Strategic Turnover & Transition Care", "description": "Expert navigation of tenant transitions, including lease buyouts, structured terminations, and rapid unit preparation to protect cash flow." },
+            { "icon": "BriefcaseBusiness", "title": "Real Estate Investment Consulting", "description": "Expert advice for investors looking to expand or optimize their real estate portfolios." }
+        ]
+    },
+    "footerCta": {
+        "title": "Entrust Your Properties to Professional Hands",
+        "description": "Whether you are a seasoned real estate investor, a first-time landlord, or on a condo syndicate executive board, we customize our management packages to your operational realities. Delegate the details to Proprio Alliance.",
+        "buttonText": "Request a Free Evaluation",
+        "buttonLink": "/contact"
+    }
+}

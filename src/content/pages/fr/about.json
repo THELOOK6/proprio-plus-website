@@ -1,0 +1,54 @@
+{
+    "title": "À propos",
+    "seo": {
+        "title": "À propos de Proprio Alliance | Gestion immobilière Montréal",
+        "description": "Découvrez Proprio Alliance, votre partenaire de confiance à Montréal. Gestion résidentielle, commerciale, syndics de copropriété et expertise de courtage immobilier intégrée."
+    },
+    "hero": {
+        "title": "À propos de nous"
+    },
+    "intro": {
+        "eyebrow": "QUI SOMMES-NOUS ?",
+        "headline": "L'expertise immobilière au service de votre sérénité",
+        "paragraphs": [
+            "Chez Proprio Alliance, nous croyons fermement que l'administration d'un patrimoine immobilier doit être synonyme de rigueur, de transparence et de tranquillité d'esprit. Née d'une passion pour l'immobilier et d'un engagement absolu envers l'excellence, notre entreprise a été fondée par des gestionnaires expérimentés désireux d'offrir un standard supérieur aux propriétaires, aux investisseurs et aux communautés du Grand Montréal.",
+            "Ayant évolué durant des années au cœur du marché immobilier québécois, nous avons constaté que les investisseurs recherchaient bien plus qu'un simple service de perception de loyers ou de maintenance sur appel. Ils méritaient un partenaire stratégique et proactif. C'est précisément la mission de Proprio Alliance : fusionner la gestion de parc immobilier, l'optimisation financière et la conformité légale au sein d'une structure intégrée unique"
+        ]
+    },
+    "whatWeDo": {
+        "eyebrow": "CONFIANCE, RIGUEUR ET TRANSPARENCE",
+        "headline": "Notre champ d'action",
+        "description": "Nous nous spécialisons dans l'administration globale d'actifs immobiliers. Notre équipe prend en charge l'intégralité du cycle d'exploitation : du marketing locatif à la sélection rigoureuse des locataires, de la perception des loyers à la maintenance technique préventive, en passant par le soutien d'urgence 24h/7. Du condo locatif unique aux grands parcs multi-logements, nous adaptons nos services à vos besoins et veillons à ce que votre propriété soit bien gérée, rentable et entretenue."
+    },
+    "vision": {
+        "title": "Notre vision",
+        "items": [
+            {
+                "icon": "Handshake",
+                "title": "Bâtir des alliances durables",
+                "description": "Placer l'intégrité et la communication transparente au centre de nos relations pour assurer la réussite à long terme de nos clients."
+            },
+            {
+                "icon": "Building2",
+                "title": "Éclairer vos choix stratégiques",
+                "description": "Fournir des analyses de marché précises et des conseils d'experts pour maximiser la rentabilité et l'évaluation de vos actifs."
+            },
+            {
+                "icon": "Briefcase",
+                "title": "Une synergie de services exclusive",
+                "description": "Grâce à la présence d'un courtier immobilier agréé au sein de notre équipe, nous offrons des inscriptions exclusives et des conseils d'experts sous un même toit."
+            }
+        ]
+    },
+    "more": {
+        "eyebrow": "UNE VALEUR AJOUTÉE UNIQUE SUR LE MARCHÉ",
+        "headline": "Bien plus que de la saine gestion : une expertise globale",
+        "description": "<p>L'élément distinctif majeur de <strong class=\"text-orange-700\">Proprio Alliance</strong> repose sur l'intégration directe d'un courtier immobilier agréé au sein de notre équipe de direction. Cette double compétence de gestionnaire et de courtier nous permet de briser les silos traditionnels de l'industrie pour vous offrir des avantages exclusifs :</p><ul class=\"list-disc pl-5 mt-2 space-y-1\"><li><strong>Accès privilégié au réseau Centris :</strong> Une mise en marché d'envergure professionnelle et une visibilité maximale auprès de l'ensemble des courtiers du Québec pour vos locations ou vos ventes.</li><li><strong>Analyse de marché pointue :</strong> Des rapports de comparables précis et une stratégie d'optimisation des loyers basée sur les données réelles du marché montréalais.</li><li><strong>Accompagnement transactionnel :</strong> Un encadrement juridique et commercial complet pour l'acquisition, la restructuration ou la disposition de vos immeubles à revenus.</li></ul><p class=\"mt-3\">Que vous cherchiez à combler une vacance, à agrandir votre portefeuille ou à vendre une propriété, vous profitez d'une solution clé en main d'une efficacité redoutable, sans jamais avoir à multiplier les intermédiaires.</p>"
+    },
+    "footerCta": {
+        "title": "Collaborons à la réussite de vos projets",
+        "description": "Chez Proprio Alliance, nous sommes bien plus que des gestionnaires immobiliers — nous sommes vos partenaires immobiliers dévoués.",
+        "buttonText": "Discuter avec un gestionnaire",
+        "buttonLink": "/contact"
+    }
+}

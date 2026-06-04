@@ -1,65 +1,84 @@
 ---
-import Contact from "@components/forms/Contact.astro"
-import { getBackgroundColor, getTextColor, getPaddingClass } from '@utils/styleUtils';
-import type { ThemeColor, PaddingSize } from '@utils/styleUtils';
+import { getPaddingClass, getBackgroundColor, getTextColor, getHeadlineColor } from '@utils/styleUtils';
+import type { PaddingSize, ThemeColor } from '@utils/styleUtils';
 import { siteConfig } from '@data/config';
 import { Mail, Phone, MapPin } from 'lucide-astro';
-import Map from '@components/Map.astro'
+import Contact from '@components/forms/Contact.astro';
+import Map from '@components/Map.astro';
+import { getEntry } from 'astro:content';
+import { getLangFromUrl } from '@i18n/utils';
 
 export interface Props {
-    content?: {
-        title?: string;
-        description?: string;
-        contactInfo?: {
-            email?: string;
-            phone?: string;
-            address?: string;
-        };
-    };
     background?: ThemeColor;
     padding?: PaddingSize;
     paddingTop?: PaddingSize;
     paddingBottom?: PaddingSize;
 }
+
 const {
-    content,
     background = 'base',
     padding,
     paddingTop,
     paddingBottom
 } = Astro.props;
 
+const lang = getLangFromUrl(Astro.url);
+const ui = await getEntry('ui', `${lang}/common`);
+const t = ui!.data;
+
 const bgColor = getBackgroundColor(background);
 const textColor = getTextColor(background);
-const paddingClass = getPaddingClass({ padding, paddingTop, paddingBottom });
+const headlineColor = getHeadlineColor(background);
+const paddingClass = getPaddingClass({
+    padding,
+    paddingTop,
+    paddingBottom
+});
 
+const contactDetails = [
+    {
+        icon: Mail,
+        title: t.contact.email,
+        details: siteConfig.Socials.Email,
+        link: `mailto:${siteConfig.Socials.Email}`
+    },
+    {
+        icon: Phone,
+        title: t.contact.phone,
+        details: siteConfig.Socials.Phone,
+        link: `tel:${siteConfig.Socials.Phone}`
+    },
+    // {
+    //     icon: MapPin,
+    //     title: t.contact.address,
+    //     details: siteConfig.Socials.Location,
+    //     link: '#map'
+    // },
+];
 ---
 
 <section class:list={[bgColor, paddingClass]}>
     <div class="site-container px-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
-                <h2 class:list={[textColor]}>Contact Information</h2>
-                <p>Your peace of mind is our top priority.</p>
-                <p>We carefully assess your needs to provide a tailored, efficient, and transparent management solution.</p>
-<!--
-                <p class:list={[textColor]}>
-                    Votre tranquillité d’esprit est notre priorité absolue.
-                </p>
-                <p>
-                    Nous évaluons vos besoins avec soin afin de vous proposer une gestion sur mesure, efficace et transparente.
-                </p> -->
-                <!-- <p>
-                    Nous prenons le temps d’écouter attentivement vos besoins et de visiter votre immeuble afin de vous proposer une solution de gestion personnalisée, adaptée à la réalité du terrain et à vos attentes spécifiques. Chaque demande de soumission est traitée avec rigueur, efficacité et transparence, dans le but de vous offrir un service à la hauteur de vos exigences.
-                </p> -->
-                <!-- <p class:list={[textColor]}>
-                    You can contact us via email or phone.
-                </p> -->
-                <div class:list={["flex flex-col gap-2 mt-4", textColor]}>
-                    <div class:list={["flex items-center gap-2"]}><Mail aria-hidden="true" /> <a href={`mailto:${siteConfig.Socials.Email}`}>{siteConfig.Socials.Email}</a></div>
-                    <div class:list={["flex items-center gap-2"]}><Phone aria-hidden="true" /> <a href={`tel:${siteConfig.Socials.Phone}`}>{siteConfig.Socials.Phone}</a></div>
-                    <!-- <div class:list={["flex items-center gap-2"]}><MapPin aria-hidden="true" /> <a href={`https://maps.google.com/?q=${siteConfig.Socials.Location}`}>{siteConfig.Socials.Location}</a></div> -->
+                <h2 class:list={['mb-8', headlineColor]}>{t.contact.getInTouch}</h2>
+                <div class="space-y-6">
+                    {contactDetails.map((item) => (
+                        <a
+                            href={item.link}
+                            class="flex items-start gap-4 group"
+                        >
+                            <div class="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                                <item.icon size={24} />
+                            </div>
+                            <div>
+                                <h3 class:list={['text-lg font-semibold', headlineColor]}>{item.title}</h3>
+                                <p class:list={[textColor, 'opacity-90']}>{item.details}</p>
+                            </div>
+                        </a>
+                    ))}
                 </div>
+                <!-- Map Section -->
                 <Map />
             </div>
             <div>
@@ -68,3 +87,5 @@ const paddingClass = getPaddingClass({ padding, paddingTop, paddingBottom });
         </div>
     </div>
 </section>
+
+

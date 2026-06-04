@@ -1,0 +1,54 @@
+{
+    "title": "About",
+    "seo": {
+        "title": "About Proprio Alliance | Property Management Montreal",
+        "description": "Discover Proprio Alliance, Montreal's premier partner for full-service residential, commercial, and condo syndicate management with integrated real estate brokerage expertise."
+    },
+    "hero": {
+        "title": "About Our Firm"
+    },
+    "intro": {
+        "eyebrow": "WHO WE ARE",
+        "headline": "Real Estate Management to Secure Your Peace of Mind",
+        "paragraphs": [
+            "At Proprio Alliance, we firmly believe property management should be synonymous with rigorous execution, transparency, and total peace of mind. Born out of a modern vision for real estate and an absolute commitment to operational excellence, our firm was founded by seasoned industry professionals determined to establish a higher standard for property owners, investors, and co-ownership boards across Greater Montreal.",
+            "Having evolved for years at the heart of the Quebec real estate market, we recognized that property owners were looking for far more than a basic rent collection or on-call repair service—they deserved a proactive, strategic partner. Proprio Alliance was established to bridge that gap: fusing physical asset maintenance, financial optimization, and legal compliance into a single, seamless corporate structure."
+        ]
+    },
+    "whatWeDo": {
+        "eyebrow": "TRUST, INTEGRITY AND PRECISION",
+        "headline": "Our Scope of Operations",
+        "description": "We specialize in the end-to-end administration of real estate portfolios. Our team manages the entire asset lifecycle: from high-impact digital marketing and meticulous tenant background screening to predictive preventative maintenance, financial reporting, and 24/7 emergency dispatch. From individual investment condos to extensive multi-family plex portfolios and commercial spaces, we tailor our services to fit your needs and ensure your property is well-managed, profitable, and cared for."
+    },
+    "vision": {
+        "title": "Our Vision",
+        "items": [
+            {
+                "icon": "Handshake",
+                "title": "Building Lasting Partnerships",
+                "description": "Placing transparent communication and client trust at the center of every management mandate to guarantee long-term financial success."
+            },
+            {
+                "icon": "Building2",
+                "title": "Empowering Strategic Decisions",
+                "description": "Delivering precise data analysis, market comparative reports, and expert guidance to optimize asset valuation and ROI."
+            },
+            {
+                "icon": "Briefcase",
+                "title": "Integrated Brokerage Advantage",
+                "description": "With an in-house licensed real estate broker on our executive team, we bridge daily management and commercial transactions under one roof."
+            }
+        ]
+    },
+    "more": {
+        "eyebrow": "A UNIQUE MARKET ADVANTAGE",
+        "headline": "More Than Property Management: Total Portfolio Care",
+        "description": "<p>The core differentiator that sets <strong class=\"text-orange-700\">Proprio Alliance</strong> apart is the direct integration of a licensed real estate broker within our core leadership team. This added expertise allows provide unmatched advantages to our clients:</p><ul class=\"list-disc pl-5 mt-2 space-y-1\"><li><strong>Exclusive Centris Network Access:</strong> Premium, high-visibility corporate listing deployment across Quebec’s primary MLS platforms to minimize your vacancy periods during leasing or liquidation cycles.</li><li><strong>Advanced Market Analytics:</strong> Deep-dive comparative data modeling and local rental rate tracking to maximize your cash flow based on real-time Montreal metrics.</li><li><strong>Seamless Transactional Support:</strong> Full legal, structural, and commercial brokerage guidance when expanding, restructuring, or selling your multi-unit plexes or commercial assets.</li></ul><p class=\"mt-3\">Whether your immediate goal is stabilizing tenant turnover, auditing a condo syndicate’s operational budget, grow your portfolio, or sell a property, you benefit from a turnkey, high-performance solution without the friction of managing multiple service vendors.</p>"
+    },
+    "footerCta": {
+        "title": "Let’s Build Success Together",
+        "description": "At Proprio Alliance, we're more than just property managers—we're your dedicated real estate partners.",
+        "buttonText": "Speak with a Property Manager",
+        "buttonLink": "/contact"
+    }
+}

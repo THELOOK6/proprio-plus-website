@@ -1,7 +1,8 @@
 ---
 import { Image } from 'astro:assets';
-// import logo from '../assets/logo-alliance-horizontal-no-border.png';
 import logo from '../assets/upscaled-logo-alliance-horizontal.png';
+import { getLangFromUrl, localizedPath } from '@i18n/utils';
+
 interface Props {
     variant?: 'header' | 'footer' | 'dark';
 }
@@ -21,14 +22,10 @@ const getLogoClass = () => {
             return 'text-body-base hover:text-primary';
     }
 };
+
+const home = localizedPath('/', getLangFromUrl(Astro.url));
 ---
 
-<a href="/" class:list={['logo uppercase font-logo transition-colors duration-200 font-light', getLogoClass()]}>
-    {
-        // If image is the only element in this link, its alt attribute should be a textual representation.
-        // Please, use something like your company name or “Home”, not “logo.”
-        // If there is link text, leave alt empty.
-    }
+<a href={home} class:list={['logo uppercase font-logo transition-colors duration-200 font-light', getLogoClass()]}>
     <Image src={logo} alt="Proprio+" class="visible" />
-    <!-- <span class="font-bold">HELP</span> Core -->
 </a>

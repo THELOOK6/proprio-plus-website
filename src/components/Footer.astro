@@ -1,8 +1,9 @@
 ---
-import { footerMenu, legalMenu } from '@data/menu';
 import Logo from '@components/Logo-white.astro';
 import Button from '@components/ui/Button.astro';
 import { siteConfig } from '@data/config';
+import { getEntry } from 'astro:content';
+import { getLangFromUrl, localizedPath } from '@i18n/utils';
 
 interface ButtonProps {
   text: string;
@@ -21,19 +22,30 @@ interface Props {
 
 const { footerCta } = Astro.props;
 
+const lang = getLangFromUrl(Astro.url);
+const ui = await getEntry('ui', `${lang}/common`);
+const t = ui!.data;
+
 const defaultCta = {
-  title: "Ready to get started?",
-  description: "Join us today and transform your digital presence with our innovative solutions.",
-  hideCta: false,
-  button: {
-    text: "Contact Us",
-    link: "/contact",
-    target: "_self"
-  }
+  title: '',
+  description: '',
+  hideCta: true,
+  button: { text: t.nav.contact, link: localizedPath('/contact', lang), target: '_self' },
 };
 
 const cta = footerCta || defaultCta;
 const currentYear = new Date().getFullYear();
+
+const footerMenu = [
+  { name: t.nav.home, link: localizedPath('/', lang) },
+  { name: t.nav.about, link: localizedPath('/about', lang) },
+  { name: t.nav.contact, link: localizedPath('/contact', lang) },
+];
+
+const legalMenu = [
+  { name: t.legal.privacy, link: localizedPath('/legal/privacy-policy', lang) },
+  { name: t.legal.terms, link: localizedPath('/legal/terms-of-service', lang) },
+];
 ---
 
 <footer class={`bg-black text-white pb-small ${cta.hideCta ? 'pt-large' : ''}`}>
@@ -61,12 +73,12 @@ const currentYear = new Date().getFullYear();
       <div class="col-span-1">
         <Logo variant="footer" />
         <p class="mt-4 text-white">
-          Helping you enjoy ownership—without the headaches.
+          {t.footer.tagline}
         </p>
       </div>
 
       <div class="col-span-1">
-        <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+        <h3 class="text-lg font-semibold mb-4">{t.footer.quickLinks}</h3>
         <nav>
           <ul class="space-y-2">
             {footerMenu.map(item => (
@@ -79,7 +91,7 @@ const currentYear = new Date().getFullYear();
 
     <div class="mt-8 flex flex-col md:flex-row justify-between items-center">
       <div class="text-body-dark text-sm">
-        © {currentYear} {siteConfig.companyName}. All rights reserved.
+        © {currentYear} {siteConfig.companyName}. {t.footer.rights}
       </div>
 
       <nav class="mt-4 md:mt-0">

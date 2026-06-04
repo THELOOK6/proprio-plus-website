@@ -124,4 +124,155 @@ const properties = defineCollection({
 //     }),
 //   });
 
-export const collections = { blog, team, legal, properties };
+// Localized page content, edited via Decap CMS. One entry per locale, e.g.
+// src/content/pages/fr/home.json and src/content/pages/en/home.json.
+// Section fields are optional so the same collection can describe every page.
+const pages = defineCollection({
+    loader: glob({ base: './src/content/pages', pattern: '**/*.json' }),
+    schema: z.object({
+        title: z.string().optional(), // CMS identifier label only
+        seo: z.object({
+            title: z.string(),
+            description: z.string(),
+        }),
+        hero: z
+            .object({
+                title: z.string(),
+                description: z.string().optional(),
+                buttons: z
+                    .array(
+                        z.object({
+                            text: z.string(),
+                            link: z.string(),
+                            target: z.string().optional(),
+                        })
+                    )
+                    .optional(),
+            })
+            .optional(),
+        features: z
+            .object({
+                eyebrow: z.string().optional(),
+                title: z.string().optional(),
+                description: z.string().optional(),
+                buttonText: z.string().optional(),
+                buttonLink: z.string().optional(),
+                items: z.array(
+                    z.object({
+                        icon: z.string(),
+                        title: z.string(),
+                        description: z.string(),
+                    })
+                ),
+            })
+            .optional(),
+        splitPanel: z
+            .object({
+                eyebrow: z.string().optional(),
+                headline: z.string(),
+                description: z.string(),
+                buttonText: z.string().optional(),
+                buttonLink: z.string().optional(),
+            })
+            .optional(),
+        faqs: z
+            .object({
+                eyebrow: z.string().optional(),
+                title: z.string().optional(),
+                description: z.string().optional(),
+                items: z.array(z.object({ question: z.string(), answer: z.string() })),
+            })
+            .optional(),
+        footerCta: z
+            .object({
+                eyebrow: z.string().optional(),
+                title: z.string(),
+                description: z.string(),
+                buttonText: z.string(),
+                buttonLink: z.string(),
+            })
+            .optional(),
+        // About page sections
+        intro: z
+            .object({
+                eyebrow: z.string().optional(),
+                headline: z.string(),
+                paragraphs: z.array(z.string()),
+            })
+            .optional(),
+        whatWeDo: z
+            .object({
+                eyebrow: z.string().optional(),
+                headline: z.string(),
+                description: z.string(),
+            })
+            .optional(),
+        vision: z
+            .object({
+                title: z.string(),
+                items: z.array(
+                    z.object({ icon: z.string(), title: z.string(), description: z.string() })
+                ),
+            })
+            .optional(),
+        more: z
+            .object({
+                eyebrow: z.string().optional(),
+                headline: z.string(),
+                description: z.string(), // may contain HTML, rendered with set:html
+            })
+            .optional(),
+        // Services page section
+        servicesSection: z
+            .object({
+                eyebrow: z.string().optional(),
+                title: z.string(),
+                description: z.string(),
+                items: z.array(
+                    z.object({ icon: z.string(), title: z.string(), description: z.string() })
+                ),
+            })
+            .optional(),
+    }),
+});
+
+// Shared UI strings (nav, footer, labels), edited via Decap CMS.
+const ui = defineCollection({
+    loader: glob({ base: './src/content/ui', pattern: '**/*.json' }),
+    schema: z.object({
+        title: z.string().optional(), // CMS identifier label only
+        nav: z.object({
+            home: z.string(),
+            about: z.string(),
+            services: z.string(),
+            contact: z.string(),
+        }),
+        buttons: z.object({ contact: z.string() }).partial().optional(),
+        footer: z.object({
+            tagline: z.string(),
+            quickLinks: z.string(),
+            rights: z.string(),
+        }),
+        legal: z.object({ privacy: z.string(), terms: z.string() }),
+        form: z.object({
+            name: z.string(),
+            email: z.string(),
+            phone: z.string(),
+            company: z.string(),
+            message: z.string(),
+            terms: z.string(),
+            submit: z.string(),
+        }),
+        contact: z.object({
+            getInTouch: z.string(),
+            email: z.string(),
+            phone: z.string(),
+            address: z.string(),
+        }),
+        language: z.object({ label: z.string(), fr: z.string(), en: z.string() }),
+        notFound: z.object({ title: z.string(), message: z.string(), back: z.string() }),
+        lastUpdated: z.string(),
+    }),
+});
+
+export const collections = { blog, team, legal, properties, pages, ui };
