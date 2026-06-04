@@ -1,0 +1,47 @@
+{
+    "title": "Interface du site",
+    "nav": {
+        "home": "Accueil",
+        "about": "À propos",
+        "services": "Services",
+        "contact": "Contactez-nous"
+    },
+    "buttons": {
+        "contact": "Contactez-nous"
+    },
+    "footer": {
+        "tagline": "Vous aider à profiter de la propriété — sans les tracas.",
+        "quickLinks": "Liens rapides",
+        "rights": "Tous droits réservés."
+    },
+    "legal": {
+        "privacy": "Politique de confidentialité",
+        "terms": "Conditions d'utilisation"
+    },
+    "form": {
+        "name": "Nom",
+        "email": "Courriel",
+        "phone": "Téléphone",
+        "company": "Entreprise",
+        "message": "Message",
+        "terms": "J'accepte les conditions générales",
+        "submit": "Envoyer"
+    },
+    "contact": {
+        "getInTouch": "Communiquez avec nous",
+        "email": "Courriel",
+        "phone": "Téléphone",
+        "address": "Adresse"
+    },
+    "language": {
+        "label": "Langue",
+        "fr": "Français",
+        "en": "English"
+    },
+    "notFound": {
+        "title": "404",
+        "message": "Désolé, la page que vous recherchez n'existe pas.",
+        "back": "Retour à l'accueil"
+    },
+    "lastUpdated": "Dernière mise à jour"
+}

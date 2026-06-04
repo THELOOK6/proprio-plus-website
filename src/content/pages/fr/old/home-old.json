@@ -1,0 +1,114 @@
+{
+    "title": "Accueil",
+    "seo": {
+        "title": "Gestion immobilière Grand Montréal | Proprio Alliance",
+        "description": "Proprio Alliance offre une gestion immobilière de confiance dans le Grand Montréal. Découvrez des services fiables et professionnels pour propriétaires et locataires."
+    },
+    "hero": {
+        "title": "Des solutions complètes de gestion immobilière pour une propriété sans souci",
+        "description": "Du filtrage des locataires et de la perception des loyers à l'entretien et au maintien de votre propriété, nous nous occupons de tout. Notre équipe d'experts veille à ce que vos propriétés performent à leur plein potentiel, pendant que vous profitez d'une tranquillité d'esprit.",
+        "buttons": [
+            { "text": "Commencer", "link": "/contact", "target": "_self" }
+        ]
+    },
+    "features": {
+        "eyebrow": "SERVICES PRINCIPAUX",
+        "title": "Une gestion immobilière complète — gérée avec précision",
+        "description": "Nous offrons des services complets de gestion immobilière conçus pour vous offrir une tranquillité d'esprit totale dans la gestion de vos actifs. De la recherche de locataires fiables à la perception des loyers, l'entretien et la conformité légale : nous nous occupons de tout. Notre approche optimisée garantit que votre patrimoine demeure rentable, protégé et géré de main de maître en tout temps.",
+        "buttonText": "Voir tous les services",
+        "buttonLink": "/services",
+        "items": [
+            {
+                "icon": "Building",
+                "title": "Gestion immobilière complète",
+                "description": "Nous gérons la location, l'entretien, la perception des loyers, la conformité légale et bien plus — pour que vous profitiez des rendements sans les tracas."
+            },
+            {
+                "icon": "HandCoins",
+                "title": "Perception des loyers et gestion financière",
+                "description": "Perception des loyers efficace et sécuritaire, comptabilité et rapports financiers pour les propriétaires."
+            },
+            {
+                "icon": "Wrench",
+                "title": "Coordination de l'entretien",
+                "description": "Entretien d'urgence 24/7 et entretien régulier pour garder votre propriété en parfait état."
+            },
+            {
+                "icon": "UserCheck",
+                "title": "Sélection et placement des locataires",
+                "description": "Vérifications d'antécédents rigoureuses et placement de locataires fiables pour assurer des locataires de qualité."
+            },
+            {
+                "icon": "File",
+                "title": "Gestion des baux et conformité légale",
+                "description": "Nous gérons les ententes de bail, les renouvellements et veillons au respect de toutes les exigences légales."
+            },
+            {
+                "icon": "MessageCircle",
+                "title": "Communication et soutien aux locataires",
+                "description": "Nous agissons comme intermédiaire entre propriétaires et locataires pour résoudre les problèmes rapidement et professionnellement."
+            },
+            {
+                "icon": "CalendarDays",
+                "title": "Inspections et rapports de propriété",
+                "description": "Inspections régulières et rapports détaillés pour maintenir les standards de votre propriété."
+            },
+            {
+                "icon": "Shield",
+                "title": "Gestion des risques et coordination des assurances",
+                "description": "Nous aidons à protéger votre propriété et votre investissement en vous conseillant sur vos besoins d'assurance et vos stratégies de gestion des risques."
+            },
+            {
+                "icon": "ChartNoAxesCombined",
+                "title": "Analyse de marché et optimisation des loyers",
+                "description": "Nous fournissons une analyse de marché détaillée et aidons à fixer des loyers concurrentiels pour maximiser votre rendement."
+            },
+            {
+                "icon": "BriefcaseBusiness",
+                "title": "Conseil en investissement immobilier",
+                "description": "Des conseils d'experts pour les investisseurs qui souhaitent agrandir ou optimiser leur portefeuille immobilier."
+            },
+            {
+                "icon": "ArrowRightLeft",
+                "title": "Service d'optimisation du roulement des locataires",
+                "description": "Nous nous spécialisons dans la négociation stratégique des transitions de locataires — que ce soit par rachat, relocalisation ou restructuration de bail."
+            }
+        ]
+    },
+    "splitPanel": {
+        "eyebrow": "La confiance des locataires et des propriétaires",
+        "headline": "Votre propriété. Notre priorité.",
+        "description": "Nous mettons en place des systèmes efficaces et une gestion experte pour prendre en charge chaque aspect de votre propriété — assurant des opérations fluides, une valeur à long terme et une performance fiable. Qu'il s'agisse d'une maison unifamiliale ou d'un immeuble à logements multiples, nous traitons votre propriété comme la nôtre.",
+        "buttonText": "Découvrez notre approche",
+        "buttonLink": "/about"
+    },
+    "faqs": {
+        "eyebrow": "FAQ",
+        "title": "Foire aux questions",
+        "description": "Trouvez des réponses aux questions courantes sur nos services.",
+        "items": [
+            {
+                "question": "Quels secteurs desservez-vous?",
+                "answer": "Nous desservons principalement la région du Grand Montréal, incluant Laval et les environs."
+            },
+            {
+                "question": "Quels types de propriétés gérez-vous?",
+                "answer": "Nous gérons des propriétés résidentielles, incluant les condos, les maisons unifamiliales et les immeubles à logements multiples."
+            },
+            {
+                "question": "Combien coûtent vos services?",
+                "answer": "Nos tarifs varient selon le type et la taille de votre propriété. Contactez-nous pour une soumission personnalisée."
+            },
+            {
+                "question": "Comment gérez-vous les demandes d'entretien?",
+                "answer": "Nous disposons d'un système 24/7 pour les demandes d'entretien et d'un réseau d'entrepreneurs de confiance."
+            }
+        ]
+    },
+    "footerCta": {
+        "title": "Laissez-nous gérer votre propriété, pour que vous n'ayez pas à le faire",
+        "description": "Que vous soyez un investisseur expérimenté ou un propriétaire pour la première fois, nous offrons une gestion immobilière complète adaptée à vos besoins. Laissez-nous nous occuper des détails, pour que vous puissiez vous concentrer sur l'essentiel.",
+        "buttonText": "Communiquez avec nous",
+        "buttonLink": "/contact"
+    }
+}

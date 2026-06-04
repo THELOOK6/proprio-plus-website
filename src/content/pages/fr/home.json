@@ -1,0 +1,114 @@
+{
+    "title": "Accueil",
+    "seo": {
+        "title": "Gestion immobilière Grand Montréal | Proprio Alliance",
+        "description": "Proprio Alliance offre une gestion immobilière d'immeubles résidentiels et multi-logements dans le Grand Montréal. Optimisez vos rendements en toute tranquillité."
+    },
+    "hero": {
+        "title": "Des solutions de gestion immobilière complètes pour un investissement sans souci",
+        "description": "Du filtrage des locataires et de la perception des loyers jusqu'à l'entretien général de vos bâtiments, nous nous occupons de tout. Notre équipe d'experts veille à ce que vos biens immobiliers performent à leur plein potentiel pendant que vous profitez d'une tranquillité d'esprit totale.",
+        "buttons": [
+            { "text": "Obtenir une soumission", "link": "/contact", "target": "_self" }
+        ]
+    },
+    "features": {
+        "eyebrow": "NOS SERVICES",
+        "title": "Une gestion immobilière complète — opérée avec précision",
+        "description": "Nous offrons des services complets de gestion immobilière conçus pour vous libérer des contraintes de la gestion locative. De la recherche de locataires fiables à la perception des loyers, l'entretien et la conformité légale : notre approche optimisée garantit que votre patrimoine demeure rentable, protégé et géré de main de maître.",
+        "buttonText": "Découvrir tous nos services",
+        "buttonLink": "/services",
+        "items": [
+            {
+                "icon": "Building",
+                "title": "Gestion immobilière clé en main",
+                "description": "Nous gérons la location, l'entretien, la perception des loyers et la conformité légale pour que vous profitiez de vos rendements sans les tracas quotidiens."
+            },
+            {
+                "icon": "HandCoins",
+                "title": "Perception des loyers et gestion financière",
+                "description": "Un système de perception des loyers efficace, sécuritaire et transparent, accompagné de rapports financiers détaillés pour les propriétaires."
+            },
+            {
+                "icon": "Wrench",
+                "title": "Coordination de l'entretien et urgences",
+                "description": "Prise en charge des urgences 24h/7 et planification de l'entretien préventif pour préserver la valeur de votre bâtiment."
+            },
+            {
+                "icon": "UserCheck",
+                "title": "Sélection et placement des locataires",
+                "description": "Enquêtes de crédit et d'antécédents rigoureuses afin de sécuriser des locataires fiables, respectueux et stables."
+            },
+            {
+                "icon": "File",
+                "title": "Gestion des baux et conformité (TAL)",
+                "description": "Rédaction des baux, avis de renouvellement, augmentations de loyer et respect strict des réglementations du Tribunal administratif du logement."
+            },
+            {
+                "icon": "MessageCircle",
+                "title": "Relations et soutien aux locataires",
+                "description": "Nous agissons comme intermédiaire principal pour résoudre les requêtes rapidement, favorisant ainsi la rétention des bons locataires."
+            },
+            {
+                "icon": "CalendarDays",
+                "title": "Inspections régulières des lieux",
+                "description": "Visites de contrôle périodiques et rapports détaillés pour s'assurer du bon entretien de vos logements."
+            },
+            {
+                "icon": "Shield",
+                "title": "Gestion des risques et sinistres",
+                "description": "Conseils sur les couvertures d'assurance optimales et protocoles stricts de gestion des risques pour protéger votre capital."
+            },
+            {
+                "icon": "ChartNoAxesCombined",
+                "title": "Analyse de marché et optimisation",
+                "description": "Étude comparative du marché locatif montréalais pour fixer le juste prix et maximiser le taux d'occupation de vos unités."
+            },
+            {
+                "icon": "BriefcaseBusiness",
+                "title": "Conseil en investissement immobilier",
+                "description": "Un accompagnement stratégique pour les investisseurs qui souhaitent agrandir, optimiser ou restructurer leur portefeuille."
+            },
+            {
+                "icon": "ArrowRightLeft",
+                "title": "Optimisation du roulement (Turnover)",
+                "description": "Expertise dans la négociation stratégique des transitions de locataires, rachats de baux et relocalisations dans le respect des lois."
+            }
+        ]
+    },
+    "splitPanel": {
+        "eyebrow": "La référence pour propriétaires et locataires",
+        "headline": "Votre propriété. Notre priorité.",
+        "description": "Grâce à des processus éprouvés et une gestion rigoureuse, nous prenons en charge chaque facette de vos immeubles — assurant des opérations fluides, une valeur à long terme et une performance fiable. Qu'il s'agisse d'un condo locatif, d'une maison unifamiliale ou d'un immeuble à logements multiples, nous traitons votre propriété comme la nôtre.",
+        "buttonText": "Découvrez notre approche",
+        "buttonLink": "/about"
+    },
+    "faqs": {
+        "eyebrow": "FAQ",
+        "title": "Foire aux questions",
+        "description": "Trouvez des réponses claires sur nos services de gestion de serveurs immobiliers.",
+        "items": [
+            {
+                "question": "Quels secteurs desservez-vous?",
+                "answer": "Nous desservons principalement la région du Grand Montréal, incluant Montréal, Laval, la Rive-Nord et la Rive-Sud."
+            },
+            {
+                "question": "Quels types de propriétés gérez-vous?",
+                "answer": "Nous gérons un large éventail de propriétés résidentielles : condominiums, maisons unifamiliales, plex (duplex à quintuplex) et immeubles à revenus multi-logements."
+            },
+            {
+                "question": "Quels sont vos tarifs de gestion?",
+                "answer": "Nos honoraires sont adaptés sur mesure selon le type d'immeuble, le nombre de portes et l'état général du parc immobilier. Contactez-nous pour une estimation gratuite."
+            },
+            {
+                "question": "Comment gérez-vous les urgences d'entretien?",
+                "answer": "Nous offrons une ligne d'urgence accessible 24 heures sur 24, 7 jours sur 7 pour les locataires, appuyée par une équipe de techniciens et d'entrepreneurs certifiés (RBG)."
+            }
+        ]
+    },
+    "footerCta": {
+        "title": "Confiez-nous la gestion de vos immeubles pour un quotidien simplifié",
+        "description": "Que vous soyez un investisseur expérimenté ou un propriétaire pour la première fois, nous offrons une gestion immobilière complète adaptée à vos besoins. Déléguez la gestion quotidienne à Proprio Alliance et concentrez-vous sur l'essentiel.",
+        "buttonText": "Contactez un expert",
+        "buttonLink": "/contact"
+    }
+}

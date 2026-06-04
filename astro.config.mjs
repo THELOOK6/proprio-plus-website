@@ -8,6 +8,11 @@ const site = process.env.PUBLIC_SITE_URL || 'https://proprioalliance.ca';
 
 export default defineConfig({
     site,
+    // NOTE: we intentionally do NOT use Astro's built-in `i18n` config. It reserves
+    // locale routing and forbids a `[lang]` dynamic route, which would force a
+    // duplicated page file per locale. Instead we localize via a single `[lang]`
+    // route + helpers in src/i18n/. Sitemap hreflang is configured below and works
+    // independently. hreflang <link> tags are emitted in Layout.astro.
     vite: {
         plugins: [tailwindcss()],
         css: {
@@ -38,6 +43,10 @@ export default defineConfig({
             lastmod: new Date(),
             filter: (page) => !page.includes('/404'), // Only exclude 404 page
             entryLimit: 10000, // Increase entry limit if you have many pages
+            i18n: {
+                defaultLocale: 'fr',
+                locales: { fr: 'fr-CA', en: 'en-CA' }, // emits hreflang alternates
+            },
         }),
     ],
     image: {

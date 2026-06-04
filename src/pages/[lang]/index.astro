@@ -1,0 +1,99 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Hero from '@components/sections/Hero.astro';
+import SplitPanel from '@components/sections/SplitPanel.astro';
+import Features from '@components/sections/Features.astro';
+import Faqs from '@components/sections/Faqs.astro';
+import { getEntry } from 'astro:content';
+import { resolveIcon } from '@i18n/icons';
+import { localizedPath, locales, type Lang } from '@i18n/utils';
+import heroImage from '../../assets/images/home/pool-mansion-2.jpg';
+import styleGuideImage from '../../assets/images/home/condo-building-2.jpg';
+
+export function getStaticPaths() {
+    return locales.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const page = await getEntry('pages', `${lang}/home`);
+const d = page!.data;
+
+const heroContent = {
+    title: d.hero!.title,
+    description: d.hero!.description,
+    buttons: (d.hero!.buttons ?? []).map((b) => ({
+        text: b.text,
+        link: localizedPath(b.link, lang),
+        target: b.target ?? '_self',
+    })),
+    backgroundImage: heroImage,
+    overlayOpacity: 0.2,
+};
+
+const featuresContent = {
+    eyebrow: d.features!.eyebrow,
+    title: d.features!.title,
+    description: d.features!.description,
+    features: d.features!.items.map((f) => ({
+        icon: resolveIcon(f.icon),
+        title: f.title,
+        description: f.description,
+    })),
+    button: {
+        text: d.features!.buttonText ?? '',
+        link: localizedPath(d.features!.buttonLink ?? '/', lang),
+        variant: 'primary' as const,
+    },
+};
+
+const splitContent = {
+    eyebrow: d.splitPanel!.eyebrow,
+    headline: d.splitPanel!.headline,
+    description: d.splitPanel!.description,
+    image: { src: styleGuideImage, alt: d.splitPanel!.headline },
+    buttons: [
+        {
+            text: d.splitPanel!.buttonText ?? '',
+            link: localizedPath(d.splitPanel!.buttonLink ?? '/', lang),
+            variant: 'primary' as const,
+        },
+    ],
+};
+
+const faqsContent = {
+    eyebrow: d.faqs!.eyebrow,
+    title: d.faqs!.title,
+    description: d.faqs!.description,
+    faqs: d.faqs!.items,
+};
+
+const footerCta = {
+    title: d.footerCta!.title,
+    description: d.footerCta!.description,
+    hideCta: false,
+    button: { text: d.footerCta!.buttonText, link: localizedPath(d.footerCta!.buttonLink, lang), target: '_self' },
+};
+
+// FAQ structured data (SEO)
+const faqSchema = faqsContent.faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+}));
+---
+
+<Layout footerCta={footerCta} title={d.seo.title} description={d.seo.description}>
+    <Hero content={heroContent} />
+    <Features content={featuresContent} padding="base" background="light" />
+    <SplitPanel content={splitContent} imagePosition="right" background="base" padding="base" />
+    <Faqs content={faqsContent} background="light" padding="base" />
+
+    <script
+        type="application/ld+json"
+        set:html={JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: faqSchema,
+        })}
+    />
+</Layout>

@@ -1,0 +1,12 @@
+# Netlify redirects
+
+# Bare root -> default (French) locale
+/                        /fr/                       302
+
+# Old un-prefixed URLs -> French equivalents (preserve SEO / old links)
+/about                   /fr/about                  301
+/services                /fr/services               301
+/contact                 /fr/contact                301
+/privacy-policy          /fr/legal/privacy-policy    301
+/legal                   /fr/legal                  301
+/legal/*                 /fr/legal/:splat           301

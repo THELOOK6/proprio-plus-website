@@ -1,0 +1,99 @@
+{
+    "title": "Home",
+    "seo": {
+        "title": "Property Management Montreal | Residential, Commercial & Condo",
+        "description": "Proprio Alliance offers expert property management for residential (plexes, multiplexes), commercial real estate, and condo syndicates across Greater Montreal."
+    },
+    "hero": {
+        "title": "Premier Property Management Solutions for Your Real Estate Portfolio",
+        "description": "Whether you own residential multiplexes, commercial spaces, or manage a co-ownership condo syndicate, we handle it all. Our expert team optimizes returns, handles daily operations, and protects your real estate assets across Greater Montreal.",
+        "buttons": [
+            { "text": "Get a Free Estimate", "link": "/contact", "target": "_self" }
+        ]
+    },
+    "features": {
+        "eyebrow": "OUR EXPERTISE",
+        "title": "Comprehensive Property Management — Handled with Precision",
+        "description": "We provide end-to-end property management services designed to make ownership effortless. From finding reliable tenants to handling rent collection, maintenance, and legal compliance—we take care of every detail so you don't have to. Our streamlined approach ensures your properties stay profitable, protected, and professionally managed at all times.",
+        "buttonText": "Explore Our Solutions",
+        "buttonLink": "/services",
+        "items": [
+            {
+                "icon": "Building",
+                "title": "Residential & Multi-Unit Management",
+                "description": "Full-service management for your plexes, multiplexes, and residential portfolios. We handle leasing, rent collection, and strict compliance with TAL regulations."
+            },
+            {
+                "icon": "BriefcaseBusiness",
+                "title": "Commercial Property Management",
+                "description": "Expert administration of retail spaces, offices, and industrial properties. We manage commercial leases, common area maintenance (CAM), and tenant retention."
+            },
+            {
+                "icon": "ShieldCheck",
+                "title": "Condo Syndicate & Co-Ownership",
+                "description": "Turnkey administrative and technical support for condo syndicates. We oversee general meetings, condo fee collection, contingency funds, and maintenance logs."
+            },
+            {
+                "icon": "HandCoins",
+                "title": "Financial Management & Accounting",
+                "description": "Secure, transparent rent and dues collection, accounts payable, detailed monthly financial reporting, and predictive budgeting."
+            },
+            {
+                "icon": "Wrench",
+                "title": "24/7 Technical Maintenance & Urgencies",
+                "description": "Prompt dispatch for emergency repairs and continuous preventative upkeep coordinated by trusted, licensed (RBQ) contractors."
+            },
+            {
+                "icon": "UserCheck",
+                "title": "Rigorous Tenant Screening & Placement",
+                "description": "Comprehensive credit scoring, criminal background checks, and landlord reference verification to secure reliable, long-term tenants."
+            },
+            {
+                "icon": "FileText",
+                "title": "Legal Compliance & TAL Representation",
+                "description": "Total peace of mind regarding Quebec real estate laws, lease updates, rent increases, and direct liaison with the Tribunal administratif du logement."
+            },
+            {
+                "icon": "ChartNoAxesCombined",
+                "title": "Asset Optimization & Market Analysis",
+                "description": "Routine Montreal market analysis to optimize rental rates, minimize vacancy periods, and maximize your overall return on investment (ROI)."
+            }
+        ]
+    },
+    "splitPanel": {
+        "eyebrow": "Your Trusted Local Partner",
+        "headline": "Your Property. Our Priority.",
+        "description": "Proprio Alliance combines modern efficiency with localized Montreal real estate expertise to provide high-end property administration. Whether it's a single-family home or a multi-unit complex, we treat your property like our own.",
+        "buttonText": "Discover Our Approach",
+        "buttonLink": "/about"
+    },
+    "faqs": {
+        "eyebrow": "FAQ",
+        "title": "Frequently Asked Real Estate Questions",
+        "description": "Clear answers for landlords, real estate investors, and condo co-ownership boards.",
+        "items": [
+            {
+                "question": "What types of properties do you manage in the Montreal area?",
+                "answer": "We manage a diverse portfolio across residential real estate (rental condos, plexes, multi-unit buildings), commercial properties (offices and retail), as well as serving as managers for condo syndicates."
+            },
+            {
+                "question": "What areas do you cover?",
+                "answer": "Our property managers cover the entire Greater Montreal area, including the Island of Montreal, Laval, the North Shore, and the South Shore."
+            },
+            {
+                "question": "How much do your services cost?",
+                "answer": "Fees are tailored based on asset type and total unit count. We operate on a percentage of gross monthly revenue for rental properties or custom flat fees for condo syndicate mandates. Contact us for a free quote."
+            },
+            {
+                "question": "Are you up to date with Quebec's TAL and co-ownership laws?",
+                "answer": "Absolutely. Our team is fully versed in all regulations under the Tribunal administratif du logement (TAL), commercial lease laws, and recent Quebec legislative updates regarding condo contingency funds and building asset logs."
+            }
+        ]
+    },
+    "footerCta": {
+        "title": "Ready to Optimize Your Property Management?",
+        "description": "Whether you're an experienced investor or a first-time landlord, we offer full-service property management tailored to your needs. Let us take care of the details, so you can focus on what matters most.",
+        "buttonText": "Book a Free Consultation",
+        "buttonLink": "/contact"
+    }
+}

@@ -1,0 +1,45 @@
+---
+import Layout from '@layouts/Layout.astro';
+import InnerHero from '@components/sections/InnerHero.astro';
+import Services from '@components/sections/Services.astro';
+import { getEntry } from 'astro:content';
+import { resolveIcon } from '@i18n/icons';
+import { localizedPath, locales, type Lang } from '@i18n/utils';
+import innerHeroImage from '../../assets/images/home/city-skyline-2-dark.jpg';
+
+export function getStaticPaths() {
+    return locales.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const page = await getEntry('pages', `${lang}/services`);
+const d = page!.data;
+
+const heroContent = { title: d.hero!.title, backgroundImage: innerHeroImage, overlayOpacity: 0.2 };
+
+const servicesSection = {
+    title: d.servicesSection!.title,
+    description: d.servicesSection!.description,
+    features: d.servicesSection!.items.map((f) => ({
+        icon: resolveIcon(f.icon),
+        title: f.title,
+        description: f.description,
+    })),
+};
+
+const footerCta = {
+    title: d.footerCta!.title,
+    description: d.footerCta!.description,
+    hideCta: false,
+    button: {
+        text: d.footerCta!.buttonText,
+        link: localizedPath(d.footerCta!.buttonLink, lang),
+        target: '_self',
+    },
+};
+---
+
+<Layout footerCta={footerCta} title={d.seo.title} description={d.seo.description}>
+    <InnerHero content={heroContent} />
+    <Services content={servicesSection} padding="base" background="light" />
+</Layout>

@@ -6,6 +6,7 @@ import Footer from "../components/Footer.astro";
 import { SEO, siteConfig } from "../data/config";
 import 'aos/dist/aos.css';
 import { themeSetting } from "../data/config";
+import { getLangFromUrl, getAlternatePath, locales, defaultLang } from "../i18n/utils";
 const { theme } = themeSetting;
 
 const { SiteName, Separator, defaultDescription } = SEO;
@@ -29,16 +30,24 @@ interface Props {
 
 const { title, description, image, footerCta, canonicalUrl } = Astro.props;
 
+const lang = getLangFromUrl(Astro.url);
+
 const pageTitle = title ? `${title} ${Separator} ${SiteName}` : SiteName;
 const pageDescription = description || defaultDescription || '';
 const pageImage = image || '';
 const canonicalPath = canonicalUrl || Astro.url.pathname;
 const fullCanonicalUrl = new URL(canonicalPath, siteConfig.siteUrl).toString();
 
+// hreflang alternates for the current page in every locale (SEO).
+const alternates = locales.map((l) => ({
+	lang: l,
+	href: new URL(getAlternatePath(Astro.url, l), siteConfig.siteUrl).toString(),
+}));
+const xDefaultHref = new URL(getAlternatePath(Astro.url, defaultLang), siteConfig.siteUrl).toString();
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -48,6 +57,10 @@ const fullCanonicalUrl = new URL(canonicalPath, siteConfig.siteUrl).toString();
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<link rel="canonical" href={fullCanonicalUrl} />
+		{alternates.map((a) => (
+			<link rel="alternate" hreflang={a.lang} href={a.href} />
+		))}
+		<link rel="alternate" hreflang="x-default" href={xDefaultHref} />
 		<meta name="generator" content={Astro.generator} />
 		<title>{pageTitle}</title>
 		<meta name="description" content={pageDescription} />
@@ -57,22 +70,21 @@ const fullCanonicalUrl = new URL(canonicalPath, siteConfig.siteUrl).toString();
 		<link href="https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
+		<meta property="og:locale" content={lang === 'fr' ? 'fr_CA' : 'en_CA'} />
 		<meta property="og:url" content={fullCanonicalUrl} />
 		<meta property="og:title" content={pageTitle} />
 		<meta property="og:description" content={pageDescription} />
 		{pageImage && <meta property="og:image" content={new URL(pageImage, siteConfig.siteUrl).toString()} />}
+	</head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H3W29JXRTL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-		<!-- Twitter -->
-		<!-- <meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:url" content={fullCanonicalUrl} />
-		<meta property="twitter:title" content={pageTitle} />
-		<meta property="twitter:description" content={pageDescription} />
-		{pageImage && <meta property="twitter:image" content={new URL(pageImage, siteConfig.siteUrl).toString()} />} -->
-
-        <!-- 3CX Support Chat -->
-        <!-- <call-us-selector phonesystem-url="https://1454.3cx.cloud" party="LiveChat697785"></call-us-selector>
-        <script defer src="https://downloads-global.3cx.com/downloads/livechatandtalk/v1/callus.js" id="tcx-callus-js" charset="utf-8"></script> -->
-    </head>
+        gtag('config', 'G-H3W29JXRTL');
+    </script>
 	<body data-theme={theme}>
 		<Header />
 		<slot />

@@ -1,0 +1,61 @@
+---
+import Layout from '@layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import InnerHero from '@components/sections/InnerHero.astro';
+import { localizedPath, locales, type Lang } from '@i18n/utils';
+
+export function getStaticPaths() {
+    return locales.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+
+const all = await getCollection('legal');
+const entries = all
+    .filter((e) => e.id.startsWith(`${lang}/`))
+    .sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const heroContent = {
+    title: lang === 'fr' ? 'Informations juridiques' : 'Legal Information',
+    description:
+        lang === 'fr'
+            ? "Politiques et conditions importantes régissant l'utilisation de nos services"
+            : 'Important policies and terms governing the use of our services',
+    overlayOpacity: 0.8,
+};
+
+const lastUpdatedLabel = lang === 'fr' ? 'Dernière mise à jour' : 'Last updated';
+---
+
+<Layout title={heroContent.title} description={heroContent.description}>
+    <InnerHero content={heroContent} />
+
+    <section class="py-small">
+        <div class="site-container px-8">
+            <div class="space-y-6">
+                {
+                    entries.map((entry) => {
+                        const slug = entry.id.split('/').slice(1).join('/');
+                        const formattedDate = new Intl.DateTimeFormat(
+                            lang === 'fr' ? 'fr-CA' : 'en-US',
+                            { year: 'numeric', month: 'long', day: 'numeric' }
+                        ).format(entry.data.lastUpdated);
+
+                        return (
+                            <div class="border-b border-body-base/10 pb-6">
+                                <a href={localizedPath(`/legal/${slug}`, lang)} class="group">
+                                    <h2 class="text-medium group-hover:text-accent transition-colors">
+                                        {entry.data.title}
+                                    </h2>
+                                    <p class="text-sm text-body-base/80 mt-2">
+                                        {lastUpdatedLabel}: {formattedDate}
+                                    </p>
+                                </a>
+                            </div>
+                        );
+                    })
+                }
+            </div>
+        </div>
+    </section>
+</Layout>

@@ -1,0 +1,33 @@
+{
+    "title": "Services",
+    "seo": {
+        "title": "Services",
+        "description": "Découvrez notre gamme complète de services de gestion immobilière conçus pour les propriétaires de Montréal — perception des loyers, sélection des locataires, entretien et plus encore."
+    },
+    "hero": {
+        "title": "Services"
+    },
+    "servicesSection": {
+        "title": "Une gestion immobilière professionnelle, adaptée à chaque besoin",
+        "description": "Nous offrons une gamme complète de services de gestion immobilière conçus pour simplifier la propriété, accroître la satisfaction des locataires et protéger la valeur à long terme de votre investissement. Notre équipe allie expertise opérationnelle, communication réactive et connaissance de l'industrie pour offrir des résultats constants et de grande qualité sur chaque propriété que nous gérons. Que vous possédiez une seule unité locative ou un portefeuille multifamilial, nous fournissons la structure, les systèmes et le soutien nécessaires pour que votre propriété fonctionne sans accroc — jour après jour.",
+        "items": [
+            { "icon": "Building", "title": "Gestion immobilière complète", "description": "Nous gérons la location, l'entretien, la perception des loyers, la conformité légale et bien plus — pour que vous profitiez des rendements sans les tracas." },
+            { "icon": "HandCoins", "title": "Perception des loyers et gestion financière", "description": "Perception des loyers efficace et sécuritaire, comptabilité et rapports financiers pour les propriétaires." },
+            { "icon": "Wrench", "title": "Coordination de l'entretien", "description": "Entretien d'urgence 24/7 et entretien régulier pour garder votre propriété en parfait état." },
+            { "icon": "UserCheck", "title": "Sélection et placement des locataires", "description": "Vérifications d'antécédents rigoureuses et placement de locataires fiables pour assurer des locataires de qualité." },
+            { "icon": "File", "title": "Gestion des baux et conformité légale", "description": "Nous gérons les ententes de bail, les renouvellements et veillons au respect de toutes les exigences légales." },
+            { "icon": "MessageCircle", "title": "Communication et soutien aux locataires", "description": "Nous agissons comme intermédiaire entre propriétaires et locataires pour résoudre les problèmes rapidement et professionnellement." },
+            { "icon": "CalendarDays", "title": "Inspections et rapports de propriété", "description": "Inspections régulières et rapports détaillés pour maintenir les standards de votre propriété." },
+            { "icon": "Shield", "title": "Gestion des risques et coordination des assurances", "description": "Nous aidons à protéger votre propriété et votre investissement en vous conseillant sur vos besoins d'assurance et vos stratégies de gestion des risques." },
+            { "icon": "ChartNoAxesCombined", "title": "Analyse de marché et optimisation des loyers", "description": "Nous fournissons une analyse de marché détaillée et aidons à fixer des loyers concurrentiels pour maximiser votre rendement." },
+            { "icon": "BriefcaseBusiness", "title": "Conseil en investissement immobilier", "description": "Des conseils d'experts pour les investisseurs qui souhaitent agrandir ou optimiser leur portefeuille immobilier." },
+            { "icon": "ArrowRightLeft", "title": "Service d'optimisation du roulement des locataires", "description": "Nous nous spécialisons dans la négociation stratégique des transitions de locataires — que ce soit par rachat, relocalisation ou restructuration de bail." }
+        ]
+    },
+    "footerCta": {
+        "title": "Laissez-nous gérer votre propriété, pour que vous n'ayez pas à le faire",
+        "description": "Que vous soyez un investisseur expérimenté ou un propriétaire pour la première fois, nous offrons une gestion immobilière complète adaptée à vos besoins. Laissez-nous nous occuper des détails, pour que vous puissiez vous concentrer sur l'essentiel.",
+        "buttonText": "Communiquez avec nous",
+        "buttonLink": "/contact"
+    }
+}

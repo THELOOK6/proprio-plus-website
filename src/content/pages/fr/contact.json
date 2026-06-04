@@ -1,0 +1,44 @@
+{
+    "title": "Contact",
+    "seo": {
+        "title": "Contactez Gestion Immobilière Proprio Alliance | Montréal",
+        "description": "Prêt à optimiser vos immeubles ou votre syndicat de condo ? Communiquez avec l'équipe d'experts de Proprio Alliance pour obtenir une estimation gratuite dans le Grand Montréal."
+    },
+    "hero": {
+        "title": "Discutons de vos projets immobiliers",
+        "description": "Que vous soyez propriétaire d’un plex, gestionnaire d'actifs commerciaux ou membre d'un conseil d’administration de copropriété, nos spécialistes sont à votre écoute pour simplifier votre quotidien."
+    },
+    "infoPanel": {
+        "title": "Nos Coordonnées",
+        "businessName": "Gestion Proprio Alliance Inc.",
+        "regionCovered": "Grand Montréal, Laval, Rive-Nord et Rive-Sud",
+        "phoneLabel": "Téléphone",
+        "phoneValue": "(514) 555-0199",
+        "emailLabel": "Courriel général",
+        "emailValue": "info@proprioalliance.ca",
+        "hoursLabel": "Heures d'ouverture",
+        "hoursValue": "Lundi au Vendredi : 9h00 à 17h00 (Soutien d'urgence technique : 24h/7)"
+    },
+    "form": {
+        "title": "Demande de consultation gratuite",
+        "description": "Remplissez ce formulaire et un gestionnaire de portefeuille communiquera avec vous en moins de 24 heures ouvrables.",
+        "fields": {
+            "name": "Nom complet",
+            "email": "Adresse courriel",
+            "phone": "Numéro de téléphone",
+            "propertyType": {
+                "label": "Type de besoin immobilier",
+                "options": [
+                    "Gestion Résidentielle (Plex / Multi-logements)",
+                    "Gestion Commerciale (Bureaux / Commerces)",
+                    "Gestion de Copropriété (Syndic de Condo)",
+                    "Achat / Vente / Courtage Immobilier",
+                    "Autre demande"
+                ]
+            },
+            "unitCount": "Nombre de portes / unités (si applicable)",
+            "message": "Parlez-nous brièvement de votre immeuble et de vos objectifs",
+            "submitButton": "Envoyer ma demande"
+        }
+    }
+}

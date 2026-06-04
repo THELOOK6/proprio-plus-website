@@ -1,0 +1,33 @@
+{
+    "title": "Services",
+    "seo": {
+        "title": "Services",
+        "description": "Explore our full range of property management services tailored for Montreal landlords — rent collection, tenant screening, maintenance & more."
+    },
+    "hero": {
+        "title": "Services"
+    },
+    "servicesSection": {
+        "title": "Professional Property Management, Tailored to Every Need",
+        "description": "We offer a full spectrum of property management services designed to simplify ownership, enhance tenant satisfaction, and protect the long-term value of your investment. Our team brings together operational expertise, responsive communication, and industry insight to deliver consistent, high-quality results across every property we manage. Whether you own a single-unit rental or a multi-family portfolio, we provide the structure, systems, and support to keep your property running smoothly—day in and day out.",
+        "items": [
+            { "icon": "Building", "title": "Comprehensive Property Management", "description": "We handle leasing, maintenance, rent collection, legal compliance, and more—so you can enjoy the returns without the headaches." },
+            { "icon": "HandCoins", "title": "Rent Collection & Financial Management", "description": "Efficient and secure rent collection, accounting, and financial reporting for property owners." },
+            { "icon": "Wrench", "title": "Maintenance Coordination", "description": "24/7 emergency maintenance and regular upkeep to keep your property in top condition." },
+            { "icon": "UserCheck", "title": "Tenant Screening & Placement", "description": "Thorough background checks and reliable tenant placement to ensure quality renters." },
+            { "icon": "File", "title": "Lease Management & Legal Compliance", "description": "We handle lease agreements, renewals, and ensure all legal requirements are met." },
+            { "icon": "MessageCircle", "title": "Tenant Communication & Support", "description": "We act as a liaison between landlords and tenants to resolve issues quickly and professionally." },
+            { "icon": "CalendarDays", "title": "Property Inspections & Reporting", "description": "Regular property inspections and detailed reporting to maintain property standards." },
+            { "icon": "Shield", "title": "Risk Management & Insurance Coordination", "description": "We help protect your property and investment by advising on insurance needs and risk management strategies." },
+            { "icon": "ChartNoAxesCombined", "title": "Market Analysis & Rent Optimization", "description": "We provide detailed market analysis and help set competitive rental rates to maximize your ROI." },
+            { "icon": "BriefcaseBusiness", "title": "Real Estate Investment Consulting", "description": "Expert advice for investors looking to expand or optimize their real estate portfolios." },
+            { "icon": "ArrowRightLeft", "title": "Tenant Turnover Optimization Service", "description": "We specialize in strategically negotiating tenant transitions—whether through buyouts, relocations, or lease restructuring." }
+        ]
+    },
+    "footerCta": {
+        "title": "Let Us Handle Your Property, So You Don't Have To",
+        "description": "Whether you're an experienced investor or a first-time landlord, we offer full-service property management tailored to your needs. Let us take care of the details, so you can focus on what matters most.",
+        "buttonText": "Get in Touch",
+        "buttonLink": "/contact"
+    }
+}
