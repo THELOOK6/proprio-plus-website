@@ -1,0 +1,398 @@
+---
+import Eyebrow from '@components/ui/Eyebrow.astro';
+import { getBackgroundColor, getTextColor, getHeadlineColor } from '@utils/styleUtils';
+import type { ThemeColor } from '@utils/styleUtils';
+
+interface Content {
+    eyebrow?: string;
+    headline: string;
+    description: string;
+    statValue: number;
+    statLabel: string;
+    unitLabel: string;
+}
+
+export interface Props {
+    content: Content;
+    background?: ThemeColor;
+}
+
+const { content, background = 'dark' } = Astro.props;
+const { eyebrow, headline, description, statValue, statLabel, unitLabel } = content;
+
+const bgColor = getBackgroundColor(background);
+const textColor = getTextColor(background);
+const headlineColor = getHeadlineColor(background);
+
+// Building grid: 5 cols × 6 rows = 30 windows
+const COLS = 5;
+const ROWS = 6;
+const TOTAL = COLS * ROWS;
+const WIN_W = 40;
+const WIN_H = 28;
+// x positions: 5 windows evenly spaced within 320px (building x=20 to x=340)
+const X_POS = [40, 100, 160, 220, 280];
+// y positions: row 0 = top floor, row 5 = ground floor
+// floor height = 70px, window top margin = 21px, building starts y=30
+const Y_POS = [51, 121, 191, 261, 331, 401];
+const FLOOR_H = 70;
+const BLDG_Y = 30;
+// Floor separator y-values (lines between floors)
+const FLOOR_LINES = [100, 170, 240, 310, 380];
+
+// Random shuffle of lighting indices (0..TOTAL-1) — determined at build time
+const indices = Array.from({ length: TOTAL }, (_, i) => i);
+for (let i = indices.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [indices[i], indices[j]] = [indices[j], indices[i]];
+}
+// litOrder[windowPosition] = at which scroll step this window lights up
+const litOrder = indices;
+---
+
+<section
+    id="occ-section"
+    class:list={['relative', bgColor]}
+    aria-label={headline}
+    data-stat-max={statValue}
+    data-total={TOTAL}
+>
+    <!-- Outer: tall on desktop to provide scroll distance -->
+    <div class="occ-outer">
+        <!-- Sticky: locks in viewport while user scrolls through occ-outer -->
+        <div class="occ-sticky">
+            <div class="site-container px-4 occ-grid">
+
+                <!-- Left: copy + counter -->
+                <div class:list={['occ-copy', textColor]}>
+                    {eyebrow && <Eyebrow text={eyebrow} background={background} />}
+
+                    <h2
+                        class:list={['text-h2 font-bold mt-3 mb-5', headlineColor]}
+                        data-aos="fade-up"
+                    >
+                        {headline}
+                    </h2>
+
+                    <p
+                        class:list={['text-base opacity-75 max-w-md leading-relaxed', textColor]}
+                        data-aos="fade-up"
+                        data-aos-delay="100"
+                    >
+                        {description}
+                    </p>
+
+                    <!-- Animated percentage counter -->
+                    <div class="occ-stat-wrap mt-10" data-aos="fade-up" data-aos-delay="200">
+                        <div
+                            id="occ-counter"
+                            class="occ-counter"
+                            aria-live="polite"
+                            aria-label={statLabel}
+                        >0%</div>
+                        <p class:list={['occ-stat-label mt-1', textColor]}>{statLabel}</p>
+                    </div>
+
+                    <!-- Progress bar -->
+                    <div class="mt-5" data-aos="fade-up" data-aos-delay="300">
+                        <div
+                            class="occ-track"
+                            role="progressbar"
+                            aria-valuenow={0}
+                            aria-valuemax={TOTAL}
+                            id="occ-track"
+                        >
+                            <div class="occ-fill" id="occ-fill"></div>
+                        </div>
+                        <p class:list={['mt-2 text-sm opacity-50', textColor]}>
+                            <span id="occ-lit">0</span> / {TOTAL} {unitLabel}
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right: building SVG -->
+                <div class="occ-building" aria-hidden="true">
+                    <svg
+                        viewBox="0 0 360 500"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="occ-svg"
+                    >
+                        <defs>
+                            <filter id="win-glow" x="-60%" y="-60%" width="220%" height="220%">
+                                <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
+                                <feMerge>
+                                    <feMergeNode in="blur" />
+                                    <feMergeNode in="SourceGraphic" />
+                                </feMerge>
+                            </filter>
+                        </defs>
+
+                        <!-- Rooftop details: parapet + HVAC elements -->
+                        <rect x="10" y="18" width="340" height="14" fill="#252a45" rx="2" />
+                        <rect x="15" y="22" width="330" height="10" fill="#1c2038" rx="1" />
+                        <rect x="45"  y="5"  width="20" height="16" fill="#1a1e32" rx="1" />
+                        <rect x="88"  y="3"  width="14" height="18" fill="#1a1e32" rx="1" />
+                        <rect x="158" y="4"  width="22" height="15" fill="#1a1e32" rx="1" />
+                        <rect x="228" y="3"  width="15" height="17" fill="#1a1e32" rx="1" />
+                        <rect x="278" y="6"  width="18" height="13" fill="#1a1e32" rx="1" />
+
+                        <!-- Main building body -->
+                        <rect x="20" y={BLDG_Y} width="320" height="420" fill="#1e2235" />
+
+                        <!-- Subtle left/right face shading (depth suggestion) -->
+                        <rect x="20"  y={BLDG_Y} width="5"  height="420" fill="#252a45" opacity="0.6" />
+                        <rect x="335" y={BLDG_Y} width="5"  height="420" fill="#111422" opacity="0.6" />
+
+                        <!-- Floor separator lines -->
+                        {FLOOR_LINES.map((ly) => (
+                            <line
+                                x1="20" y1={ly}
+                                x2="340" y2={ly}
+                                stroke="#252a48"
+                                stroke-width="1.5"
+                            />
+                        ))}
+
+                        <!-- 30 windows (lit up via JS in random order) -->
+                        {Array.from({ length: ROWS }, (_, row) =>
+                            Array.from({ length: COLS }, (_, col) => {
+                                const li = litOrder[row * COLS + col];
+                                return (
+                                    <rect
+                                        data-win=""
+                                        data-li={li}
+                                        x={X_POS[col]}
+                                        y={Y_POS[row]}
+                                        width={WIN_W}
+                                        height={WIN_H}
+                                        rx="2"
+                                        class="bwin"
+                                    />
+                                );
+                            })
+                        )}
+
+                        <!-- Ground-floor entrance (below bottom windows, decorative) -->
+                        <rect x="148" y="432" width="64" height="18" fill="#141628" rx="1" />
+                        <rect x="153" y="434" width="25" height="14" fill="#0a0b14" rx="1" />
+                        <rect x="182" y="434" width="25" height="14" fill="#0a0b14" rx="1" />
+
+                        <!-- Street / ground -->
+                        <rect x="0" y="450" width="360" height="10" fill="#141520" />
+                        <rect x="0" y="460" width="360" height="40" fill="#0f101a" />
+                        <!-- Ground shadow -->
+                        <ellipse cx="180" cy="462" rx="145" ry="7" fill="#000000" opacity="0.28" />
+                    </svg>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Outer: provides scroll distance on desktop */
+    .occ-outer {
+        position: relative;
+    }
+
+    .occ-sticky {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding-top: var(--spacing-base);
+        padding-bottom: var(--spacing-base);
+    }
+
+    @media (min-width: 768px) {
+        .occ-outer {
+            height: 210vh;
+        }
+        .occ-sticky {
+            position: sticky;
+            /* sit flush below the fixed navbar (pt-24 = 6rem) */
+            top: 6rem;
+            height: calc(100vh - 6rem);
+            height: calc(100svh - 6rem);
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+    }
+
+    /* Two-column grid: copy left, building right */
+    .occ-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        align-items: center;
+        width: 100%;
+    }
+
+    @media (min-width: 768px) {
+        .occ-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+        }
+    }
+
+    /* Building column: centered */
+    .occ-building {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .occ-svg {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        overflow: visible;
+    }
+
+    @media (min-width: 768px) {
+        .occ-svg {
+            max-width: 380px;
+            /* never taller than the viewport minus navbar + some breathing room */
+            max-height: calc(100svh - 9rem);
+        }
+    }
+
+    /* Window base state */
+    .bwin {
+        fill: #0e1022;
+        transition:
+            fill 0.45s ease-out,
+            filter 0.45s ease-out;
+    }
+
+    /* Window lit state */
+    .bwin.lit {
+        fill: #fcd34d;
+        filter: url(#win-glow) drop-shadow(0 0 8px rgba(252, 211, 77, 0.55));
+    }
+
+    /* Percentage counter */
+    .occ-counter {
+        font-size: clamp(3.5rem, 7vw, 5.5rem);
+        font-weight: 800;
+        line-height: 1;
+        color: var(--color-secondary-light);
+        font-variant-numeric: tabular-nums;
+    }
+
+    .occ-stat-label {
+        font-size: var(--text-small);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        opacity: 0.65;
+    }
+
+    /* Progress bar */
+    .occ-track {
+        height: 5px;
+        border-radius: 3px;
+        background: rgba(255, 255, 255, 0.1);
+        max-width: 320px;
+        overflow: hidden;
+    }
+
+    .occ-fill {
+        height: 100%;
+        width: 0%;
+        border-radius: 3px;
+        background: linear-gradient(
+            90deg,
+            var(--color-secondary-dark),
+            var(--color-secondary-light)
+        );
+        transition: width 0.15s ease-out;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .bwin,
+        .occ-fill {
+            transition: none;
+        }
+    }
+</style>
+
+<script>
+    (function () {
+        const section = document.getElementById('occ-section') as HTMLElement | null;
+        if (!section) return;
+
+        const outer   = section.querySelector('.occ-outer') as HTMLElement | null;
+        const wins    = Array.from(section.querySelectorAll<SVGRectElement>('[data-win]'));
+        const counter = document.getElementById('occ-counter');
+        const fill    = document.getElementById('occ-fill');
+        const litEl   = document.getElementById('occ-lit');
+        const track   = document.getElementById('occ-track');
+
+        if (!outer || !wins.length) return;
+
+        const TOTAL    = parseInt(section.dataset.total   ?? '30');
+        const STAT_MAX = parseInt(section.dataset.statMax ?? '97');
+
+        // Index windows by their random lighting order
+        const byLi = new Array<SVGRectElement>(TOTAL);
+        wins.forEach((w) => {
+            byLi[parseInt(w.dataset.li ?? '0')] = w;
+        });
+
+        let prevLit = -1;
+
+        function applyProgress(progress: number) {
+            const litCount = Math.round(Math.max(0, Math.min(1, progress)) * TOTAL);
+            if (litCount === prevLit) return;
+            prevLit = litCount;
+
+            for (let i = 0; i < TOTAL; i++) {
+                const w = byLi[i];
+                if (!w) continue;
+                if (i < litCount) w.classList.add('lit');
+                else w.classList.remove('lit');
+            }
+
+            const pct     = Math.round((litCount / TOTAL) * STAT_MAX);
+            const fillPct = (litCount / TOTAL) * 100;
+
+            if (counter) counter.textContent = pct + '%';
+            if (fill)    fill.style.width = fillPct + '%';
+            if (litEl)   litEl.textContent = String(litCount);
+            if (track)   track.setAttribute('aria-valuenow', String(litCount));
+        }
+
+        function scrollProgress(): number {
+            const outerTop   = outer!.getBoundingClientRect().top + window.scrollY;
+            const scrolledIn = window.scrollY - outerTop;
+            const scrollable = outer!.offsetHeight - window.innerHeight;
+            if (scrollable <= 0) return 0;
+            return scrolledIn / scrollable;
+        }
+
+        if (window.innerWidth >= 768) {
+            // Desktop: scroll-driven
+            window.addEventListener('scroll', () => applyProgress(scrollProgress()), { passive: true });
+            window.addEventListener('resize', () => applyProgress(scrollProgress()));
+            applyProgress(scrollProgress());
+        } else {
+            // Mobile: timed reveal when section enters view
+            let mobileDone = false;
+            const io = new IntersectionObserver(
+                (entries) => {
+                    if (!entries[0].isIntersecting || mobileDone) return;
+                    mobileDone = true;
+                    io.disconnect();
+                    let i = 0;
+                    const iv = setInterval(() => {
+                        if (i > TOTAL) { clearInterval(iv); return; }
+                        applyProgress(i / TOTAL);
+                        i++;
+                    }, 120);
+                },
+                { threshold: 0.3 }
+            );
+            io.observe(section);
+        }
+    })();
+</script>

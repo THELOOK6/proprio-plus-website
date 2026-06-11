@@ -82,6 +82,14 @@
         "buttonText": "Découvrez notre approche",
         "buttonLink": "/about"
     },
+    "occupancy": {
+        "eyebrow": "TAUX D'OCCUPATION",
+        "headline": "Vos logements, toujours occupés",
+        "description": "Notre gestion proactive des renouvellements de baux, la sélection rigoureuse des locataires et notre expertise du marché montréalais maintiennent vos immeubles à leur plein potentiel locatif — minimisant les périodes de vacance et maximisant vos revenus.",
+        "statValue": 97,
+        "statLabel": "Taux d'occupation moyen",
+        "unitLabel": "unités occupées"
+    },
     "faqs": {
         "eyebrow": "FAQ",
         "title": "Foire aux questions",

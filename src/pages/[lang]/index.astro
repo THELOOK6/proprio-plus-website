@@ -4,6 +4,7 @@ import Hero from '@components/sections/Hero.astro';
 import SplitPanel from '@components/sections/SplitPanel.astro';
 import Features from '@components/sections/Features.astro';
 import Faqs from '@components/sections/Faqs.astro';
+import Occupancy from '@components/sections/Occupancy.astro';
 import { getEntry } from 'astro:content';
 import { resolveIcon } from '@i18n/icons';
 import { localizedPath, locales, type Lang } from '@i18n/utils';
@@ -60,6 +61,17 @@ const splitContent = {
     ],
 };
 
+const occupancyContent = d.occupancy
+    ? {
+          eyebrow: d.occupancy.eyebrow,
+          headline: d.occupancy.headline,
+          description: d.occupancy.description,
+          statValue: d.occupancy.statValue,
+          statLabel: d.occupancy.statLabel,
+          unitLabel: d.occupancy.unitLabel,
+      }
+    : null;
+
 const faqsContent = {
     eyebrow: d.faqs!.eyebrow,
     title: d.faqs!.title,
@@ -86,6 +98,7 @@ const faqSchema = faqsContent.faqs.map((faq) => ({
     <Hero content={heroContent} />
     <Features content={featuresContent} padding="base" background="light" />
     <SplitPanel content={splitContent} imagePosition="right" background="base" padding="base" />
+    {occupancyContent && <Occupancy content={occupancyContent} background="dark" />}
     <Faqs content={faqsContent} background="light" padding="base" />
 
     <script

@@ -175,6 +175,16 @@ const pages = defineCollection({
                 buttonLink: z.string().optional(),
             })
             .optional(),
+        occupancy: z
+            .object({
+                eyebrow: z.string().optional(),
+                headline: z.string(),
+                description: z.string(),
+                statValue: z.number(),
+                statLabel: z.string(),
+                unitLabel: z.string(),
+            })
+            .optional(),
         faqs: z
             .object({
                 eyebrow: z.string().optional(),

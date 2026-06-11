@@ -67,6 +67,14 @@
         "buttonText": "Discover Our Approach",
         "buttonLink": "/about"
     },
+    "occupancy": {
+        "eyebrow": "OCCUPANCY RATE",
+        "headline": "Your Units, Always Occupied",
+        "description": "Our proactive lease renewal management, rigorous tenant screening, and deep knowledge of the Montreal rental market keep your buildings at full capacity — minimizing vacancy periods and maximizing your rental income.",
+        "statValue": 97,
+        "statLabel": "Average Occupancy Rate",
+        "unitLabel": "units occupied"
+    },
     "faqs": {
         "eyebrow": "FAQ",
         "title": "Frequently Asked Real Estate Questions",
