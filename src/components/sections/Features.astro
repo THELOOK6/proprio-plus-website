@@ -80,17 +80,14 @@ const paddingClass = getPaddingClass({
             {features.slice(0,4).map((feature, index) => (
                 <div
                     class:list={[
-                        "p-6 rounded-lg border border-black",
+                        "feature-card p-6 rounded-lg border border-black",
                         background === 'dark' ? 'bg-background-base/10' : 'bg-background/90',
                         "flex flex-col"
                     ]}
                     data-aos="fade-up"
                     data-aos-delay={index * 100}
                 >
-                    <div class:list={[
-                        "w-12 h-12 flex items-center justify-center rounded-lg mb-4",
-                        "bg-primary"
-                    ]}>
+                    <div class="feature-icon w-12 h-12 flex items-center justify-center rounded-lg mb-4 bg-primary">
                         <feature.icon
                             size={24}
                             class="text-white"
@@ -123,5 +120,34 @@ const paddingClass = getPaddingClass({
 <style>
     .grid-cols-auto-fit {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .feature-card {
+        transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease,
+            border-color 0.25s ease;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.06);
+        border-color: var(--color-primary);
+    }
+
+    .feature-icon {
+        transition: transform 0.25s ease, background-color 0.25s ease;
+    }
+
+    .feature-card:hover .feature-icon {
+        transform: scale(1.12);
+        background-color: var(--color-primary-dark);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .feature-card,
+        .feature-icon {
+            transition: none;
+        }
     }
 </style>
