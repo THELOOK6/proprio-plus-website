@@ -1,0 +1,72 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/brand/logo-dark.png';
+import Arrow from './Arrow.astro';
+import { getContent, localizedPath, alternatePath, locales, type Lang } from '../i18n/utils';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = getContent(lang).ui;
+const pathname = Astro.url.pathname.replace(/\/$/, '');
+
+const links = [
+  { label: t.nav.home, href: localizedPath('/', lang) },
+  { label: t.nav.about, href: localizedPath('/about', lang) },
+  { label: t.nav.services, href: localizedPath('/services', lang) },
+];
+const contactHref = localizedPath('/contact', lang);
+const isCurrent = (href: string) => pathname === href.replace(/\/$/, '');
+const langs = locales.map((l) => ({ code: l, href: alternatePath(Astro.url.pathname, l), current: l === lang }));
+---
+<header class="site-header">
+  <div class="wrap site-header__bar">
+    <a class="brand" href={localizedPath('/', lang)} aria-label="Proprio Alliance">
+      <Image src={logo} alt="Proprio Alliance" height={84} loading="eager" fetchpriority="high" />
+    </a>
+
+    <nav class="nav" aria-label={t.mainNav}>
+      {links.map((l) => <a class="nav__link" href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a>)}
+    </nav>
+
+    <div class="header-actions">
+      <div class="lang" role="group" aria-label={t.langLabel}>
+        {langs.map((l, i) => (
+          <>
+            {i > 0 && <i aria-hidden="true" />}
+            <a href={l.href} hreflang={l.code} lang={l.code} aria-current={l.current ? 'true' : undefined}>{l.code.toUpperCase()}</a>
+          </>
+        ))}
+      </div>
+      <a class="btn btn--sm" href={contactHref}>{t.nav.contact}<Arrow /></a>
+    </div>
+
+    <button class="menu-btn" type="button" data-menu-btn aria-expanded="false" aria-controls="mobile-nav">
+      <span>{t.menu}</span>
+      <span class="menu-btn__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+    </button>
+  </div>
+
+  <div class="mobile-nav" id="mobile-nav">
+    <div class="wrap">
+      <ul>
+        {[...links, { label: t.nav.contact, href: contactHref }].map((l) => (
+          <li><a class="mobile-nav__link" href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}<Arrow /></a></li>
+        ))}
+      </ul>
+      <div class="mobile-nav__foot">
+        <div class="lang" role="group" aria-label={t.langLabel}>
+          {langs.map((l, i) => (
+            <>
+              {i > 0 && <i aria-hidden="true" />}
+              <a href={l.href} hreflang={l.code} lang={l.code} aria-current={l.current ? 'true' : undefined}>{l.code.toUpperCase()}</a>
+            </>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  .mobile-nav__link :global(svg) { width: 1.4rem; height: 1.4rem; align-self: center; color: var(--orange); }
+</style>

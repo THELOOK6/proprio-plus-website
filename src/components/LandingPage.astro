@@ -1,0 +1,92 @@
+---
+// Shared layout for the dedicated service pages and the service-area pages.
+import Layout from '../layouts/Layout.astro';
+import Arrow from './Arrow.astro';
+import CtaBand from './CtaBand.astro';
+import { rich, type Lang } from '../i18n/utils';
+import { landingLabels, type LandingPage } from '../content/landing';
+
+interface Props {
+  lang: Lang;
+  page: LandingPage;
+  related: { title: string; links: { label: string; href: string }[] };
+}
+const { lang, page, related } = Astro.props;
+const l = landingLabels[lang];
+---
+<Layout lang={lang} title={page.seo.title} description={page.seo.description}>
+  <header class="page-hero">
+    <div class="wrap page-hero--split">
+      <div>
+        <p class="eyebrow">{page.eyebrow}</p>
+        <h1 set:html={rich(page.title)} />
+      </div>
+      <p class="lede">{page.lede}</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="wrap split">
+      <div class="split__sticky reveal">
+        <h2 set:html={rich(page.pointsTitle)} />
+      </div>
+      <ol class="ledger">
+        {page.points.map((p, i) => (
+          <li class="reveal" style={`--d:${(i % 3) * 60}ms`}>
+            <h3>{p.title}</h3>
+            <p>{p.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="wrap split">
+      <div class="split__sticky reveal">
+        <h2 set:html={rich(page.context.title)} />
+      </div>
+      <div class="prose-lg reveal" style="--d:100ms">
+        {page.context.paragraphs.map((p) => <p>{p}</p>)}
+        {page.places && (
+          <div class="places">
+            <h3 class="places__title">{l.placesTitle}</h3>
+            <ul>{page.places.map((p) => <li>{p}</li>)}</ul>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  {page.faqs.length > 0 && (
+    <section class="section">
+      <div class="wrap split">
+        <div class="split__sticky reveal">
+          <p class="eyebrow">{l.faqEyebrow}</p>
+          <h2 set:html={rich(l.faqTitle)} />
+        </div>
+        <div class="faq reveal" style="--d:100ms">
+          {page.faqs.map((q) => (
+            <details>
+              <summary>{q.question}</summary>
+              <div class="answer"><p>{q.answer}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <h2 class="related__title">{related.title}</h2>
+      <ul class="related">
+        {related.links.map((r) => (
+          <li><a href={r.href}>{r.label}<Arrow /></a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <CtaBand lang={lang} title={page.cta.title} description={page.cta.description} button={page.cta.button} />
+</Layout>

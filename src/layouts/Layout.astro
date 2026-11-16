@@ -1,0 +1,116 @@
+---
+import '@fontsource-variable/newsreader/wght.css';
+import '@fontsource-variable/newsreader/wght-italic.css';
+import '@fontsource-variable/hanken-grotesk/wght.css';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getContent, alternatePath, locales, defaultLang, type Lang } from '../i18n/utils';
+import { site } from '../site';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  noindex?: boolean;
+}
+const { lang, title, description, noindex = false } = Astro.props;
+const t = getContent(lang);
+
+const abs = (p: string) => new URL(p, site.url).toString();
+const pathname = Astro.url.pathname;
+const canonical = abs(pathname);
+const alternates = locales.map((l) => ({ l, href: abs(alternatePath(pathname, l)) }));
+const ogImage = abs('/og.jpg');
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: site.legalName,
+  url: site.url,
+  image: ogImage,
+  email: site.email,
+  telephone: site.phoneHref,
+  areaServed: ['Montréal', 'Laval', 'Rive-Nord', 'Rive-Sud'],
+  sameAs: [site.instagram, site.linkedin],
+};
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f4f0e8" />
+    {noindex ? <meta name="robots" content="noindex" /> : <meta name="robots" content="index, follow" />}
+    <link rel="canonical" href={canonical} />
+    {!noindex && alternates.map((a) => <link rel="alternate" hreflang={a.l} href={a.href} />)}
+    {!noindex && <link rel="alternate" hreflang="x-default" href={abs(alternatePath(pathname, defaultLang))} />}
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content={lang === 'fr' ? 'fr_CA' : 'en_CA'} />
+    <meta property="og:locale:alternate" content={lang === 'fr' ? 'en_CA' : 'fr_CA'} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script is:inline>document.documentElement.classList.add('js')</script>
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <a class="skip" href="#main">{t.ui.skip}</a>
+    <Header lang={lang} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+
+    <script>
+      // Scroll reveal (CSS handles the no-JS / reduced-motion cases)
+      const els = document.querySelectorAll<HTMLElement>('.reveal');
+      if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const io = new IntersectionObserver(
+          (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }),
+          { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
+        );
+        els.forEach((el) => io.observe(el));
+      } else {
+        els.forEach((el) => el.classList.add('is-in'));
+      }
+
+      // Mobile menu
+      const btn = document.querySelector<HTMLButtonElement>('[data-menu-btn]');
+      const panel = document.getElementById('mobile-nav');
+      if (btn && panel) {
+        const set = (open: boolean) => {
+          btn.setAttribute('aria-expanded', String(open));
+          panel.classList.toggle('is-open', open);
+        };
+        btn.addEventListener('click', () => set(btn.getAttribute('aria-expanded') !== 'true'));
+        addEventListener('keydown', (e) => { if (e.key === 'Escape') set(false); });
+        matchMedia('(min-width: 960px)').addEventListener('change', (m) => m.matches && set(false));
+      }
+    </script>
+
+    <!-- Google Analytics, loaded after the page is interactive so it never competes with content -->
+    <script is:inline define:vars={{ gaId: site.gaId }}>
+      addEventListener('load', function () {
+        var go = function () {
+          var s = document.createElement('script');
+          s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId;
+          document.head.appendChild(s);
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function () { window.dataLayer.push(arguments); };
+          window.gtag('js', new Date()); window.gtag('config', gaId);
+        };
+        'requestIdleCallback' in window ? requestIdleCallback(go, { timeout: 4000 }) : setTimeout(go, 2000);
+      });
+    </script>
+  </body>
+</html>

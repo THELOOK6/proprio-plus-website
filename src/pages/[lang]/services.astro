@@ -1,0 +1,59 @@
+---
+import { Picture } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Arrow from '../../components/Arrow.astro';
+import { landing, landingLabels } from '../../content/landing';
+import { getContent, localizedPath, locales, rich, type Lang } from '../../i18n/utils';
+import aerial from '../../assets/photos/aerial.jpg';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+const lang = Astro.params.lang as Lang;
+const d = getContent(lang).services;
+const ll = landingLabels[lang];
+const { services: detailed, areas } = landing[lang];
+---
+<Layout lang={lang} title={d.seo.title} description={d.seo.description}>
+  <header class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">{d.hero.eyebrow}</p>
+      <h1 set:html={rich(d.hero.title)} />
+    </div>
+  </header>
+
+  <section class="section section--tight">
+    <div class="wrap feature feature--flip">
+      <div class="feature__media reveal">
+        <Picture src={aerial} alt={d.intro.imageAlt} widths={[480, 720, 960, 1280]} sizes="(min-width: 960px) 50vw, 100vw" formats={['avif', 'webp']} loading="eager" />
+      </div>
+      <div class="reveal" style="--d:100ms">
+        <h2 class="section-title" set:html={rich(d.intro.title)} />
+        <p class="lede" style="margin-bottom:0">{d.intro.description}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <ol class="ledger ledger--wide">
+        {d.items.map((s) => (
+          <li class="reveal"><h3>{s.title}</h3><p>{s.description}</p></li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <h2 class="related__title" set:html={rich(ll.detailedTitle)} />
+      <ul class="related">
+        {detailed.map((s) => <li><a href={localizedPath(`/services/${s.slug}`, lang)}>{s.nav}<Arrow /></a></li>)}
+        {areas.map((a) => <li><a href={localizedPath(`/areas/${a.slug}`, lang)}>{a.nav}<Arrow /></a></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <CtaBand lang={lang} title={d.cta.title} description={d.cta.description} button={d.cta.button} />
+</Layout>

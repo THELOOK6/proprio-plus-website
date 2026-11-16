@@ -1,0 +1,30 @@
+---
+// Occupancy: how vacancy is prevented, stated as concrete commitments.
+import { rich } from '../i18n/utils';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  description: string;
+  items: { title: string; text: string }[];
+}
+const { eyebrow, title, description, items } = Astro.props;
+---
+<section class="section section--dark" id="occupancy">
+  <div class="wrap occ">
+    <div class="reveal">
+      <p class="eyebrow">{eyebrow}</p>
+      <h2 set:html={rich(title)} />
+      <p class="lede">{description}</p>
+    </div>
+
+    <ol class="occ__list reveal" style="--d:150ms">
+      {items.map((it) => (
+        <li>
+          <h3>{it.title}</h3>
+          <p>{it.text}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

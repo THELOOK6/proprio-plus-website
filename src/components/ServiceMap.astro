@@ -1,0 +1,32 @@
+---
+// Existing service-area map from the previous site (Leaflet + OpenStreetMap, same polygon).
+// The library and tiles are only fetched when the map scrolls near the viewport.
+import { site } from '../site';
+
+interface Props { label: string; caption: string }
+const { label, caption } = Astro.props;
+---
+<div class="map-wrap">
+  <div class="map" data-map data-area={JSON.stringify(site.serviceArea)} role="region" aria-label={label}></div>
+  <p class="map-cap">{caption}</p>
+</div>
+
+<script>
+  const el = document.querySelector<HTMLElement>('[data-map]');
+  if (el) {
+    const io = new IntersectionObserver(async (entries) => {
+      if (!entries[0].isIntersecting) return;
+      io.disconnect();
+      const [{ default: L }] = await Promise.all([import('leaflet'), import('leaflet/dist/leaflet.css')]);
+      const area = JSON.parse(el.dataset.area!) as [number, number][];
+      const map = L.map(el, { scrollWheelZoom: false, attributionControl: true }).setView([45.5454, -73.7431], 9);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors',
+        maxZoom: 18,
+      }).addTo(map);
+      const poly = L.polygon(area, { color: '#d4763f', fillColor: '#d4763f', fillOpacity: 0.18, weight: 2 }).addTo(map);
+      map.fitBounds(poly.getBounds(), { padding: [20, 20] });
+    }, { rootMargin: '300px' });
+    io.observe(el);
+  }
+</script>

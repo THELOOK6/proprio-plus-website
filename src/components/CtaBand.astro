@@ -1,0 +1,21 @@
+---
+import Arrow from './Arrow.astro';
+import { localizedPath, rich, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  button: string;
+}
+const { lang, title, description, button } = Astro.props;
+---
+<section class="cta">
+  <div class="wrap cta__grid">
+    <h2 class="reveal" set:html={rich(title)} />
+    <div class="reveal" style="--d:120ms">
+      <p>{description}</p>
+      <a class="btn" href={localizedPath('/contact', lang)}>{button}<Arrow /></a>
+    </div>
+  </div>
+</section>

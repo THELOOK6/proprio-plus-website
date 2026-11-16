@@ -1,0 +1,31 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import CtaBand from '../../../components/CtaBand.astro';
+import { getContent, localizedPath, locales, type Lang } from '../../../i18n/utils';
+import { guides, guideLabels } from '../../../i18n/guides';
+
+export function getStaticPaths() {
+  return locales.flatMap((lang) => guides(lang).map((page) => ({ params: { lang, slug: page.slug }, props: { page } })));
+}
+const lang = Astro.params.lang as Lang;
+const { page } = Astro.props;
+const t = getContent(lang);
+const g = guideLabels[lang];
+const { Content } = page;
+const fmt = new Intl.DateTimeFormat(lang === 'fr' ? 'fr-CA' : 'en-CA', { dateStyle: 'long', timeZone: 'UTC' });
+---
+<Layout lang={lang} title={`${page.title} | Gestion Proprio Alliance`} description={page.description}>
+  <header class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow"><a href={localizedPath('/guides', lang)}>{g.eyebrow}</a></p>
+      <h1>{page.title}</h1>
+      <p class="lede">{t.ui.lastUpdated} : {fmt.format(page.updated)}</p>
+    </div>
+  </header>
+  <section class="section">
+    <div class="wrap">
+      <article class="legal guide"><Content /></article>
+    </div>
+  </section>
+  <CtaBand lang={lang} title={g.cta.title} description={g.cta.description} button={g.cta.button} />
+</Layout>

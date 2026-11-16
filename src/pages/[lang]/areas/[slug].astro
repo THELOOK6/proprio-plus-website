@@ -1,0 +1,20 @@
+---
+import LandingPage from '../../../components/LandingPage.astro';
+import { localizedPath, locales, type Lang } from '../../../i18n/utils';
+import { landing, landingLabels } from '../../../content/landing';
+
+export function getStaticPaths() {
+  return locales.flatMap((lang) => landing[lang].areas.map((page) => ({ params: { lang, slug: page.slug }, props: { page } })));
+}
+const lang = Astro.params.lang as Lang;
+const { page } = Astro.props;
+const { services, areas } = landing[lang];
+const related = {
+  title: `${landingLabels[lang].relatedServices} · ${landingLabels[lang].areas}`,
+  links: [
+    ...services.map((s) => ({ label: s.nav, href: localizedPath(`/services/${s.slug}`, lang) })),
+    ...areas.filter((a) => a.slug !== page.slug).map((a) => ({ label: a.nav, href: localizedPath(`/areas/${a.slug}`, lang) })),
+  ],
+};
+---
+<LandingPage lang={lang} page={page} related={related} />

@@ -1,0 +1,40 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import ServiceMap from '../../components/ServiceMap.astro';
+import { getContent, locales, rich, type Lang } from '../../i18n/utils';
+import { site } from '../../site';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+const lang = Astro.params.lang as Lang;
+const d = getContent(lang).contact;
+---
+<Layout lang={lang} title={d.seo.title} description={d.seo.description}>
+  <header class="page-hero">
+    <div class="wrap page-hero--split">
+      <div>
+        <p class="eyebrow">{d.hero.eyebrow}</p>
+        <h1 set:html={rich(d.hero.title)} />
+      </div>
+      <p class="lede">{d.hero.description}</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="wrap contact">
+      <div class="reveal">
+        <h2 class="section-title" style="font-size:clamp(1.9rem,3.2vw,2.6rem);margin-bottom:1.75rem">{d.info.title}</h2>
+        <dl class="dl">
+          <div><dt>{d.info.emailLabel}</dt><dd><a href={`mailto:${site.email}`}>{site.email}</a></dd></div>
+          <div><dt>{d.info.phoneLabel}</dt><dd><a href={`tel:${site.phoneHref}`}>{site.phoneDisplay}</a></dd></div>
+          <div><dt>{d.info.regionLabel}</dt><dd>{d.info.region}</dd></div>
+          <div><dt>{d.info.hoursLabel}</dt><dd>{d.info.hours}</dd></div>
+        </dl>
+        <ServiceMap label={d.info.mapLabel} caption={d.info.region} />
+      </div>
+      <div class="reveal" style="--d:100ms"><ContactForm lang={lang} /></div>
+    </div>
+  </section>
+</Layout>

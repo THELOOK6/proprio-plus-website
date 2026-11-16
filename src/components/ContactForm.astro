@@ -1,0 +1,45 @@
+---
+import Arrow from './Arrow.astro';
+import { getContent, localizedPath, rich, type Lang } from '../i18n/utils';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = getContent(lang);
+const f = t.contact.form;
+const success = localizedPath(lang === 'fr' ? '/merci' : '/thanks', lang);
+---
+<form class="form" name="contact" method="POST" action={success} data-netlify="true" netlify-honeypot="bot-field">
+  <input type="hidden" name="form-name" value="contact" />
+  <input type="hidden" name="language" value={lang} />
+  <p class="hp" aria-hidden="true"><label>Do not fill this out: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+
+  <h2>{f.title}</h2>
+  <p>{f.description}</p>
+
+  <div class="form-row">
+    <label class="field"><span>{f.name}</span><input class="input" type="text" name="name" autocomplete="name" required /></label>
+    <label class="field"><span>{f.email}</span><input class="input" type="email" name="email" autocomplete="email" required /></label>
+  </div>
+
+  <div class="form-row">
+    <label class="field"><span>{f.phone} <em>{f.optional}</em></span><input class="input" type="tel" name="phone" autocomplete="tel" /></label>
+    <label class="field"><span>{f.units} <em>{f.optional}</em></span><input class="input" type="text" name="units" inputmode="numeric" /></label>
+  </div>
+
+  <label class="field">
+    <span>{f.needLabel}</span>
+    <select class="input" name="need" required>
+      <option value="" disabled selected>{f.needPlaceholder}</option>
+      {f.needs.map((n) => <option value={n.value}>{n.label}</option>)}
+    </select>
+  </label>
+
+  <label class="field"><span>{f.message}</span><textarea class="input" name="message" rows="5" required></textarea></label>
+
+  <label class="check">
+    <input type="checkbox" name="terms" required />
+    <span>{f.terms} — <a href={localizedPath('/legal/privacy-policy', lang)}>{f.termsLink}</a></span>
+  </label>
+
+  <button class="btn" type="submit">{f.submit}<Arrow /></button>
+</form>

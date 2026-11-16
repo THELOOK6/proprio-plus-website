@@ -1,0 +1,79 @@
+---
+import { Picture } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { getContent, locales, rich, type Lang } from '../../i18n/utils';
+import townhouse from '../../assets/photos/townhouse.jpg';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+const lang = Astro.params.lang as Lang;
+const d = getContent(lang).about;
+---
+<Layout lang={lang} title={d.seo.title} description={d.seo.description}>
+  <header class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">{d.hero.eyebrow}</p>
+      <h1 set:html={rich(d.hero.title)} />
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="wrap split">
+      <div class="reveal">
+        <p class="eyebrow">{d.intro.eyebrow}</p>
+        <h2 set:html={rich(d.intro.title)} />
+        <div class="feature__media feature__media--tall" style="margin-top:2.5rem;max-width:30rem">
+          <Picture src={townhouse} alt={d.intro.imageAlt} widths={[400, 640, 900]} sizes="(min-width: 960px) 30rem, 100vw" formats={['avif', 'webp']} loading="lazy" />
+        </div>
+      </div>
+      <div class="prose-lg reveal" style="--d:100ms">
+        {d.intro.paragraphs.map((p) => <p>{p}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="wrap split">
+      <div class="reveal">
+        <p class="eyebrow">{d.scope.eyebrow}</p>
+        <h2 class="section-title">{d.scope.title}</h2>
+      </div>
+      <p class="scope-text reveal" style="--d:100ms">{d.scope.description}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2 class="section-title reveal" style="margin-bottom:3rem">{d.vision.title}</h2>
+      <ol class="columns-3">
+        {d.vision.items.map((v, i) => (
+          <li class="reveal" style={`--d:${i * 80}ms`}>
+            <span class="num">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{v.title}</h3>
+            <p>{v.description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="wrap split">
+      <div class="reveal">
+        <p class="eyebrow">{d.more.eyebrow}</p>
+        <h2 set:html={rich(d.more.title)} />
+      </div>
+      <div class="reveal" style="--d:100ms">
+        <p class="lede" style="margin-bottom:2rem">{d.more.intro}</p>
+        <ul class="advantages">
+          {d.more.items.map((a) => <li><h3>{a.title}</h3><p>{a.text}</p></li>)}
+        </ul>
+        <p>{d.more.outro}</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand lang={lang} title={d.cta.title} description={d.cta.description} button={d.cta.button} />
+</Layout>

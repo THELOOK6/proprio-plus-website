@@ -1,0 +1,96 @@
+---
+import { Picture } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import Arrow from '../../components/Arrow.astro';
+import Occupancy from '../../components/Occupancy.astro';
+import BuildingTour from '../../components/BuildingTour.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { getContent, localizedPath, locales, rich, type Lang } from '../../i18n/utils';
+import hero from '../../assets/photos/office.jpg';
+import condo from '../../assets/photos/condo.jpg';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+const lang = Astro.params.lang as Lang;
+const d = getContent(lang).home;
+---
+<Layout lang={lang} title={d.seo.title} description={d.seo.description}>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero__grid">
+        <div class="hero__text">
+          <p class="eyebrow">{d.hero.eyebrow}</p>
+          <h1 set:html={rich(d.hero.title)} />
+          <p class="lede">{d.hero.description}</p>
+          <a class="btn" href={localizedPath('/contact', lang)}>{d.hero.cta}<Arrow /></a>
+        </div>
+        <figure class="hero__media">
+          <Picture src={hero} alt={d.hero.imageAlt} widths={[480, 720, 960, 1280]} sizes="(min-width: 960px) 40vw, 100vw" formats={['avif', 'webp']} loading="eager" fetchpriority="high" />
+          <figcaption>{d.hero.caption}</figcaption>
+        </figure>
+      </div>
+
+      <ul class="facts">
+        {d.facts.map((f) => <li><strong>{f.value}</strong><span>{f.label}</span></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap split">
+      <div class="split__sticky reveal">
+        <p class="eyebrow">{d.services.eyebrow}</p>
+        <h2 set:html={rich(d.services.title)} />
+        <p class="lede">{d.services.description}</p>
+        <a class="btn btn--ghost" href={localizedPath('/services', lang)}>{d.services.cta}<Arrow /></a>
+      </div>
+      <ol class="ledger">
+        {d.services.items.map((s, i) => (
+          <li class="reveal" style={`--d:${(i % 3) * 60}ms`}>
+            <h3>{s.title}</h3>
+            <p>{s.description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <BuildingTour {...d.tour} />
+
+  <section class="section">
+    <div class="wrap feature">
+      <div class="feature__media reveal">
+        <Picture src={condo} alt={d.approach.imageAlt} widths={[480, 720, 960, 1280]} sizes="(min-width: 960px) 50vw, 100vw" formats={['avif', 'webp']} loading="lazy" />
+      </div>
+      <div class="reveal" style="--d:120ms">
+        <p class="eyebrow">{d.approach.eyebrow}</p>
+        <h2 set:html={rich(d.approach.title)} />
+        <p class="lede">{d.approach.description}</p>
+        <a class="link-arrow" href={localizedPath('/about', lang)}>{d.approach.cta}<Arrow /></a>
+      </div>
+    </div>
+  </section>
+
+  <Occupancy {...d.occupancy} />
+
+  <section class="section">
+    <div class="wrap split">
+      <div class="split__sticky reveal">
+        <p class="eyebrow">{d.faqs.eyebrow}</p>
+        <h2 set:html={rich(d.faqs.title)} />
+        <p class="lede">{d.faqs.description}</p>
+      </div>
+      <div class="faq reveal" style="--d:100ms">
+        {d.faqs.items.map((q) => (
+          <details>
+            <summary>{q.question}</summary>
+            <div class="answer"><p>{q.answer}</p></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand lang={lang} title={d.cta.title} description={d.cta.description} button={d.cta.button} />
+</Layout>

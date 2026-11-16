@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Arrow from './Arrow.astro';
+import { getContent, localizedPath, rich, type Lang } from '../i18n/utils';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = getContent(lang).thanks;
+---
+<Layout lang={lang} title={t.seo.title} description={t.seo.description} noindex>
+  <section class="center-page">
+    <div class="wrap">
+      <h1 set:html={rich(t.title)} />
+      <p>{t.message}</p>
+      <a class="btn" href={localizedPath('/', lang)}>{t.back}<Arrow /></a>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,33 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getContent, localizedPath, locales, rich, plain, type Lang } from '../../../i18n/utils';
+import { legalPages } from '../../../i18n/legal';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+const lang = Astro.params.lang as Lang;
+const t = getContent(lang);
+const pages = legalPages(lang);
+const fmt = new Intl.DateTimeFormat(lang === 'fr' ? 'fr-CA' : 'en-CA', { dateStyle: 'long', timeZone: 'UTC' });
+---
+<Layout lang={lang} title={`${plain(t.legalIndex.title)} | Gestion Proprio Alliance`} description={t.legalIndex.description}>
+  <header class="page-hero">
+    <div class="wrap">
+      <h1 set:html={rich(t.legalIndex.title)} />
+      <p class="lede">{t.legalIndex.description}</p>
+    </div>
+  </header>
+  <section class="section">
+    <div class="wrap">
+      <div class="legal-list">
+        {pages.map((p) => (
+          <a href={localizedPath(`/legal/${p.slug}`, lang)}>
+            <h2>{p.title}</h2>
+            <p>{t.ui.lastUpdated} : {fmt.format(p.updated)}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

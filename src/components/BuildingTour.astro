@@ -1,0 +1,115 @@
+---
+// Scroll-driven 3D building tour. The text steps scroll past a sticky canvas;
+// the camera moves to a new view for each step. three.js is only downloaded
+// once the section approaches the viewport. Without JS or WebGL, the steps
+// render as a plain numbered list.
+import { rich } from '../i18n/utils';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  description: string;
+  modelLabel: string;
+  steps: { label: string; title: string; text: string }[];
+}
+const { eyebrow, title, description, modelLabel, steps } = Astro.props;
+---
+<section class="section section--alt tour" data-tour>
+  <div class="wrap">
+    <div class="tour__head reveal">
+      <p class="eyebrow">{eyebrow}</p>
+      <h2 class="section-title" set:html={rich(title)} />
+      <p class="lede">{description}</p>
+    </div>
+
+    <div class="tour__grid">
+      <div class="tour__stage" aria-hidden="true">
+        <canvas class="tour__canvas" data-tour-canvas></canvas>
+        <ol class="tour__ticks">
+          {steps.map((s) => <li data-tour-tick>{s.label}</li>)}
+        </ol>
+      </div>
+      <span class="sr-only">{modelLabel}</span>
+
+      <ol class="tour__steps">
+        {steps.map((s, i) => (
+          <li class="tour__step" data-tour-step>
+            <div>
+              <span class="tour__num">{String(i + 1).padStart(2, '0')} · {s.label}</span>
+              <h3>{s.title}</h3>
+              <p>{s.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-tour]');
+  const canvas = root?.querySelector<HTMLCanvasElement>('[data-tour-canvas]');
+  const steps = root ? [...root.querySelectorAll<HTMLElement>('[data-tour-step]')] : [];
+  const ticks = root ? [...root.querySelectorAll<HTMLElement>('[data-tour-tick]')] : [];
+
+  const hasWebGL = () => {
+    try {
+      return !!document.createElement('canvas').getContext('webgl2');
+    } catch {
+      return false;
+    }
+  };
+
+  if (root && canvas && steps.length && 'IntersectionObserver' in window && hasWebGL()) {
+    root.classList.add('is-live');
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const desktop = matchMedia('(min-width: 960px)');
+
+    // Continuous step index from where each step's centre sits relative to the reading line
+    const progress = () => {
+      const line = innerHeight * (desktop.matches ? 0.5 : 0.78);
+      const c = steps.map((s) => { const r = s.getBoundingClientRect(); return r.top + r.height / 2; });
+      if (line <= c[0]) return 0;
+      for (let i = 0; i < c.length - 1; i++) {
+        if (line <= c[i + 1]) return i + (line - c[i]) / (c[i + 1] - c[i]);
+      }
+      return c.length - 1;
+    };
+
+    let active = -1;
+    const mark = (t: number) => {
+      const i = Math.round(t);
+      if (i === active) return;
+      active = i;
+      steps.forEach((s, k) => s.classList.toggle('is-active', k === i));
+      ticks.forEach((s, k) => s.classList.toggle('is-active', k === i));
+    };
+
+    const load = new IntersectionObserver(async (entries) => {
+      if (!entries[0].isIntersecting) return;
+      load.disconnect();
+      const { createTour } = await import('../scripts/building-tour');
+      let tour: ReturnType<typeof createTour>;
+      try {
+        tour = createTour(canvas, { reducedMotion });
+      } catch {
+        root.classList.remove('is-live');
+        return;
+      }
+      root.classList.add('is-ready');
+      let queued = false;
+      const update = () => {
+        queued = false;
+        const t = progress();
+        tour.setProgress(t);
+        mark(t);
+      };
+      const onScroll = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
+      addEventListener('scroll', onScroll, { passive: true });
+      addEventListener('resize', onScroll);
+      update();
+    }, { rootMargin: '600px 0px' });
+    load.observe(root);
+    mark(0);
+  }
+</script>

@@ -1,0 +1,36 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getContent, localizedPath, locales, rich, type Lang } from '../../../i18n/utils';
+import { guides, guideLabels } from '../../../i18n/guides';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+const lang = Astro.params.lang as Lang;
+const t = getContent(lang);
+const g = guideLabels[lang];
+const list = guides(lang);
+const fmt = new Intl.DateTimeFormat(lang === 'fr' ? 'fr-CA' : 'en-CA', { dateStyle: 'long', timeZone: 'UTC' });
+---
+<Layout lang={lang} title={g.seoTitle} description={g.description}>
+  <header class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">{g.eyebrow}</p>
+      <h1 set:html={rich(g.title)} />
+      <p class="lede">{g.description}</p>
+    </div>
+  </header>
+  <section class="section">
+    <div class="wrap">
+      <div class="legal-list">
+        {list.map((p) => (
+          <a href={localizedPath(`/guides/${p.slug}`, lang)}>
+            <h2>{p.title}</h2>
+            <p class="guide-list__desc">{p.description}</p>
+            <p>{t.ui.lastUpdated} : {fmt.format(p.updated)}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

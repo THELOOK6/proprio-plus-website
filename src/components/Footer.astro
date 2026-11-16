@@ -1,0 +1,74 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/brand/logo-light.png';
+import { getContent, localizedPath, type Lang } from '../i18n/utils';
+import { landing, landingLabels } from '../content/landing';
+import { guideLabels } from '../i18n/guides';
+import { site } from '../site';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = getContent(lang).ui;
+const year = new Date().getFullYear();
+const { services, areas } = landing[lang];
+const ll = landingLabels[lang];
+---
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href={localizedPath('/', lang)} aria-label="Proprio Alliance">
+          <Image src={logo} alt="Proprio Alliance" width={500} loading="lazy" />
+        </a>
+        <p>{t.footer.tagline}</p>
+      </div>
+
+      <nav aria-label={t.footer.navigate}>
+        <h3>{t.footer.navigate}</h3>
+        <ul>
+          <li><a href={localizedPath('/', lang)}>{t.nav.home}</a></li>
+          <li><a href={localizedPath('/about', lang)}>{t.nav.about}</a></li>
+          <li><a href={localizedPath('/services', lang)}>{t.nav.services}</a></li>
+          <li><a href={localizedPath('/guides', lang)}>{guideLabels[lang].nav}</a></li>
+          <li><a href={localizedPath('/contact', lang)}>{t.nav.contact}</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-label={ll.services}>
+        <h3>{ll.services}</h3>
+        <ul>{services.map((s) => <li><a href={localizedPath(`/services/${s.slug}`, lang)}>{s.nav}</a></li>)}</ul>
+      </nav>
+
+      <nav aria-label={ll.areas}>
+        <h3>{ll.areas}</h3>
+        <ul>
+          <li><a href={localizedPath('/', lang)}>Montréal</a></li>
+          {areas.map((a) => <li><a href={localizedPath(`/areas/${a.slug}`, lang)}>{a.nav}</a></li>)}
+        </ul>
+      </nav>
+
+      <div>
+        <h3>{t.footer.contact}</h3>
+        <address>
+          <a href={`mailto:${site.email}`}>{site.email}</a><br />
+          <a href={`tel:${site.phoneHref}`}>{site.phoneDisplay}</a><br />
+          <span>{t.footer.region}</span>
+        </address>
+      </div>
+
+      <div>
+        <h3>{t.footer.legal}</h3>
+        <ul>
+          <li><a href={localizedPath('/legal/privacy-policy', lang)}>{t.legal.privacy}</a></li>
+          <li><a href={localizedPath('/legal/terms-of-service', lang)}>{t.legal.terms}</a></li>
+          <li><a href={site.linkedin} rel="noopener" target="_blank">LinkedIn</a></li>
+          <li><a href={site.instagram} rel="noopener" target="_blank">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© {year} {site.legalName}. {t.footer.rights}</span>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Arrow from '../components/Arrow.astro';
+import fr from '../content/fr';
+const t = fr.ui.notFound;
+---
+<Layout lang="fr" title="404 | Proprio Alliance" description={t.message} noindex>
+  <section class="center-page">
+    <div class="wrap">
+      <p class="eyebrow">404</p>
+      <h1>{t.title}</h1>
+      <p>{t.message}</p>
+      <a class="btn" href="/fr/">{t.back}<Arrow /></a>
+    </div>
+  </section>
+</Layout>
